@@ -10,7 +10,7 @@
     <meta name="description"
         content="Seedlingrounds ofera plante, arbusti, seminte, flori cu optiunea de achizitie fizic sau online prin livrare facuta de curier.">
     <meta name="keywords"
-        content="magazin online, plante, arbusti, seminte, flori, gradina, ornamente, produse, livrare, fizic, online">
+        content="magazin online, plante, arbusti, seminte, flori, gradina, instrumente, produse, livrare, fizic, online">
     <title>Seedlingrounds</title>
     <!-- Task 1.4-->
     <link rel="icon" type="image/png" href="resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
@@ -21,21 +21,31 @@
     <link rel="manifest" href="resurse/imagini/favicon/site.webmanifest" />
 
     <link rel="stylesheet" href="resurse/css/general.css" type="text/css"/>
+    <link rel="stylesheet" href="resurse/css/reset.css" type="text/css"/>
+    <!-- Pentru icon-uri -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- Task 1.5-->
     <header>
-        <h1>Seedlingrounds</h1>
+        <h1 class="indie-flower-regular">Seedlingrounds <i class="fa-solid fa-sun-plant-wilt"></i></h1>
         <img src="sigla.png" alt="sigla">
+        <!-- Task 1.8-->
         <nav>
             <ul>
-                <li>Acasa</li>
+                <li>
+                    Acasa
                     <ul>
                         <li><a href="#welcome">Bine ati venit</a></li>
                         <li><a href="#promotii">Promotii</a></li>
                     </ul>
-                <li>Produse</li>
+                </li> <li>Produse</li>
                 <li>Inregistrare</li>
             </ul>
         </nav>
@@ -43,7 +53,6 @@
     <!-- Task 1.5-->
     <main>
         <div id="grid-pagina">
-
             <section id="welcome">
                 <!-- Task 1.7-->
                 <hgroup>
@@ -51,26 +60,34 @@
                     <p class="subtitlu">Prezentarea Magazinului</p>
                 </hgroup>
 
-                <p class="intro">Vă mulțumim că ne vizitați site-ul. Aici găsiți cele mai de calitate semințe, plante, arbuști și flori.
+                <p class="intro">Vă mulțumim că ne vizitați site-ul. Aici găsiți cele mai de calitate semințe, plante, arbuști și flori care sunt livrate online, sau pot fi cumparate fizic.
                 </p>
 
                 <div class="intro-oferte">
-                    <div>Arbuști</div>
+                    <div>Arbusti</div>
                     <div>Semințe</div>
                     <div>Plante</div>
                     <div>Flori</div>
-                    <div>Obiecte de Gradinarit</div>
+                    <div>Instrumente de Gradinarit</div>
                 </div>
                 <p class="anunt intro">Puteți găsi produsele ideale pentru dumneavoastră 
-                    domiciliu, cu ajutorul ofertei noastre de livrare a produselor prin curier.</p>
+                    domiciliu, cu ajutorul ofertei noastre de livrare a produselor prin curier.
+                </p>
+                <!-- Task 1.9-->
+                <section><!-- Task1.12 -->
+                    <blockquote cite="https://quoteinvestigator.com/2021/06/23/seeds/">
+                    “Don't judge each day by the harvest you reap but by the seeds that you plant.”
+                    </blockquote>
+                </section>
                 <div id="dv-prezentare-1">
                     <div id="dv-prezentare">
+                        <!-- Task 1.11 -->
                         <figure>
                             <picture>
                                 <!-- il ia pe primul care se potriveste cu query-ul din media-->
                                 <source srcset="./resurse/imagini/planta0-3.jpg" media="(max-width:700px)" />
-                                <source srcset="./resurse/imagini/planta0-2.jpg" media="(max-width:1200px)" />
-                                <img src="./resurse/imagini/planta0-1.jpg" alt="text" />
+                                <source srcset="./resurse/imagini/planta0-3.jpg" media="(max-width:1200px)" />
+                                <img src="./resurse/imagini/planta0-3.jpg" alt="text" />
                             </picture>
                             <figcaption>Aceasta este o imagine generală a site-ului</figcaption>
                         </figure>
@@ -78,13 +95,13 @@
                 </div>
                 <hr class="plante" />
                 <div id="container-video">
-                    <img style="width:50%" class="lamai" src="resurse/imagini/planta2-0.jpg"
+                    <img class="lamai" src="resurse/imagini/planta2-0.jpg"
                         alt="lamai" title="O poza cu plante">
                     <div id="centrare-video">
                         <div id="clip-video">
                             <div id="stil-video">
-                                <video width="900" height="600" playsinline autoplay loop muted>
-                                    <source src="resurse/video/film1.mp4" type="video/mp4">
+                                <video width="900" height="600" playsinline autoplay loop muted>    
+                                    <source src="resurse/video/film1.mp4">
                                     <track default
                                         src="resurse/video/subtitrari1_romana.vtt"
                                         kind="captions" srclang="ro" label="romana">
@@ -144,6 +161,7 @@
             <section id="produse">
                 <h2>Produsele noastre</h2>
                 <p>Vă oferim o multitudine de acesorii și plante pentru grădina dumneavoastră:</p>
+                <!-- Task 1.9-->
                 <section>
                     <h3>Plante</h3>
                     <p>Cele mai populare plante sunt:</p>
@@ -180,6 +198,19 @@
                         <li>castraveți</li>
                         <li>vinete</li>
                         <li>ridichi</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Instrumente de gradinarit</h3>
+                    <p>Cele mai populare instrumente sunt:</p>
+                    <ul>
+                        <!-- Task1.12 -->
+                        <li><i>Manusi de protectie</i></li>
+                        <li><i>Lopatica</i></li>
+                        <li><i>Gheruta</i></li>
+                        <li><i>Secator</i></li>
+                        <li><i>Pulverizator</i></li>
                     </ul>
                 </section>
             </section>
@@ -274,22 +305,25 @@
                 <img src="resurse/imagini/planta4-2.jpg" alt="castraveti">
                 <figcaption>Castraveți</figcaption>
             </figure>
-            <figure id="fig4">
+            <figure id="fig4" class="fg-img">
                 <img src="resurse/imagini/planta4-3.jpg" alt="vinete">
                 <figcaption>Vinete</figcaption>
             </figure>
             <section id="anunturi">
             <h2 class="fg-img">Anunțuri</h2>
-            <p><time datetime="2026-03-02">2 martie 2026</time>Nu avem nimic de anunțat, doar am vrut să vă spunem că feriga aia din colț chiar are nevoie de apă azi.</p>
-            <p><time datetime="2025-11-10">10 noiembrie 2025</time> <strong>Iarna nu-i ca vara!</strong> Am adus lămpi UV pentru plantele voastre triste.</p>
-            <p><time datetime="2025-05-15">15 mai 2025</time> <span>Am adăugat un Monstera Deliciosa uriaș în stoc</span></p>
-            <p><time datetime="2025-04-05">5 aprilie 2025</time> <span>Am adăugat o varietate nouă de suculente</span></p>
-            <p><time datetime="2024-07-05">5 iulie 2024</time> Atenție! Dacă vorbești cu plantele tale, ele cresc mai repede. Dacă ele îți răspund, sună-ne.</p>
-            <p><time datetime="2024-03-20">20 martie 2020</time> Am adăugat un ghivezi auto-irigabil pentru cei care uită de ele.</p>
-            <p><time datetime="2023-12-24">24 decembrie 2023</time> Crăciun fericit! Sperăm că bradul vă lasă ace prin casă.</p>
-            <p><time datetime="2023-09-15">15 septembrie 2023</time> Am adăugat un mix de pământ special pentru cactuși.</p>
-            <p><time datetime="2023-01-01">1 ianuarie 2023</time> Un an nou verde și plin de oxigen!</p>
-            <p><time datetime="2022-02-11">11 februarie 2022</time> Studiile au arătat că cine are mai mult de 10 plante în casă este mai fericit.</p>
+            <!-- Task 1.10 -->
+            <ul><!-- Task1.12 -->
+                <li><time datetime="2026-03-02">2 martie 2026</time><b>Nu uitati de plante </b>Nu avem nimic de anunțat, doar am vrut să vă spunem că feriga aia din colț chiar are nevoie de apă azi.</li>
+                <li><time datetime="2025-11-10">10 noiembrie 2025</time><b>Lampi UV </b> Iarna nu-i ca vara! Am adus lămpi UV pentru plantele voastre triste.</li>
+                <li><time datetime="2025-05-15">15 mai 2025</time> <b>Mai multe plante noi </b> <span>Am adăugat un Monstera Deliciosa uriaș în stoc</span></li>
+                <li><time datetime="2025-04-05">5 aprilie 2025</time> <b>Plante noi </b> <span>Am adăugat o varietate nouă de suculente</span></li>
+                <li><time datetime="2024-07-05">5 iulie 2024</time> <b>Gluma</b> Atenție! Dacă vorbești cu plantele tale, ele cresc mai repede. Dacă ele îți răspund, sună-ne.</li>
+                <li><time datetime="2024-03-20">20 martie 2020</time> <b>Ghiveci nou</b> Am adăugat un ghivezi auto-irigabil pentru cei care uită de ele.</li>
+                <li><time datetime="2023-12-24">24 decembrie 2023</time><b>Sarbatori fericite</b> Crăciun fericit! Sperăm că bradul vă lasă ace prin casă.</li>
+                <li><time datetime="2023-09-15">15 septembrie 2023</time> <b>Pamant nou</b> Am adăugat un mix de pământ special pentru cactuși.</li>
+                <li><time datetime="2023-01-01">1 ianuarie 2023</time> <b>Sarbatori fericite</b> Un an nou verde și plin de oxigen!</li>
+                <li><time datetime="2022-02-11">11 februarie 2022</time> <b>Gluma</b> Studiile au arătat că cine are mai mult de 10 plante în casă este mai fericit.</li>
+            </ul>
         </section>
             <section id="index-intrebari">
                 <h2>Întrebări frecvente</h2>
@@ -354,6 +388,7 @@
             <h2>Ghid</h2>
             <p>Dacă doriți să dati cele mai mari sanse plantelor dumneavoastra sa creasca armonios,
                 vă recomandăm urmatoarele ghiduri simple pe care sperăm să le vizualizati, si sa aflati baza cand vine vorba de intretinerea plantelor.</p>
+            <!-- Task 1.14-->
             <div class="container-iframe">
                 <div class="taburi-iframe">
                     <a href="https://www.youtube.com/embed/RWr566IYR10?si=OgU-e6_5mrCFAqS_" target="nume_iframe">Cum sa uzi o planta</a>
@@ -372,6 +407,8 @@
     <footer>
         <p>
             <small>Site facut de Sîrghe Matei</small>
+            <!-- Task 1.13 -->
+            <a href="#top">Inapoi sus!</a>
         </p>
     </footer>
 </body>

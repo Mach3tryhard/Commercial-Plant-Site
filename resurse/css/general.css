@@ -1,6 +1,7 @@
 body{
     --culoare-fundal:#DEDCC1;
     --margine-pagina: 100px;
+    --culoare_contur: black;
     background-color: var(--culoare-fundal);
 }
 
@@ -13,14 +14,95 @@ main{
     margin-right: var(--margine-pagina);
 }
 
+#grid-pagina{
+    display: grid;
+    gap:10px;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-areas: "welcome welcome welcome"
+                         "promotii promotii anunturi"
+                         "fig1 orar fig2"
+                         "fig3 ghid fig4"
+                         "produse produse produse"
+                         "index-intrebari index-intrebari index-intrebari";
+}
+
+#grid-pagina > * {
+    border: 1px solid var(--culoare_contur);
+    box-shadow: 0 0 5px var(--culoare_contur);
+    padding: 10px;
+}
+
+#ghid {
+    grid-area: ghid;
+}
+
+#welcome{
+    grid-area: welcome;
+}
+#promotii{
+    grid-area: promotii;
+}
+#anunturi{
+    grid-area: anunturi;
+}
+#orar{
+    grid-area: orar;
+}
+ 
+#fig1{
+    grid-area: fig1;
+}
+#fig2{
+    grid-area: fig2;
+}
+#fig3{
+    grid-area: fig3;
+}
+
+#fig4{
+    grid-area: fig4;
+}
+
+figure.fg-img > img{
+    width: 100%;
+}
+
+#produse{
+    grid-area: produse;
+}
+#index-intrebari{
+    grid-area: index-intrebari;
+}
+
+.indie-flower-regular {
+  font-family: "Indie Flower", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @media screen and (max-width:1200px){
     body{
         --margine-pagina:100px;
+    }
+
+    #grid-pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "wecome welcome"
+                         "promotii anunturi"
+                         "fig1 orar"
+                         "fig2 orar"
+                         "fig3 orar"
+                         "produse  produse"
+                         "index-intrebari index-intrebari";
     }
 }
 
 @media screen and (max-width:700px){
     body{
         --margine-pagina:50px;
+    }
+    #grid-pagina{
+        display: block;
     }
 }

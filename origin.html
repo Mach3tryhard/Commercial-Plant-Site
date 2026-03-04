@@ -100,7 +100,7 @@
                     <div id="centrare-video">
                         <div id="clip-video">
                             <div id="stil-video">
-                                <video width="900" height="600" playsinline autoplay loop muted>    
+                                <video width="900" height="600" playsinline autoplay loop muted controls>    
                                     <source src="resurse/video/film1.mp4">
                                     <track default
                                         src="resurse/video/subtitrari1_romana.vtt"
@@ -216,7 +216,11 @@
             </section>
             <section id="orar">
                 <h2>Orar</h2>
+                <!-- Task 1.15-->
                 <table id="tab-orar">
+                    <caption>
+                        Actualizat in fiecare zi.
+                    </caption>
                     <thead>
 
                         <tr>
@@ -293,20 +297,29 @@
                 </table>
                 <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar.</p>
             </section>
+            <!-- Task 1.13.d-->
             <figure id="fig1" class="fg-img">
-                <img src="resurse/imagini/planta4-0.jpg" alt="rosii">
+                <a href="resurse/imagini/planta4-0.jpg">
+                    <img class="imagine1" src="resurse/imagini/planta4-0.jpg" alt="rosii">
+                </a>
                 <figcaption>Tomate</figcaption>
             </figure>
             <figure id="fig2" class="fg-img">
-                <img src="resurse/imagini/planta4-1.jpg" alt="ardei">
+                <a href="resurse/imagini/planta4-1.jpg">
+                    <img class="imagine1" src="resurse/imagini/planta4-1.jpg" alt="ardei">
+                </a>
                 <figcaption>Ardei</figcaption>
             </figure>
             <figure id="fig3" class="fg-img">
-                <img src="resurse/imagini/planta4-2.jpg" alt="castraveti">
+                <a href="resurse/imagini/planta4-2.jpg">
+                    <img class="imagine1" src="resurse/imagini/planta4-2.jpg" alt="castraveti">
+                </a>
                 <figcaption>Castraveți</figcaption>
             </figure>
             <figure id="fig4" class="fg-img">
-                <img src="resurse/imagini/planta4-3.jpg" alt="vinete">
+                <a href="resurse/imagini/planta4-3.jpg">
+                    <img class="imagine1" src="resurse/imagini/planta4-3.jpg" alt="vinete">
+                </a>
                 <figcaption>Vinete</figcaption>
             </figure>
             <section id="anunturi">
@@ -327,6 +340,7 @@
         </section>
             <section id="index-intrebari">
                 <h2>Întrebări frecvente</h2>
+                <!-- Task 1.16 -->
                 <details>
                     <summary>Produsele dumneavoastră sunt de calitate maxima?</summary>
                     <p>Da!</p>
@@ -346,48 +360,13 @@
                 </details>
             </section>
 
-        </div>
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <figure>
-                    <div>
-                        <img src="resurse/imagini/planta5-1.jpg" alt="planta 1">
-                    </div>
-
-                    <figcaption>Lalele</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-2.jpg" alt="planta 2">
-                    <figcaption>Suculenta</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-3.jpg" alt="planta 3">
-                    <figcaption>Cactus</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-4.jpg" alt="planta 4">
-                    <figcaption>Begonia</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-5.jpg" alt="planta 5">
-                    <figcaption>Gypsophila</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-6.jpg" alt="planta 6">
-                    <figcaption>Trandafir</figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-7.jpg" alt="planta 7">
-                    <figcaption>Salcie</figcaption>
-                </figure>
-
-            </div>
-        </section>
-        <section id="ghid">
+            <section id="ghid">
             <h2>Ghid</h2>
             <p>Dacă doriți să dati cele mai mari sanse plantelor dumneavoastra sa creasca armonios,
                 vă recomandăm urmatoarele ghiduri simple pe care sperăm să le vizualizati, si sa aflati baza cand vine vorba de intretinerea plantelor.</p>
+            <!-- Task 1.13.a-->
+            <p>Daca nu doriti sa cresteti plante din cauza timpului limitat, dar doriti sa simtiti o parte din efectul pozitiv al plantelor, atunci va invitam sa vizitati
+                siteul nostru partener <a href="https://github.com/Aecrimx/Magazin-de-Ceai" target="_blank">Camellie's Corner</a></p>
             <!-- Task 1.14-->
             <div class="container-iframe">
                 <div class="taburi-iframe">
@@ -402,12 +381,87 @@
             </div>
         </section>
 
+        <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+                <figure>
+                    <!-- Task 1.13.e -->
+                    <div>
+                        <img src="resurse/imagini/planta5-1.jpg" alt="planta 1">
+                    </div>
+                    <figcaption>Lalele - 
+                        <a href="resurse/imagini/planta5-1.jpg" download="planta5-1_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-2.jpg" alt="planta 2">
+                    <figcaption>Suculenta - 
+                        <a href="resurse/imagini/planta5-2.jpg" download="planta5-2_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-3.jpg" alt="planta 3">
+                    <figcaption>Cactus - 
+                        <a href="resurse/imagini/planta5-3.jpg" download="planta5-3_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-4.jpg" alt="planta 4">
+                    <figcaption>Begonia - 
+                        <a href="resurse/imagini/planta5-4.jpg" download="planta5-4_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-5.jpg" alt="planta 5">
+                    <figcaption>Gypsophila - 
+                        <a href="resurse/imagini/planta5-5.jpg" download="planta5-5_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-6.jpg" alt="planta 6">
+                    <figcaption>Trandafir - 
+                        <a href="resurse/imagini/planta5-6.jpg" download="planta5-6_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-7.jpg" alt="planta 7">
+                    <figcaption>Salcie - 
+                        <a href="resurse/imagini/planta5-7.jpg" download="planta5-7_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="resurse/imagini/planta5-8.jpg" alt="planta 8">
+                    <figcaption>Feriga - 
+                        <a href="resurse/imagini/planta5-8.jpg" download="planta5-8_downloaded">
+                            Descarcati
+                        </a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+
+        </div>
     </main>
     <!-- Task 1.5-->
     <footer>
         <p>
             <small>Site facut de Sîrghe Matei</small>
-            <!-- Task 1.13 -->
+            <!-- Task 1.13.c -->
             <a href="#top">Inapoi sus!</a>
         </p>
     </footer>

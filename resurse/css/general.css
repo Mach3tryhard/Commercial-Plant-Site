@@ -14,22 +14,38 @@ main{
     margin-right: var(--margine-pagina);
 }
 
+#grid-galerie{
+    display: grid;
+    gap:10px;
+    grid-template-columns: 2fr 2fr;
+}
+
 #grid-pagina{
     display: grid;
     gap:10px;
-    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
     grid-template-areas: "welcome welcome welcome"
                          "promotii promotii anunturi"
                          "fig1 orar fig2"
                          "fig3 ghid fig4"
                          "produse produse produse"
-                         "index-intrebari index-intrebari index-intrebari";
+                         "index-intrebari index-intrebari index-intrebari"
+                         "galerie-statica galerie-statica galerie-statica";
 }
 
 #grid-pagina > * {
     border: 1px solid var(--culoare_contur);
     box-shadow: 0 0 5px var(--culoare_contur);
     padding: 10px;
+}
+
+.imagine1{
+    width:100%;
+    height: min-content;
+}
+
+#galerie-statica{
+    grid-area:galerie-statica;
 }
 
 #ghid {

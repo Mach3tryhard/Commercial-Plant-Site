@@ -20,15 +20,23 @@ main{
     grid-template-columns: 2fr 2fr;
 }
 
+#grid-produse-detaliat{
+    display: grid;
+    gap:10px;
+    grid-template-columns: 2fr 2fr;
+}
+
 #grid-pagina{
     display: grid;
     gap:10px;
     grid-template-columns: 2fr 2fr 2fr;
     grid-template-areas: "welcome welcome welcome"
-                         "promotii promotii anunturi"
-                         "fig1 orar fig2"
-                         "fig3 ghid fig4"
+                         "promotii ghid ghid"
+                         "despre-noi ghid ghid"
+                         "orar fig1 fig2"
+                         "anunturi fig3 fig4"
                          "produse produse produse"
+                         "catalog-produse catalog-produse catalog-produse"
                          "index-intrebari index-intrebari index-intrebari"
                          "galerie-statica galerie-statica galerie-statica";
 }
@@ -42,6 +50,14 @@ main{
 .imagine1{
     width:100%;
     height: min-content;
+}
+
+#despre-noi{
+    grid-area: despre-noi;
+}
+
+#catalog-produse{
+    grid-area: catalog-produse;
 }
 
 #galerie-statica{
@@ -95,6 +111,29 @@ figure.fg-img > img{
   font-weight: 400;
   font-style: normal;
 }
+
+.tags {
+    margin-bottom: 15px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    margin-right: 5px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.tag-tropical { background-color: #27ae60; }
+.tag-desert { background-color: #e67e22; }
+.tag-floare { background-color: #9b59b6; }
+.tag-aer { background-color: #3498db; }
+.tag-popular { background-color: #f1c40f; color: #333; }
+.tag-easy { background-color: #2ecc71; }
+.tag-fragil { background-color: #e74c3c; }
+.tag-umbra { background-color: #34495e; }
 
 @media screen and (max-width:1200px){
     body{

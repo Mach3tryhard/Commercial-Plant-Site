@@ -35,7 +35,7 @@
         <!-- Task 1.5 -->
         <header>
             <h1 class="indie-flower-regular">Seedlingrounds</h1>
-            <img src="sigla.png" alt="sigla">
+            <img src="resurse/imagini/favicon/web-app-manifest-192x192.png" alt="sigla">
             <!-- Task 1.8 -->
             <nav>
                 <ul>
@@ -43,9 +43,27 @@
                         Acasa
                         <ul>
                             <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
+                            <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
+                            <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
+                        </ul>
+                    </li> 
+                    <li>
+                        Cumparati
+                        <ul>
+                            <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
+                            <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
                             <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
                         </ul>
-                    </li> <li>Produse</li>
+                    </li>
+                    <li>
+                        Informatii
+                        <ul>
+                            <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
+                            <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
+                            <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
+                        </ul>
+                    </li>
+
                     <li>Inregistrare</li>
                 </ul>
             </nav>
@@ -157,6 +175,18 @@
                         </p>
 
                     </article>
+                    <section id="harta-interactiva">
+                        <h2>Inspiră-te pentru camera ta</h2>
+                        <p>Dă click direct pe plantele din imagine pentru a fi redirecționat către detaliile produsului corespunzător.</p>
+                        
+                        <img class="imagine1" src="resurse/imagini/dormitor.png" usemap="#image-map" alt="Imagine Dormitor">
+
+                        <map name="image-map">
+                            <area alt="Cactus Desertic" title="Cactus Desertic" href="#catalog-produse" coords="107,836,146,829,165,818,159,804,168,791,166,761,166,736,171,714,166,702,142,699,134,693,134,675,124,662,122,650,107,655,85,655,67,667,64,678,48,674,33,672,33,685,33,700,36,718,47,739,54,752,50,779,62,804,60,819,79,831" shape="poly">
+                            <area alt="Monstera Deliciosa" title="Monstera Deliciosa" href="#catalog-produse" coords="308,643,339,642,367,639,379,619,388,574,389,548,396,526,406,539,418,557,434,564,454,559,455,531,448,499,435,470,424,455,404,443,401,420,401,398,383,379,363,371,350,379,345,391,328,384,315,393,297,414,276,424,277,432,291,444,277,453,266,473,258,464,245,472,231,479,221,492,202,512,187,531,186,545,193,563,207,568,224,565,238,547,238,527,238,513,248,504,262,504,282,499,301,503,322,523,296,525,273,525,273,540,273,561,280,579,287,602,293,624,300,640" shape="poly">
+                            <area alt="Orhidee Phalaenopsis" title="Orhidee Phalaenopsis" href="#catalog-produse" coords="1016,164,1016,142,992,118,994,95,1002,79,1013,66,1024,52,1034,43,1049,56,1055,61,1035,76,1022,86,1009,98,1009,112,1020,124,1035,129,1038,110,1042,102,1064,89,1080,81,1094,84,1097,96,1084,102,1073,98,1059,102,1057,115,1055,125,1059,139,1073,139,1052,150,1047,164,1043,173,1023,172,1042,166,1027,154" shape="poly">
+                        </map>
+                    </section>
                 </section>
                 <section id="produse">
                     <h2>Produsele noastre</h2>
@@ -417,27 +447,12 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <!-- Task 1.5Bonus-->
-                <section id="playlist-video">
-                    <h2>Playlist complet despre cum sa ai grija de plante</h2>
-                    <div class="container-harta">
-                        <iframe 
-                            width="600" 
-                            height="315" 
-                            src="https://www.youtube.com/embed/RWr566IYR10?playlist=tBlr1fNm59w,7_5IUMzc21I&autoplay=1&loop=1&controls=1&mute=1" 
-                            title="YouTube video playlist" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </section>
                 <!-- Task 1.2Bonus -->
                  <embed
                     src="resurse/documente/plant_care.pdf"
                     type="application/pdf"
-                    width="100%"
-                    height="750"
+                    width="900"
+                    height="675"
                     title="Embed pdf"
                 />
             </section>
@@ -473,6 +488,23 @@
                         </iframe>
                     </div>
                 </div>
+
+                <!-- Task 1.5Bonus-->
+                <section id="playlist-video">
+                    <h2>Videoclipuri cu locatia fizica</h2>
+                    <div class="container-harta">
+                        <iframe 
+                            width="600" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/RWr566IYR10?playlist=tBlr1fNm59w,7_5IUMzc21I&autoplay=1&loop=1&controls=1&mute=1" 
+                            title="YouTube video playlist" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+
             </section>
 
             <section id="catalog-produse">
@@ -721,7 +753,6 @@
                         <a href="https://instagram.com" target="_blank">Urmariti-ne pe Instagram</a>
                     </p>
                 </address>
-            </p>
         </footer>
     </body>
 

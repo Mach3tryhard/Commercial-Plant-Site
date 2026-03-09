@@ -1,7 +1,9 @@
 body{
     --culoare-fundal:#DEDCC1;
-    --margine-pagina: 100px;
+    --margine-pagina: 0px;
     --culoare_contur: black;
+    --culoare-secundara:#CDDEC1;
+    --culoare-tertara:#CFDE84;
     background-color: var(--culoare-fundal);
 }
 
@@ -106,6 +108,38 @@ figure.fg-img > img{
     grid-area: index-intrebari;
 }
 
+.taburi-iframe > a{
+    display: inline-block;
+    padding: 10px;
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare_contur);
+    color:black;
+    text-decoration: none;
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
+    /* margin-right: 10px; */
+    transition:all 0.2s ease;
+}
+
+.taburi-iframe > a:hover{
+    background-color: var(--culoare-tertara);
+    color:white;
+}
+
+.taburi-iframe{
+    height:50%;
+    display:flex;
+    flex-direction: column;
+    /* height: 100%; */
+}
+
+.container-iframe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 315px;
+}
+
 .indie-flower-regular {
   font-family: "Indie Flower", cursive;
   font-weight: 400;
@@ -134,6 +168,29 @@ figure.fg-img > img{
 .tag-easy { background-color: #2ecc71; }
 .tag-fragil { background-color: #e74c3c; }
 .tag-umbra { background-color: #34495e; }
+
+#tab-orar{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tab-orar td,#tab-orar th{
+    border: 1px solid var(--culoare_contur);
+    padding: 5px;
+    text-align: center;
+}
+
+#tab-orar tbody tr:nth-child(even){
+    background-color: var(--culoare-secundara);
+}
+
+#tab-orar tbody tr:nth-child(odd){
+    background-color: var(--culoare-tertara);
+}
+
+.weekend,.zile_lucratoare{
+    background-color: var(--culoare-secundara);
+}
 
 @media screen and (max-width:1200px){
     body{

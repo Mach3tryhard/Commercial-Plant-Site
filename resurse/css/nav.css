@@ -1,0 +1,77 @@
+nav{
+    --latime-buton: 200px;
+    --inaltime-buton: 30px;
+    background-color: var(--culoare_contur);
+}
+
+#hamburger,#ch-menu{
+    display: none;
+}
+
+.text-icon, .imag-icon  {
+    display: flex;
+}
+
+ul.meniu, ul.meniu ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.meniu{
+    display: flex;
+    position:relative;
+}
+ul.meniu ul{
+    display: none;
+    animation:animatie_submeniu 0.3s linear;
+    transform-origin: center top;
+}
+
+
+@keyframes animatie_submeniu{
+    0%{
+        opacity: 0;
+        transform: scale(0,0);
+    }
+    50%{
+        transform: scale(0.5,1);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+
+ul.meniu li{
+    font-weight: bold;
+    width: var(--latime-buton);
+    height: var(--inaltime-buton);
+    background-color: var(--culoare-fundal);
+    border: 1px solid var(--culoare_contur);
+    color:black;
+    text-align: center;
+    line-height: var(--inaltime-buton);
+    text-decoration: none;
+    transition:all 0.2s ease;
+}
+
+ul.meniu li:hover{
+    cursor:pointer;
+    background-color: var(--culoare-tertara);
+    color:white;
+}
+
+
+ul.meniu li a{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+ul.meniu>li:hover ul{
+    display: block;
+    position: absolute;
+    z-index:1; /*valoare mai mare decat 0*/
+}

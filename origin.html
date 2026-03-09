@@ -20,6 +20,7 @@
         <meta name="apple-mobile-web-app-title" content="Seedlingrounds" />
         <link rel="manifest" href="resurse/imagini/favicon/site.webmanifest" />
 
+        <link rel="stylesheet" href="resurse/css/nav.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/general.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/reset.css" type="text/css"/>
         <!-- Pentru icon-uri -->
@@ -32,41 +33,45 @@
     </head>
 
     <body>
+        <!-- Task 1.8 -->
+        <nav>
+        <label id="hamburger" for="ch-menu">
+            <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">    
+        </label>
+        <input type="checkbox" id="ch-menu"/>
+        <ul class="meniu">
+            <li>
+                Acasa
+                <ul>
+                    <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
+                    <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
+                    <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
+                </ul>
+            </li> 
+            <li>
+                Cumparati
+                <ul>
+                    <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
+                    <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
+                    <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
+                </ul>
+            </li>
+            <li>
+                Informatii
+                <ul>
+                    <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
+                    <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
+                    <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
+                </ul>
+            </li>
+
+            <li>Inregistrare</li>
+        </ul>
+    </nav>
         <!-- Task 1.5 -->
         <header>
             <h1 class="indie-flower-regular">Seedlingrounds</h1>
             <img src="resurse/imagini/favicon/web-app-manifest-192x192.png" alt="sigla">
-            <!-- Task 1.8 -->
-            <nav>
-                <ul>
-                    <li>
-                        Acasa
-                        <ul>
-                            <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
-                            <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
-                            <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
-                        </ul>
-                    </li> 
-                    <li>
-                        Cumparati
-                        <ul>
-                            <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
-                            <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
-                            <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Informatii
-                        <ul>
-                            <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
-                            <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
-                            <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
-                        </ul>
-                    </li>
-
-                    <li>Inregistrare</li>
-                </ul>
-            </nav>
         </header>
         <!-- Task 1.5 -->
         <main>
@@ -264,55 +269,51 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td rowspan="5">Zile<br />Lucrătoare</td>
+                                <td>1</td>
+                                <td class="zile_lucratoare" rowspan="5">Zile<br />Lucrătoare</td>
                                 <td>Luni</td>
                                 <td>10-12</td>
                                 <td>12-14</td>
                                 <td>14-20</td>
                             </tr>
                             <tr>
-                                <td></td>
-
+                                <td>2</td>
                                 <td>Marti</td>
                                 <td>9-12</td>
                                 <td>12-14</td>
                                 <td>14-21</td>
                             </tr>
                             <tr>
-                                <td></td>
-
+                                <td>3</td>
                                 <td>Miercuri</td>
                                 <td>9-11</td>
                                 <td>11-13</td>
                                 <td>14-21</td>
                             </tr>
                             <tr>
-                                <td></td>
-
+                                <td>4</td>
                                 <td>Joi</td>
                                 <td>9-11</td>
                                 <td>11-13</td>
                                 <td>14-21</td>
                             </tr>
                             <tr>
-                                <td></td>
-
+                                <td>5</td>
                                 <td>Vineri</td>
                                 <td>9-12</td>
                                 <td>12-14</td>
                                 <td>14-19</td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td rowspan="2">Weekend</td>
+                                <td>6</td>
+                                <td class="weekend" rowspan="2">Weekend</td>
                                 <td>Sambata</td>
                                 <td>10-12</td>
                                 <td>12-13</td>
                                 <td>13-16</td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>7</td>
                                 <td>Duminica</td>
                                 <td>10-14</td>
                                 <td>-</td>
@@ -434,13 +435,13 @@
                 </section>
                 <!-- Task 1.13.a -->
                 <p>Daca nu doriti sa cresteti plante din cauza timpului limitat, dar doriti sa simtiti o parte din efectul pozitiv al plantelor, atunci va invitam sa vizitati
-                    siteul nostru partener <a href="https://github.com/Aecrimx/Magazin-de-Ceai" target="_blank">Camellie's Corner</a></p>
+                    siteul nostru partener <a href="https://aecrimx.github.io/Magazin-de-Ceai/" target="_blank">Camellie's Corner</a></p>
                 <!-- Task 1.14 -->
                 <div class="container-iframe">
                     <div class="taburi-iframe">
                         <a href="https://www.youtube.com/embed/RWr566IYR10?si=OgU-e6_5mrCFAqS_" target="nume_iframe">Cum sa uzi o planta</a>
                         <a href="https://www.youtube.com/embed/tBlr1fNm59w?si=wVmoQHmbuVWu_fj4" target="nume_iframe">Cat de mult soare au nevoie plantele</a>
-                        <a href="https://www.youtube.com/embed/7_5IUMzc21I?si=5qo6X6toVnwAakRC" target="nume_iframe">Cand se foloseste ingrasamant</a><br />
+                        <a href="https://www.youtube.com/embed/7_5IUMzc21I?si=5qo6X6toVnwAakRC" target="nume_iframe">Cand se foloseste ingrasamant</a>
                     </div>
                     <iframe width="600" height="315" src="https://www.youtube.com/embed/RWr566IYR10?si=OgU-e6_5mrCFAqS_ "
                         name="nume_iframe" title="YouTube video player" frameborder="0"

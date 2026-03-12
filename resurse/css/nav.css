@@ -1,7 +1,7 @@
 nav{
     --latime-buton: 200px;
     --inaltime-buton: 30px;
-    background-color: var(--culoare_contur);
+    background-color: var(--culoare-contur);
 }
 
 #hamburger,#ch-menu{
@@ -48,7 +48,7 @@ ul.meniu li{
     width: var(--latime-buton);
     height: var(--inaltime-buton);
     background-color: var(--culoare-fundal);
-    border: 1px solid var(--culoare_contur);
+    border: 1px solid var(--culoare-contur);
     color:black;
     text-align: center;
     line-height: var(--inaltime-buton);
@@ -58,7 +58,7 @@ ul.meniu li{
 
 ul.meniu li:hover{
     cursor:pointer;
-    background-color: var(--culoare-tertara);
+    background-color: var(--culoare-3);
     color:white;
 }
 

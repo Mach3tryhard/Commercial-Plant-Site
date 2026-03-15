@@ -1,11 +1,12 @@
 body{
     --margine-pagina: 0px;
-    --culoare-fundal:#DEDCC1;
-    --culoare-2:#CDDEC1;
-    --culoare-3:#CFDE84;
-    --culoare-4:#D9DEC1;
-    --culoare-5:#DED8C1;
-    --culoare-6:#C1DEC1;
+    --culoare-fundal:#FEFAAD;
+    --culoare-2:#56FA02;
+    --culoare-3:#FAB202;
+    --culoare-4:#BDFA02;
+    --culoare-5:#aa530e;
+    --culoare-6:#FAEE02;
+    --culoare-logo:#ff9eb3;
     --culoare-contur: black;
     background-color: var(--culoare-fundal);
     /* Task: layout-responsive - Prevenire scroll orizontal (overflow) */
@@ -15,10 +16,6 @@ body{
 html {
     font-size: 16px;
     transition: font-size 0.5s ease-in-out;
-}
-
-p{
-    border: 1px solid var(--culoare-fundal);
 }
 
 main{
@@ -41,31 +38,32 @@ main{
 #grid-pagina{
     display: grid;
     gap:10px;
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-areas: "welcome welcome welcome"
-                         "promotii ghid ghid"
-                         "despre-noi ghid ghid"
-                         "orar fig1 fig2"
-                         "anunturi fig3 fig4"
-                         "produse produse produse"
-                         "catalog-produse catalog-produse catalog-produse"
-                         "index-intrebari index-intrebari index-intrebari"
-                         "galerie-statica galerie-statica galerie-statica";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "welcome welcome welcome welcome"
+                         "welcome welcome welcome welcome"
+                         "orar orar anunturi anunturi"
+                         "despre-noi despre-noi ghid ghid"
+                         "fig1 fig2 ghid ghid"
+                         "fig3 fig4 ghid ghid"
+                         "produse produse promotii promnotii"
+                         "catalog-produse catalog-produse catalog-produse catalog-produse"
+                         "index-intrebari index-intrebari index-intrebari index-intrebari"
+                         "galerie-statica galerie-statica galerie-statica galerie-statica";
 }
 
 #grid-pagina > * {
-    border: 1px solid var(--culoare-contur);
-    box-shadow: 0 0 5px var(--culoare-contur);
+    /* border: 1px solid var(--culoare-contur); */
+    /* box-shadow: 0 0 5px var(--culoare-contur); */
     padding: 10px;
     /* Task: layout-responsive - Pastreaza elementele in interiorul containerului pt a evita overflow-ul */
     box-sizing: border-box; 
     max-width: 100%;
 }
-
 .imagine1{
     width:100%;
     height: min-content;
 }
+
 
 #despre-noi{
     grid-area: despre-noi;
@@ -82,14 +80,23 @@ main{
 #ghid {
     grid-area: ghid;
 }
-
 #welcome{
     grid-area: welcome;
     /* Task: layout-responsive - F-pattern pentru zona 1 */
+    background: url('../imagini/1.png') no-repeat center center / cover; 
+    background-color: #fdf072; /* O culoare de fallback verde, în caz că imaginea se încarcă greu */
+    
+    /* 2. SECRETUL: Forțăm secțiunea să fie înaltă ca să vezi imaginea! (aprox. 65% din ecran) */
+    min-height: 65vh; 
+    
+    padding: 80px 50px; /* Spațiu generos în interior */
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    justify-content: center; /* Centrează conținutul pe verticală */
+    align-items: flex-start; /* Aliniază conținutul la stânga */
+    gap: 20px;
+    
+    overflow: hidden;
 }
 #promotii{
     grid-area: promotii;
@@ -260,7 +267,7 @@ figure.fg-img > img{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, var(--culoare-6) 90%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, var(--culoare-logo    ) 90%);
     opacity: 0.6; 
     transition: opacity 0.4s ease;
     z-index: 1000;

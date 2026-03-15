@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="resurse/css/nav.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/general.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/reset.css" type="text/css"/>
+        <link rel="stylesheet" href="resurse/css/footer.css" type="text/css"/>
         <!-- Pentru icon-uri -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
@@ -35,107 +36,64 @@
     <body>
         <!-- Task 1.8 -->
         <nav>
-        <label id="hamburger" for="ch-menu">
-            <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">    
-        </label>
-        <input type="checkbox" id="ch-menu"/>
-        <ul class="meniu">
-            <li>
-                Acasa
-                <ul>
-                    <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
-                    <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
-                    <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
+            <a href="#welcome" class="logo-nav">
+                <img src="resurse/imagini/floare.png" alt="sigla">
+                <span class="titlu">Seedlingrounds</span>
+            </a>
+            <div class="nav-grup-dreapta">
+                <label id="hamburger" for="ch-menu">
+                    <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">    
+                </label>
+                <input type="checkbox" id="ch-menu"/>
+                <ul class="meniu">
+                    <li>
+                        <i class="fa-solid fa-angle-down"></i>Acasa
+                        <ul>
+                            <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
+                            <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
+                            <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
+                        </ul>
+                    </li> 
+                    <li>
+                        <i class="fa-solid fa-angle-down"></i>Cumparati
+                        <ul>
+                            <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
+                            <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
+                            <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-angle-down"></i>Informatii
+                        <ul>
+                            <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
+                            <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
+                            <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
+                        </ul>
+                    </li>
                 </ul>
-            </li> 
-            <li>
-                Cumparati
-                <ul>
-                    <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
-                    <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
-                    <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
-                </ul>
-            </li>
-            <li>
-                Informatii
-                <ul>
-                    <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
-                    <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
-                    <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
-                </ul>
-            </li>
-
-            <li>Inregistrare</li>
-        </ul>
-    </nav>
+                
+                </div>
+                <div class="nav-spatiu-stanga">
+                    <ul class="meniu">
+                        <li>
+                            <i class="fa-regular fa-user"></i><!--Autentificare-->
+                        </li>
+                    </ul>
+                </div>
+        </nav>
         <!-- Task 1.5 -->
         <header>
-            <h1 class="indie-flower-regular">Seedlingrounds</h1>
-            <img src="resurse/imagini/favicon/web-app-manifest-192x192.png" alt="sigla">
         </header>
         <!-- Task 1.5 -->
         <main>
             <div id="grid-pagina">
                 <section id="welcome">
-                    <!-- Task 1.7 -->
-                    <hgroup>
-                        <h2>Bine ati venit</h2>
-                        <p class="subtitlu">Prezentarea Magazinului</p>
+                    <hgroup class="hgroup-titlu">
+                        <h2 class="titlu">ATÂT DE VERDE<br>
+                                        CĂ O SĂ STRIGI<br>
+                                        IUBESC PLANTELE!</h2>
+                        <p class="subtitlu">Ficusul Lyrata s-a EPUIZAT! Alege o Sansevieria rezistentă ca să-ți înverzești camera și prinde o stropitoare cât mai ai ocazia.</p>
                     </hgroup>
-
-                    <p class="intro">Vă mulțumim că ne vizitați site-ul. Aici găsiți cele mai de calitate semințe, plante, arbuști și flori care sunt livrate online, sau pot fi cumparate fizic.
-                    </p>
-
-                    <div class="intro-oferte">
-                        <div>Arbusti</div>
-                        <div>Semințe</div>
-                        <div>Plante</div>
-                        <div>Flori</div>
-                        <div>Instrumente de Gradinarit</div>
-                    </div>
-                    <p class="anunt intro">Puteți găsi produsele ideale pentru dumneavoastră 
-                        domiciliu, cu ajutorul ofertei noastre de livrare a produselor prin curier.
-                    </p>
-                    <!-- Task 1.9 -->
-                    <section><!-- Task1.12 -->
-                        <blockquote cite="https://quoteinvestigator.com/2021/06/23/seeds/">
-                        “Don't judge each day by the harvest you reap but by the seeds that you plant.”
-                        </blockquote>
-                    </section>
-                    <div id="dv-prezentare-1">
-                        <div id="dv-prezentare">
-                            <!-- Task 1.11 -->
-                            <figure>
-                                <picture>
-                                    <!-- il ia pe primul care se potriveste cu query-ul din media-->
-                                    <source srcset="./resurse/imagini/planta0-3.jpg" media="(max-width:700px)" />
-                                    <source srcset="./resurse/imagini/planta0-3.jpg" media="(max-width:1200px)" />
-                                    <img src="./resurse/imagini/planta0-3.jpg" alt="text" />
-                                </picture>
-                                <figcaption>Profesionalism si iubire pentru plante.</figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <hr class="plante" />
-                    <div id="container-video">
-                        <img class="lamai" src="resurse/imagini/planta2-0.jpg"
-                            alt="lamai" title="O poza cu plante">
-                        <div id="centrare-video">
-                            <div id="clip-video">
-                                <div id="stil-video">
-                                    <video width="900" height="600" playsinline autoplay loop muted controls>    
-                                        <source src="resurse/video/film1.mp4">
-                                        <track default
-                                            src="resurse/video/subtitrari1_romana.vtt"
-                                            kind="captions" srclang="ro" label="romana">
-                                        <track
-                                            src="resurse/video/subtitrari1_engleza.vtt"
-                                            kind="captions" srclang="en" label="engleza">
-                                    </video>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </section>
                 <!-- Task 1.6 -->
                 <section id="promotii">
@@ -712,52 +670,73 @@
             </div>
         </main>
         <!-- Task 1.5 -->
-        <footer>
-            <p>
-                <!-- Task 1.19 -->
-                <small>Site facut de Sîrghe Matei. &copy; Copyright <time datetime="2026-03-05">5 martie 2026</time></small><br>
-                <!-- Task 1.13.c -->
-                <a href="#top" id="link-top">
+         <footer class="footer-modern">
+            <!-- Task 1.13.c -->
+            <a href="#top" id="link-top">
                     <span class="sageata">&#8593;</span>
                     <span class="tooltip">Inapoi sus</span>
                 </a>
-                <!-- Task 1.18 -->
-                <address>
-                    <p>
-                        <strong>Telefon:</strong> 
-                        <a href="tel:+400712345678">0712 345 678</a>
-                    </p>
-                    
-                    <p>
-                        <strong>Adresă fizică:</strong><br>
-                        <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Bucuresti" target="_blank">
-                            Bulevardul Plantelor, Nr. 67<br>
-                            Clădirea A, Parter<br>
-                            Sector 1, București
-                        </a>
-                    </p>
-                    
-                    <p>
-                        <strong>E-mail:</strong> 
-                        <a href="mailto:matei.sirghe@gmail.com">matei.sirghe@gmail.com</a>
-                    </p>
-                    
-                    <p>
-                        <strong>Chat direct:</strong> 
-                        <a href="https://wa.me/400712345678" target="_blank">Scrie-ne pe WhatsApp</a>
-                    </p>
+            <div class="footer-grid">
+                <div class="footer-col brand">
+                    <img src="resurse/imagini/floare.png" alt="Sigla Seedlingrounds">
+                    <span class="titlu">Seedlingrounds</span>
+                </div>
+                <div class="footer-col">
+                    <h3>MENIU</h3>
+                    <ul>
+                        <li><a href="#welcome">Acasă</a></li>
+                        <li><a href="#produse">Cumpără</a></li>
+                        <li><a href="#ghid">Ghid</a></li>
+                        <li><a href="#orar">Orar</a></li>
+                    </ul>
+                </div>
 
-                    <p>
-                        <strong>Videoclipurile noastre</strong> 
-                        <a href="https://youtube.com/" target="_blank">Urmariti-ne pe YouTube</a>
-                    </p>
+                <div class="footer-col">
+                    <h3>INFORMAȚII</h3>
+                    <!-- Task 1.18 -->
+                    <address>
+                        <ul>
+                            <li><a href="tel:+400712345678">0712 345 678</a></li>
+                            <li><a href="mailto:matei.sirghe@gmail.com">E-mail</a></li>
+                            <li><a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Bucuresti" target="_blank">Locație Fizică</a></li>
+                            <li><a href="#index-intrebari">Întrebări Frecvente</a></li>
+                        </ul>
+                    </address>
+                </div>
 
-                    <p>
-                        <strong>Imaginile noastre:</strong> 
-                        <a href="https://instagram.com" target="_blank">Urmariti-ne pe Instagram</a>
-                    </p>
-                </address>
+                <div class="footer-col">
+                    <h3>URMĂREȘTE-NE</h3>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://youtube.com/" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://wa.me/400712345678" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col newsletter">
+                    <h3>FII LA CURENT</h3>
+                    <p>Află primul despre noile noastre plante, oferte speciale și sfaturi.</p>
+                    <form action="#">
+                        <input type="email" placeholder="Adresa de E-mail" required>
+                        <input type="tel" placeholder="Număr de telefon (opțional)">
+                        <button type="submit">ABONEAZĂ-TE</button>
+                    </form>
+                    <small>Prin abonare, ești de acord să primești noutăți de la noi.</small>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="legal-links">
+                    <a href="#">Politica de confidențialitate</a>
+                    <a href="#">Termeni și condiții</a>
+                    <a href="#top" style="display:none;">Inapoi sus!</a> 
+                </div>
+                
+                <div class="copy-info">
+                    <!-- Task 1.19 -->
+                    <small>Site făcut de Sîrghe Matei. © Copyright <time datetime="2026-03-05">5 martie 2026</time></small>
+                </div>
+            </div>
         </footer>
     </body>
-
-    </html>
+</html>

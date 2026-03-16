@@ -1,0 +1,24 @@
+#hamburger{
+    display:block;
+}
+
+#hambuger > img{
+    height:3em;
+    width: auto;
+}
+
+ul.meniu{
+    display:none;
+}
+
+ul.meniu li{
+    display:none;
+}
+
+#ch-menu:checked + ul.meniu{
+    display:block;
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+}

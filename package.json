@@ -1,0 +1,28 @@
+{
+  "name": "commercial-plant-site",
+  "version": "1.0.0",
+  "description": "descriere",
+  "keywords": [
+    "plante",
+    "arbusti"
+  ],
+  "homepage": "https://github.com/Mach3tryhard/Commercial-Plant-Site#readme",
+  "bugs": {
+    "url": "https://github.com/Mach3tryhard/Commercial-Plant-Site/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mach3tryhard/Commercial-Plant-Site.git"
+  },
+  "license": "ISC",
+  "author": "Matei Sirghe",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1"
+  }
+}

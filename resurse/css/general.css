@@ -85,16 +85,13 @@ main{
     grid-area: welcome;
     /* Task: layout-responsive - F-pattern pentru zona 1 */
     background: url('../imagini/1.png') no-repeat center center / cover; 
-    background-color: #fdf072; /* O culoare de fallback verde, în caz că imaginea se încarcă greu */
-    
-    /* 2. SECRETUL: Forțăm secțiunea să fie înaltă ca să vezi imaginea! (aprox. 65% din ecran) */
+    background-color: #fdf072; 
     min-height: 65vh; 
-    
-    padding: 80px 50px; /* Spațiu generos în interior */
+    padding: 80px 50px; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrează conținutul pe verticală */
-    align-items: flex-start; /* Aliniază conținutul la stânga */
+    justify-content: center; 
+    align-items: flex-start;
     gap: 20px;
     
     overflow: hidden;
@@ -219,7 +216,6 @@ figure.fg-img > img{
 }
 
 @media screen and (max-width:1200px){
-    /* Task: layout-responsive - textul descreste pe ecran mediu */
     html {
         font-size: 14.5px;
     }
@@ -260,7 +256,7 @@ figure.fg-img > img{
     }
 }
 
-/* Task: link-top - Baza butonului background-ul cu gradient */
+/* Task: link-top --------------*/
 #link-top {
     position: fixed;
     bottom: 50px;
@@ -336,4 +332,97 @@ figure.fg-img > img{
 #link-top:hover .tooltip {
     opacity: 1;
     visibility: visible;
+}
+/* Task: link-top --------------*/
+
+@media print {
+
+    #absolut {
+        position: absolute;
+        display: inline-block;
+        bottom: 0%;
+        width: 20px;
+        height: 20px;
+        right: 0;
+        overflow: visible;
+    }
+
+    .titlu {
+        page-break-after: always;
+        margin-top: 50%;
+        text-align: center;
+        margin-left: 1cm;
+    }
+
+    #grid-pag {
+        font-size: 10px;
+        box-sizing: border-box;
+        page-break-before: always;
+        background-color: white;
+        /*
+        grid-template-rows: calc(100vh - 10px) 100vh 100vh 100vh;*/
+
+        display: block;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        /* height: 297mm; */
+        /*height: 282mm;*/
+        overflow: visible !important;
+    }
+
+
+    #grid-pag div:nth-child(5) {
+
+        page-break-before: always;
+    }
+
+
+    #watermark {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        color: rgba(0, 0, 0, 0.4);
+        right: 0;
+    }
+
+    #watermark::after {
+
+        opacity: 0.9;
+        padding: 5px;
+        display: block;
+        background: white;
+        border: 2px solid black;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-right: none;
+        content: "Copyright Matei Sirghe";
+    }
+
+    #end {
+        page-break-before: always;
+    }
+}
+
+@page {
+    size: A4 portrait;
+    margin-bottom: 2cm;
+    margin-top: 2cm;
+    counter-increment: page;
+
+}
+
+@page: left {
+
+    margin-left: 2cm;
+    margin-right: 1cm;
+    border-radius: 20cm;
+}
+
+@page: right {
+
+    margin-right: 2cm;
+    margin-left: 1cm;
 }

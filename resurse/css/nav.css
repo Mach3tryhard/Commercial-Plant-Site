@@ -1,13 +1,17 @@
 nav{
-    --latime-buton: 200px;
+    --latime-buton: 250px;
+    --latime-buton--2: 150px;
     --inaltime-buton: 30px;
-    background-color: var(--culoare-5);
+    background-color: var(--culoare-3);
 
     display: flex; 
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 5px 20px;
+}
+
+.text-icon, .imag-icon{
+    display: inline-block;
 }
 
 #hamburger,#ch-menu{
@@ -53,9 +57,9 @@ ul.meniu li{
     font-weight: bold;
     width: var(--latime-buton);
     height: var(--inaltime-buton);
-    background-color: var(--culoare-5);
+    background-color: var(--culoare-3);
     border: 0px solid var(--culoare-contur);
-    color:black;
+    color:var(--culoare-contur);
     text-align: center;
     line-height: var(--inaltime-buton);
     text-decoration: none;
@@ -64,16 +68,20 @@ ul.meniu li{
 
 ul.meniu li:hover{
     cursor:pointer;
-    background-color: var(--culoare-3);
-    color:white;
+    background-color: var(--culoare-logo);
+    color:var(--culoare-opus);
 }
 
 
 ul.meniu li a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center; 
+    gap: 8px; 
+    height: 100%;
     text-decoration: none;
     color: inherit;
-    display: block;
-    height: 100%;
 }
 
 ul.meniu>li:hover ul{
@@ -83,6 +91,7 @@ ul.meniu>li:hover ul{
 }
 
 .logo-nav {
+    background-color:var(--culoare-3);
     display: flex; 
     align-items: center;
     justify-content: center;

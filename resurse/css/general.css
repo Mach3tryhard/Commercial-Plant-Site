@@ -1,13 +1,14 @@
 body{
     --margine-pagina: 0px;
     --culoare-fundal:#FEFAAD;
-    --culoare-2:#56FA02;
-    --culoare-3:#FAB202;
+    --culoare-2:#7dc246;
+    --culoare-3:#ffac00;
     --culoare-4:#BDFA02;
     --culoare-5:#aa530e;
     --culoare-6:#FAEE02;
     --culoare-logo:#ff9eb3;
     --culoare-contur: black;
+    --culoare-opus: white;
     background-color: var(--culoare-fundal);
     /* Task: layout-responsive - Prevenire scroll orizontal (overflow) */
     overflow-x: hidden;
@@ -148,7 +149,7 @@ figure.fg-img > img{
 
 .taburi-iframe > a:hover{
     background-color: var(--culoare-3);
-    color:white;
+    color:var(--culoare-opus);
 }
 
 .taburi-iframe{
@@ -182,7 +183,7 @@ figure.fg-img > img{
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: bold;
-    color: white;
+    color: var(--culoare-opus);
 }
 
 .tag-tropical { background-color: #27ae60; }

@@ -21,11 +21,12 @@
         <link rel="manifest" href="resurse/imagini/favicon/site.webmanifest" />
 
         <link rel="stylesheet" href="resurse/css/nav.css" type="text/css"/>
+        <link rel="stylesheet" href="resurse/css/nav1000.css" type="text/css" media="screen and (max-width:1000px)">
+        <link rel="stylesheet" href="resurse/css/nav700.css" type="text/css" media="screen and (max-width:700px)">
+
         <link rel="stylesheet" href="resurse/css/general.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/reset.css" type="text/css"/>
         <link rel="stylesheet" href="resurse/css/footer.css" type="text/css"/>
-        <link rel="stylesheet" href="resurse/css/nav700.css" type="text/css"/ media="screen and (max-width:700px)">
-        <link rel="stylesheet" href="resurse/css/nav1000.css" type="text/css"/ media="screen and (max-width:1000px)">
         <!-- Pentru icon-uri -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 
@@ -37,51 +38,44 @@
 
     <body>
         <!-- Task 1.8 -->
+         <a href="#welcome" class="logo-nav">
+            <img src="resurse/imagini/floare.png" alt="sigla">
+            <span class="titlu">Seedlingrounds</span>
+        </a>
         <nav>
-            <a href="#welcome" class="logo-nav">
-                <img src="resurse/imagini/floare.png" alt="sigla">
-                <span class="titlu">Seedlingrounds</span>
-            </a>
-            <div class="nav-grup-dreapta">
-                <label id="hamburger" for="ch-menu">
-                    <img src="resurse/imagini/floare.png" alt="menu">    
-                </label>
-                <input type="checkbox" id="ch-menu"/>
-                <ul class="meniu">
-                    <li>
-                        <i class="fa-solid fa-angle-down"></i>Acasa
-                        <ul>
-                            <li><a href="#welcome"><i class="fa-solid fa-house"></i> Bine ati venit</a></li>
-                            <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
-                            <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
-                        </ul>
-                    </li> 
-                    <li>
-                        <i class="fa-solid fa-angle-down"></i>Cumparati
-                        <ul>
-                            <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
-                            <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
-                            <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-angle-down"></i>Informatii
-                        <ul>
-                            <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
-                            <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
-                            <li><a href="#index-intrebari"><i class="fa-regular fa-circle-question"></i> Intrebari frecvente</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                </div>
-                <div class="nav-spatiu-stanga">
-                    <ul class="meniu">
-                        <li>
-                            <i class="fa-regular fa-user"></i><!--Autentificare-->
-                        </li>
+            <label id="hamburger" for="ch-menu">
+                <img src="resurse/imagini/hamburgir.png" alt="menu">    
+            </label>
+            <input type="checkbox" id="ch-menu"/>
+            <ul class="meniu">
+                <li>
+                    <a href="#"> <div class="imag-icon" ><i class="fa-solid fa-house"></i></div> <div class="text-icon">Acasa</div></a>
+                    <ul>
+                        <li><a href="#welcome"></i><i class="fa-regular fa-hand"></i> Bine ati venit</a></li>
+                        <li><a href="#despre-noi"><i class="fa-regular fa-face-laugh-beam"></i> Despre Noi</a></li>
+                        <li><a href="#anunturi"><i class="fa-solid fa-bullhorn"></i> Anunturi</a></li>
                     </ul>
-                </div>
+                </li> 
+                <li>
+                    <a href="#"> <div class="imag-icon" ><i class="fa-solid fa-shop"></i></div> <div class="text-icon">Cumparaturi</div></a>
+                    <ul>
+                        <li><a href="#produse"><i class="fa-solid fa-list-ul"></i> Lista produse</a></li>
+                        <li><a href="#catalog-produse"><i class="fa-solid fa-cart-shopping"></i> Catalog produse</a></li>
+                        <li><a href="#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"> <div class="imag-icon" ><i class="fa-solid fa-circle-info"></i></div> <div class="text-icon">Informatii</div></a>
+                    <ul>
+                        <li><a href="#orar"><i class="fa-solid fa-calendar"></i> Orar</a></li>
+                        <li><a href="#ghid"><i class="fa-solid fa-book-open"></i> Ghid</a></li>
+                        <li><a href="#index-intrebari"><i class="fa-solid fa-question"></i> Intrebari frecvente</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"> <div class="imag-icon" ><i class="fa-regular fa-user"></i></div> <div class="text-icon">Autentificare</div></a>
+                </li>
+            </ul>
         </nav>
         <!-- Task 1.5 -->
         <header>

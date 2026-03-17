@@ -1,3 +1,6 @@
 .text-icon{
     display:none;
 }
+ul.meniu li{
+    width: var(--latime-buton--2);
+}

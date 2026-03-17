@@ -33,7 +33,7 @@
         <!-- Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lilita+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -93,9 +93,9 @@
                 </section>
                 <!-- Task 1.6 -->
                 <section id="promotii">
-                    <h2>Promoții și oferte</h2>
+                    <h2 class="titlu">Promoții și oferte</h2>
                     <article>
-                        <h3 class="titlu">Super ofertă de weekend</h3>
+                        <h3>Super ofertă de weekend</h3>
                         <p><b>Magazinul Seedlingrounds</b> oferă <b>reduceri de <s>5%</s> <ins>10%</ins></b> pentru toate
                             produsele cumpărate în intervalul 20-22.</p>
                         <p>Oferta este valabilă doar în zilele care sunt număr prim din lună.<abbr
@@ -148,7 +148,7 @@
                     </section>
                 </section>
                 <section id="produse">
-                    <h2>Produsele noastre</h2>
+                    <h2 class="titlu">Produsele noastre</h2>
                     <p>Vă oferim o multitudine de acesorii și plante pentru grădina dumneavoastră:</p>
                     <!-- Task 1.9 -->
                     <section>
@@ -204,7 +204,7 @@
                     </section>
                 </section>
                 <section id="orar">
-                    <h2>Orar</h2>
+                    <h2 class="titlu">Orar</h2>
                     <!-- Task 1.15 -->
                     <table id="tab-orar">
                         <caption>
@@ -308,7 +308,7 @@
                     <figcaption>Vinete</figcaption>
                 </figure>
                 <section id="anunturi">
-                <h2 class="fg-img">Anunțuri</h2>
+                <h2 class="titlu">Anunțuri</h2>
                 <!-- Task 1.10 -->
                 <ul><!-- Task 1.12 -->
                     <li><time datetime="2026-03-02">2 martie 2026</time> <b>Nu uitati de plante </b>Nu avem nimic de anunțat, doar am vrut să vă spunem că feriga aia din colț chiar are nevoie de apă azi.</li>
@@ -324,7 +324,7 @@
                 </ul>
             </section>
                 <section id="index-intrebari">
-                    <h2>Întrebări frecvente</h2>
+                    <h2 class="titlu">Întrebări frecvente</h2>
                     <!-- Task 1.16 -->
                     <details>
                         <summary>Produsele dumneavoastră sunt de calitate maxima?</summary>
@@ -346,7 +346,7 @@
                 </section>
 
                 <section id="ghid">
-                <h2>Ghid</h2>
+                <h2 class="titlu">Ghid</h2>
                 <p>Dacă doriți să dati cele mai mari sanse plantelor dumneavoastra sa creasca armonios,
                     vă recomandăm urmatoarele ghiduri simple pe care sperăm să le vizualizati, si sa aflati baza cand vine vorba de intretinerea plantelor.</p>
                 <!-- Task 1.1Bonus-->
@@ -406,14 +406,15 @@
                  <embed
                     src="resurse/documente/plant_care.pdf"
                     type="application/pdf"
-                    width="900"
-                    height="675"
+                    width="800"
+                    height="875"
+                    style="border:0; max-width: 100%;"
                     title="Embed pdf"
                 />
             </section>
 
             <section id="despre-noi">
-                <h2>Despre Noi</h2>
+                <h2 class="titlu">Despre Noi</h2>
                 
                 <div class="continut-despre">
                     <p>
@@ -434,7 +435,7 @@
                     <div class="container-harta">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d933.3603882730125!2d26.100137537985052!3d44.43532696249532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFaculty%20of%20Mathematics%20and%20Computer%20Science!5e0!3m2!1sen!2sro!4v1772717397845!5m2!1sen!2sro" 
-                            width="600" 
+                            width="800" 
                             height="450" 
                             style="border:0; max-width: 100%;" 
                             allowfullscreen="" 
@@ -449,8 +450,9 @@
                     <h2>Videoclipuri cu locatia fizica</h2>
                     <div class="container-harta">
                         <iframe 
-                            width="600" 
-                            height="315" 
+                            width="800" 
+                            height="450" 
+                            style="border:0; max-width: 100%;"
                             src="https://www.youtube.com/embed/RWr566IYR10?playlist=tBlr1fNm59w,7_5IUMzc21I&autoplay=1&loop=1&controls=1&mute=1" 
                             title="YouTube video playlist" 
                             frameborder="0" 
@@ -463,7 +465,7 @@
             </section>
 
             <section id="catalog-produse">
-            <h1>Produse</h1>
+            <h2 class="titlu">Produse</h2>
             <div id="grid-produse-detaliat">
                 <article class="produs-card">
                     <header>
@@ -590,7 +592,7 @@
         </section>
 
             <section id="galerie-statica">
-                <h2>Galerie</h2>
+                <h2 class="titlu">Galerie</h2>
                 <div id="grid-galerie">
                     <figure>
                         <!-- Task 1.13.e -->

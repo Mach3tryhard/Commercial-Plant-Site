@@ -68,7 +68,7 @@ ul.meniu li{
 
 ul.meniu li:hover{
     cursor:pointer;
-    background-color: var(--culoare-logo);
+    background-color: var(--culoare-7);
     color:var(--culoare-opus);
 }
 

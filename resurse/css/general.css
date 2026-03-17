@@ -1,17 +1,19 @@
 body{
-    --margine-pagina: 0px;
+    --margine-pagina: 150px;
+    --gap-grid: 20px;
     --culoare-fundal:#FEFAAD;
     --culoare-2:#7dc246;
     --culoare-3:#ffac00;
     --culoare-4:#BDFA02;
     --culoare-5:#aa530e;
     --culoare-6:#FAEE02;
-    --culoare-logo:#ff9eb3;
+    --culoare-7:#ff9eb3;
     --culoare-contur: black;
     --culoare-opus: white;
     background-color: var(--culoare-fundal);
     /* Task: layout-responsive - Prevenire scroll orizontal (overflow) */
     overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
 }
 
 html {
@@ -38,7 +40,7 @@ main{
 
 #grid-pagina{
     display: grid;
-    gap:10px;
+    gap: var(--gap-grid);
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: "welcome welcome welcome welcome"
                          "welcome welcome welcome welcome"
@@ -46,15 +48,15 @@ main{
                          "despre-noi despre-noi ghid ghid"
                          "fig1 fig2 ghid ghid"
                          "fig3 fig4 ghid ghid"
-                         "produse produse promotii promnotii"
+                         "produse produse promotii promotii"
                          "catalog-produse catalog-produse catalog-produse catalog-produse"
                          "index-intrebari index-intrebari index-intrebari index-intrebari"
                          "galerie-statica galerie-statica galerie-statica galerie-statica";
 }
 
 #grid-pagina > * {
-    /* border: 1px solid var(--culoare-contur); */
-    /* box-shadow: 0 0 5px var(--culoare-contur); */
+    border: 1px solid var(--culoare-contur); 
+    box-shadow: 0 0 5px var(--culoare-contur); 
     padding: 10px;
     /* Task: layout-responsive - Pastreaza elementele in interiorul containerului pt a evita overflow-ul */
     box-sizing: border-box; 
@@ -67,25 +69,28 @@ main{
 
 
 #despre-noi{
+    background-color: var(--culoare-4);
     grid-area: despre-noi;
 }
 
 #catalog-produse{
+    background-color: var(--culoare-3);
     grid-area: catalog-produse;
 }
 
 #galerie-statica{
+    background-color: var(--culoare-5);
     grid-area:galerie-statica;
 }
 
 #ghid {
+    background-color: var(--culoare-6);
     grid-area: ghid;
 }
 #welcome{
     grid-area: welcome;
-    /* Task: layout-responsive - F-pattern pentru zona 1 */
     background: url('../imagini/1.png') no-repeat center center / cover; 
-    background-color: #fdf072; 
+    background-color: var(--culoare-6); 
     min-height: 65vh; 
     padding: 80px 50px; 
     display: flex;
@@ -97,26 +102,34 @@ main{
     overflow: hidden;
 }
 #promotii{
+    background-color: var(--culoare-7);
     grid-area: promotii;
+    width: 100%;
 }
 #anunturi{
+    background-color: var(--culoare-2);
     grid-area: anunturi;
 }
 #orar{
+    background-color: var(--culoare-5);
     grid-area: orar;
 }
  
 #fig1{
+    background-color: var(--culoare-7);
     grid-area: fig1;
 }
 #fig2{
+    background-color: var(--culoare-7);
     grid-area: fig2;
 }
 #fig3{
+    background-color: var(--culoare-7);
     grid-area: fig3;
 }
 
 #fig4{
+    background-color: var(--culoare-7);
     grid-area: fig4;
 }
 
@@ -125,9 +138,11 @@ figure.fg-img > img{
 }
 
 #produse{
+    background-color: var(--culoare-5);
     grid-area: produse;
 }
 #index-intrebari{
+    background-color: var(--culoare-4);
     grid-area: index-intrebari;
 }
 
@@ -217,23 +232,20 @@ figure.fg-img > img{
 
 @media screen and (max-width:1200px){
     html {
-        font-size: 14.5px;
+        /* font-size: 14.5px; */
+        font-size: calc(10px + 0.4vw); 
     }
 
     body{
-        --margine-pagina:100px;
+        --gap-grid: 10px;
+        --margine-pagina:50px;
     }
 
     #grid-pagina{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "welcome welcome"
-                         "promotii anunturi"
-                         "fig1 orar"
-                         "fig2 orar"
-                         "fig3 orar"
-                         "produse  produse"
-                         "index-intrebari index-intrebari";
+        display: block;
+    }
+    #grid-galerie {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -243,7 +255,8 @@ figure.fg-img > img{
     }
 
     body{
-        --margine-pagina:50px;
+        --gap-grid: 5px;
+        --margine-pagina:15px;
     }
     
     #grid-pagina{
@@ -254,6 +267,7 @@ figure.fg-img > img{
         animation: none !important;
         transition: none !important;
     }
+    
 }
 
 /* Task: link-top --------------*/
@@ -264,7 +278,7 @@ figure.fg-img > img{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, var(--culoare-logo    ) 90%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, var(--culoare-7    ) 90%);
     opacity: 0.6; 
     transition: opacity 0.4s ease;
     z-index: 1000;
@@ -425,4 +439,48 @@ figure.fg-img > img{
 
     margin-right: 2cm;
     margin-left: 1cm;
+}
+
+#calcul-pamant math {
+    font-size: 2rem;
+    font-family: 'Courier Prime', monospace;
+    background-color: var(--culoare-opus);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed var(--culoare-contur);
+    margin: 20px auto;
+}
+
+#calcul-pamant math > mi {
+    color: var(--culoare-5);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+#calcul-pamant math mo {
+    color: var(--culoare-3);
+    font-weight: 900;
+    padding: 0 4px;
+}
+
+#calcul-pamant math mn {
+    color: var(--culoare-2);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#calcul-pamant math mfrac mrow mi:first-child {
+    color: var(--culoare-7);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.2rem;
+}
+
+#calcul-pamant math msup mi, 
+#calcul-pamant math mrow > mi {
+    color: var(--culoare-contur);
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-color: var(--culoare-2);
+    text-decoration-thickness: 3px;
 }

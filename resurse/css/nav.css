@@ -8,6 +8,7 @@ nav{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .text-icon, .imag-icon{

@@ -1,6 +1,6 @@
 footer{
     --culoaref-background:#231f20;
-    --culoaref-alb:#fdfaf0;
+    --culoaref-alb:#9ca399;
 }
 
 .footer-modern {
@@ -50,7 +50,7 @@ footer{
 }
 
 .footer-col a:hover {
-    color: var(--culoaref-background);
+    color: var(--culoaref-alb);
 }
 
 .footer-col.brand {
@@ -80,7 +80,7 @@ footer{
     align-items: center;
     width: 35px;
     height: 35px;
-    background-color: var(--culoare-logo);
+    background-color: var(--culoare-7);
     color: var(--culoaref-background);
     border-radius: 50%;
     font-size: 1.2rem;
@@ -107,7 +107,7 @@ footer{
 
 .newsletter input {
     background-color: transparent;
-    border: 1px solid var(--culoare-logo);
+    border: 1px solid var(--culoare-7);
     color: #fdfaf0;
     padding: 12px 15px;
     font-size: 1rem;
@@ -120,7 +120,7 @@ footer{
 }
 
 .newsletter button {
-    background-color: var(--culoare-logo);
+    background-color: var(--culoare-7);
     color: var(--culoaref-background);
     border: none;
     padding: 15px;
@@ -132,7 +132,7 @@ footer{
 }
 
 .newsletter button:hover {
-    background-color: var(--culoare-logo);
+    background-color: var(--culoare-7);
 }
 
 .newsletter small {

@@ -5,7 +5,7 @@ body{
     --culoare-2:#7dc246;
     --culoare-3:#ffac00;
     --culoare-4:#BDFA02;
-    --culoare-5:#aa530e;
+    --culoare-5:#a56e41;
     --culoare-6:#FAEE02;
     --culoare-7:#ff9eb3;
     --culoare-contur: black;
@@ -224,6 +224,24 @@ figure.fg-img > img{
 
 #tab-orar tbody tr:nth-child(odd){
     background-color: var(--culoare-3);
+}
+
+#tab-orar thead {
+    background-color: var(--culoare-2);
+    /* color: var(--culoare-opus);  */
+}
+
+#tab-orar tfoot {
+    background-color: var(--culoare-2);
+    font-weight: bold;
+}
+
+#tab-orar caption {
+    background-color: var(--culoare-3);
+    padding: 8px;
+    border: 1px solid var(--culoare-contur);
+    border-bottom: none; 
+    font-weight: bold;
 }
 
 .weekend,.zile_lucratoare{

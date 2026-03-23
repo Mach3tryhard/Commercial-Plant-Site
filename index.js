@@ -18,13 +18,6 @@ console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
 
-app.get(["/", "/index", "/home",],function(req,res){
-    res.render("pagini/index");
-});
-
-app.use("/resurse",express.static(path.join(__dirname,"resurse")));
-
-
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
     let erori=obGlobal.obErori=JSON.parse(continut)
@@ -35,14 +28,6 @@ function initErori(){
     }
 }
 initErori();
-
-app.get("/eroare",function(req,res){
-    res.render("pagini/eroare",{
-        imagine:obGlobal.obErori.eroare_default.imagine,
-        titlu:obGlobal.obErori.eroare_default.titlu,
-        text:obGlobal.obErori.eroare_default.text,
-    })
-});
 
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
@@ -93,12 +78,46 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 })
 
 function afisareEroare(res, identificator, titlu, text, imagine){
-    //TO DO cautam eroarea dupa identificator
-    //daca sunt setate titlu, text, imagine, le folosim, 
-    //altfel folosim cele din fisierul json pentru eroarea gasita
-    //daca nu o gasim, afisam eroarea default
+    let eroare=obGlobal.obErori.info_erori.find((elem) =>
+        elem.identificator==identificator);
+
+    let errDefault = obGlobal.obErori.eroare_default;
+    res.render("pagini/eroare",{
+        imagine: imagine || eroare?.imagine || errDefault.imagine,
+        titlu : titlu || eroare?.titlu || errDefault.titlu,
+        text: text || eroare?.text || errDefault.text,
+    })
 
 }
+
+app.get(["/", "/index", "/home",],function(req,res){
+    res.render("pagini/index");
+});
+
+app.use("/resurse",express.static(path.join(__dirname,"resurse")));
+
+app.get("/eroare",function(req,res){
+    afisareEroare(res,404,"Eroare 404");
+});
+
+
+app.get("/*pagina",function(req,res){
+    res.render("pagini"+req.url,function(err,rezRandare){
+        if(err){
+            if(err.message.includes("Failed to lookup view")){
+                afisareEroare(res,404)
+            }
+            else{
+                afisareEroare(res);
+            }
+        }
+        else {
+            res.send(rezRandare);
+            console.log("Randare finalizată cu succes");
+        }
+    });
+});
+
 
 app.listen(8080);
 console.log("Serverul a pornit!");

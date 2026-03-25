@@ -153,6 +153,12 @@ ul.meniu>li:hover ul{
          6.5px  6.5px 0 #2c2a29;
 }
 
+@media screen and (max-width: 1200px) {
+    .titlu {
+        font-size: 2.8rem;
+    }
+}
+
 .subtitlu {
     font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
     font-size: 1rem;

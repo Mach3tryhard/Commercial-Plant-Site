@@ -44,13 +44,14 @@ main{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: "welcome welcome welcome welcome"
                          "welcome welcome welcome welcome"
-                         "orar orar anunturi anunturi"
-                         "despre-noi despre-noi ghid ghid"
+                         "utilizatori-online statistici statistici date-server"
+                         "calendar calendar orar orar"
+                         "anunturi anunturi orar orar"
                          "fig1 fig2 ghid ghid"
                          "fig3 fig4 ghid ghid"
                          "produse produse promotii promotii"
                          "catalog-produse catalog-produse catalog-produse catalog-produse"
-                         "index-intrebari index-intrebari index-intrebari index-intrebari"
+                         "index-intrebari index-intrebari despre-noi despre-noi"
                          "galerie-statica galerie-statica galerie-statica galerie-statica";
 }
 
@@ -138,7 +139,7 @@ main{
     background-color: var(--culoare-4);
 }
 #utilizatori-online {
-    grid-area: utilizatori;
+    grid-area: utilizatori-online;
     background-color: var(--culoare-7);
 }
 #statistici {
@@ -146,7 +147,7 @@ main{
     background-color: var(--culoare-2);
 }
 #date-server {
-    grid-area: server;
+    grid-area: date-server;
     background-color: var(--culoare-5);
 }
 
@@ -225,7 +226,8 @@ figure.fg-img > img{
 .tag-umbra { background-color: #34495e; }
 
 #tab-orar{
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2px;
     width: 100%;
 }
 
@@ -233,6 +235,11 @@ figure.fg-img > img{
     border: 1px solid var(--culoare-contur);
     padding: 5px;
     text-align: center;
+}
+
+.container-orar{
+    overflow-x: auto;
+    width: 100%;
 }
 
 #tab-orar tbody tr:nth-child(even){
@@ -248,12 +255,21 @@ figure.fg-img > img{
     /* color: var(--culoare-opus);  */
 }
 
+#tab-orar tbody tr{
+    transition: background-color 0.3s ease;
+}
+#tab-orar tbody tr:hover{
+    background-color: var(--culoare-4);
+    color: var(--culoare-opus);
+}
+
 #tab-orar tfoot {
     background-color: var(--culoare-2);
     font-weight: bold;
 }
 
 #tab-orar caption {
+    caption-side: bottom;
     background-color: var(--culoare-3);
     padding: 8px;
     border: 1px solid var(--culoare-contur);
@@ -263,6 +279,72 @@ figure.fg-img > img{
 
 .weekend,.zile_lucratoare{
     background-color: var(--culoare-2);
+}
+
+.calendar-container {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid var(--culoare-contur);
+}
+
+.calendar-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Inner Card Content (Icon + Text) --- */
+.card-corp {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-grow: 1; 
+}
+
+.card-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--culoare-opus);
+    color: var(--culoare-contur); 
+    font-size: 28px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-label {
+    font-size: 0.85rem;
+    color: var(--culoare-contur); 
+}
+
+.card-valoare {
+    font-size: 2.5rem; 
+    font-weight: bold;
+    color: var(--culoare-contur);
+    line-height: 1.1;
+}
+
+/* --- Card Footer (Bottom Line) --- */
+.card-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--culoare-opus); 
+    text-align: right;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--culoare-opus); 
+    text-transform: uppercase;
 }
 
 @media screen and (max-width:1200px){
@@ -278,18 +360,26 @@ figure.fg-img > img{
     #grid-pagina{
         display: grid;
         gap: var(--gap-grid);
-        grid-template-columns: 2fr 1fr;
-        grid-template-areas: "welcome welcome"
-                            "welcome welcome"
-                            "orar anunturi"
-                            "despre-noi ghid"
-                            "fig1 fig2"
-                            "fig3 fig4"
-                            "produse promotii"
-                            "catalog-produse catalog-produse"
-                            "index-intrebari index-intrebari"
-                            "galerie-statica galerie-statica";
-        }
+        grid-template-columns: 1fr;
+        grid-template-areas: "welcome"
+                             "utilizatori-online"
+                             "statistici"
+                             "date-server"
+                             "calendar"
+                             "orar"
+                             "anunturi"
+                             "despre-noi"
+                             "ghid"
+                             "fig1"
+                             "fig2"
+                             "fig3"
+                             "fig4"
+                             "produse"
+                             "promotii"
+                             "catalog-produse"
+                             "index-intrebari"
+                             "galerie-statica";
+    }
 
     #grid-galerie {
         grid-template-columns: 1fr;
@@ -297,6 +387,11 @@ figure.fg-img > img{
 }
 
 @media screen and (max-width:700px){
+
+    #tab-orar{
+        border-spacing: 0px;
+    }
+
     html {
         font-size: 13px; 
     }

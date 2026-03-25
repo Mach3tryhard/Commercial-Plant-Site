@@ -133,8 +133,21 @@ main{
     grid-area: fig4;
 }
 
-figure.fg-img > img{
-    width: 100%;
+#calendar {
+    grid-area: calendar;
+    background-color: var(--culoare-4);
+}
+#utilizatori-online {
+    grid-area: utilizatori;
+    background-color: var(--culoare-7);
+}
+#statistici {
+    grid-area: statistici;
+    background-color: var(--culoare-2);
+}
+#date-server {
+    grid-area: server;
+    background-color: var(--culoare-5);
 }
 
 #produse{
@@ -144,6 +157,10 @@ figure.fg-img > img{
 #index-intrebari{
     background-color: var(--culoare-4);
     grid-area: index-intrebari;
+}
+
+figure.fg-img > img{
+    width: 100%;
 }
 
 .taburi-iframe > a{
@@ -250,18 +267,30 @@ figure.fg-img > img{
 
 @media screen and (max-width:1200px){
     html {
-        /* font-size: 14.5px; */
-        font-size: calc(10px + 0.4vw); 
+        font-size: 14.5px;
     }
 
     body{
         --gap-grid: 10px;
-        --margine-pagina:50px;
+        --margine-pagina:20px;
     }
 
     #grid-pagina{
-        display: block;
-    }
+        display: grid;
+        gap: var(--gap-grid);
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: "welcome welcome"
+                            "welcome welcome"
+                            "orar anunturi"
+                            "despre-noi ghid"
+                            "fig1 fig2"
+                            "fig3 fig4"
+                            "produse promotii"
+                            "catalog-produse catalog-produse"
+                            "index-intrebari index-intrebari"
+                            "galerie-statica galerie-statica";
+        }
+
     #grid-galerie {
         grid-template-columns: 1fr;
     }

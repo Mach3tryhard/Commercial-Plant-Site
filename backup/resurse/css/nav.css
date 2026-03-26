@@ -1,0 +1,186 @@
+ul.meniu ul, #hamburger, #ch-menu {
+  display: none;
+}
+
+ul.meniu a, nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  --latime-buton: 200px;
+  --inaltime-buton: 40px;
+  background-color: var(--culoare-3);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.text-icon, .imag-icon {
+  display: inline-block;
+}
+
+ul.meniu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  position: relative;
+}
+ul.meniu a {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+}
+ul.meniu > li {
+  cursor: pointer;
+  width: var(--latime-buton);
+  height: var(--inaltime-buton);
+  background-color: var(--culoare-3);
+  color: var(--culoare-contur);
+  transition: all 0.4s linear;
+  position: relative;
+}
+ul.meniu > li:hover {
+  background-color: var(--culoare-7);
+  color: var(--culoare-opus);
+}
+ul.meniu > li:hover > ul {
+  display: block;
+}
+ul.meniu > li:first-child .text-icon {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width 0.5s ease, opacity 0.5s ease;
+  white-space: nowrap;
+}
+ul.meniu > li:first-child:hover .text-icon {
+  max-width: 100px;
+  opacity: 1;
+}
+ul.meniu ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  animation: animatie_submeniu 0.4s forwards;
+  transform-origin: center top;
+}
+ul.meniu ul li {
+  width: var(--latime-buton);
+  height: var(--inaltime-buton);
+  background-color: var(--culoare-3);
+  color: var(--culoare-contur);
+  transition: all 0.3s linear;
+  opacity: 0;
+  animation: fade_in_optiune 0.3s forwards;
+}
+ul.meniu ul li:hover {
+  background-color: var(--culoare-7);
+  color: var(--culoare-opus);
+}
+ul.meniu ul li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+ul.meniu ul li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+ul.meniu ul li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+ul.meniu ul li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+ul.meniu ul li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+ul.meniu ul li:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes animatie_submeniu {
+  0% {
+    opacity: 0;
+    transform: scale(0, 0);
+  }
+  50% {
+    transform: scale(0.5, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+@keyframes fade_in_optiune {
+  to {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 1000px) {
+  ul.meniu > li {
+    width: 60px;
+  }
+  ul.meniu > li .text-icon {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 700px) {
+  nav {
+    justify-content: center;
+  }
+  #hamburger {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+  }
+  ul.meniu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+  }
+  ul.meniu > li {
+    width: 100%;
+  }
+  ul.meniu > li .text-icon {
+    display: inline-block !important;
+  }
+  ul.meniu ul {
+    position: static;
+    width: 100%;
+  }
+  ul.meniu ul li {
+    width: 100%;
+  }
+  #ch-menu:checked + ul.meniu {
+    display: flex;
+    -webkit-mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: top;
+    mask-position: top;
+    -webkit-mask-size: 100% 0%;
+    mask-size: 100% 0%;
+    animation: dezvaluire_masca 0.7s ease-in-out forwards;
+  }
+}
+@keyframes dezvaluire_masca {
+  0% {
+    -webkit-mask-size: 100% 0%;
+    mask-size: 100% 0%;
+  }
+  100% {
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+}

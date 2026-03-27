@@ -47,18 +47,79 @@ ul.meniu {
   display: flex;
   position: relative;
 
-  @media (max-width: 700px) {
-    display: none;
-    width: 100%;
+  @media (max-width: 1000px) {
+    font-size: 0.85rem; 
   }
 
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: var(--culoare-3);
+
+    visibility: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
+    -webkit-mask-size: 100% 200%;
+    mask-size: 100% 200%;
+    -webkit-mask-position: 0 100%;
+    mask-position: 0 100%;
+    transition: mask-position 0.5s ease, -webkit-mask-position 0.5s ease, visibility 0.5s ease;
+  }
+
+  > li {
+    position: relative;
+
+    &:first-child {
+      > a .text-icon {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: max-width 0.4s ease, opacity 0.4s ease;
+        display: inline-block; 
+      }
+      
+      &:hover > a .text-icon {
+        max-width: 150px;
+        opacity: 1;
+      }
+
+      @media (max-width: 700px) {
+        > a .text-icon {
+          display: none !important;
+        }
+        > a .imag-icon {
+          display: flex !important;
+        }
+      }
+    }
+  }
+
+  // --- SUBMENIU ---
   ul {
-    display: none;
-    animation: animatie_submeniu 0.3s linear;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: var(--latime-buton);
+    background-color: var(--culoare-3);
+    
+    transform: scale(0);
     transform-origin: center top;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
 
     @media (max-width: 700px) {
       width: 100%;
+      position: static; // Corectură: curge în fluxul normal pe mobil
+      transform: scale(1);
+      display: none; // Ascuns implicit
     }
   }
 
@@ -72,7 +133,8 @@ ul.meniu {
     text-align: center;
     line-height: var(--inaltime-buton);
     text-decoration: none;
-    transition: all 0.2s ease;
+    
+    transition: color 0.3s ease, background-color 0.2s ease;
 
     @media (max-width: 1000px) {
       width: var(--latime-buton--2);
@@ -80,13 +142,15 @@ ul.meniu {
 
     @media (max-width: 700px) {
       width: 100%;
+      height: auto; // Corectură: permite containerului li să crească odată cu submeniul
+      min-height: var(--inaltime-buton);
       box-sizing: border-box;
     }
 
     &:hover {
       cursor: pointer;
       background-color: var(--culoare-7);
-      color: var(--culoare-opus);
+      color: var(--culoare-opus); 
     }
 
     a {
@@ -96,29 +160,24 @@ ul.meniu {
       align-items: center; 
       gap: 8px; 
       height: 100%;
+      min-height: var(--inaltime-buton); // Asigură înălțimea link-ului chiar dacă li este auto
       text-decoration: none;
       color: inherit;
     }
   }
 
+  // Deschiderea submeniului
   > li:hover ul {
-    display: block;
-    position: absolute;
-    z-index: 1;
-  }
-}
-
-@keyframes animatie_submeniu {
-  0% {
-    opacity: 0;
-    transform: scale(0,0);
-  }
-  50% {
-    transform: scale(0.5,1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1,1);
+    @media (min-width: 701px) {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+    @media (max-width: 700px) {
+      display: block; // Corectură: afișează submeniul în fluxul vertical pe mobil
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 
@@ -144,13 +203,9 @@ ul.meniu {
 
 #ch-menu:checked + ul.meniu {
   @media (max-width: 700px) {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    z-index: 2;
+    visibility: visible;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
   }
 }
 

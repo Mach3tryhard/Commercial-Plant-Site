@@ -194,6 +194,7 @@ figure.fg-img > img{
     flex-direction: row;
     align-items: flex-start;
     height: 315px;
+    max-width: 100%;
 }
 
 .indie-flower-regular {

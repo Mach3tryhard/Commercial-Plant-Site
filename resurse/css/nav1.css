@@ -2,6 +2,7 @@ nav {
   --latime-buton: 250px;
   --latime-buton--2: 150px;
   --inaltime-buton: 30px;
+  --animation-time: 0.4s;
   background-color: var(--culoare-3);
   display: flex;
   flex-direction: row;
@@ -16,18 +17,6 @@ nav {
   }
 }
 
-.text-icon, .imag-icon {
-  display: inline-block;
-}
-
-#hamburger, #ch-menu {
-  display: none;
-}
-
-.text-icon, .imag-icon {
-  display: flex;
-}
-
 @media (max-width: 1000px) {
   .text-icon {
     display: none;
@@ -37,6 +26,31 @@ nav {
   .text-icon {
     display: flex;
   }
+}
+
+.acasa .text-icon {
+  width: auto;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  display: inline-block;
+  transition: opacity var(--animation-time) linear;
+}
+.acasa:hover .text-icon {
+  opacity: 1;
+}
+@media (max-width: 700px) {
+  .acasa .text-icon {
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+    display: none;
+  }
+}
+
+.text-icon, .imag-icon {
+  display: flex;
 }
 
 ul.meniu, ul.meniu ul {
@@ -54,9 +68,12 @@ ul.meniu {
     font-size: 0.85rem;
   }
 }
+ul.meniu {
+  /* Layout Mobil */
+}
 @media (max-width: 700px) {
   ul.meniu {
-    display: flex;
+    display: none; /* Ascuns default pe mobil */
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -64,75 +81,28 @@ ul.meniu {
     width: 100%;
     z-index: 2;
     background-color: var(--culoare-3);
-    visibility: hidden;
-    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
-    mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
-    -webkit-mask-size: 100% 200%;
-    mask-size: 100% 200%;
-    -webkit-mask-position: 0 100%;
-    mask-position: 0 100%;
-    transition: mask-position 0.5s ease, -webkit-mask-position 0.5s ease, visibility 0.5s ease;
   }
 }
-ul.meniu > li {
-  position: relative;
-}
-ul.meniu > li:first-child > a .text-icon {
-  max-width: 0;
-  opacity: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: max-width 0.4s ease, opacity 0.4s ease;
-  display: inline-block;
-}
-ul.meniu > li:first-child:hover > a .text-icon {
-  max-width: 150px;
-  opacity: 1;
-}
-@media (max-width: 700px) {
-  ul.meniu > li:first-child > a .text-icon {
-    display: none !important;
-  }
-  ul.meniu > li:first-child > a .imag-icon {
-    display: flex !important;
-  }
-}
-ul.meniu ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: var(--latime-buton);
-  background-color: var(--culoare-3);
-  transform: scale(0);
-  transform-origin: center top;
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 10;
-}
-@media (max-width: 700px) {
-  ul.meniu ul {
-    width: 100%;
-    position: static;
-    transform: scale(1);
-    display: none;
-  }
+ul.meniu {
+  /* Stiluri generale pentru TOATE elementele LI (meniu + submeniu) */
 }
 ul.meniu li {
+  position: relative;
   font-weight: bold;
   width: var(--latime-buton);
   height: var(--inaltime-buton);
   background-color: var(--culoare-3);
-  border: 0px solid var(--culoare-contur);
   color: var(--culoare-contur);
   text-align: center;
   line-height: var(--inaltime-buton);
-  text-decoration: none;
-  transition: color 0.3s ease, background-color 0.2s ease;
+  transition: color var(--animation-time) linear;
 }
 @media (max-width: 1000px) {
   ul.meniu li {
     width: var(--latime-buton--2);
+  }
+  ul.meniu li .text-icon {
+    display: none;
   }
 }
 @media (max-width: 700px) {
@@ -142,11 +112,16 @@ ul.meniu li {
     min-height: var(--inaltime-buton);
     box-sizing: border-box;
   }
+  ul.meniu li .text-icon {
+    display: inline-block;
+  }
 }
 ul.meniu li:hover {
   cursor: pointer;
-  background-color: var(--culoare-7);
   color: var(--culoare-opus);
+}
+ul.meniu li:has(ul:hover) {
+  color: var(--culoare-contur);
 }
 ul.meniu li a {
   display: flex;
@@ -159,27 +134,46 @@ ul.meniu li a {
   text-decoration: none;
   color: inherit;
 }
-@media (min-width: 701px) {
-  ul.meniu > li:hover ul {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
+ul.meniu ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--latime-buton);
+  background-color: var(--culoare-3);
+  z-index: 10;
+  display: block;
+  visibility: hidden;
+  transform: scale(0);
+  transform-origin: top center;
+  transition: transform var(--animation-time) linear, visibility var(--animation-time);
+}
+@media (max-width: 1000px) {
+  ul.meniu ul {
+    width: 100%;
   }
 }
 @media (max-width: 700px) {
-  ul.meniu > li:hover ul {
-    display: block;
-    visibility: visible;
-    opacity: 1;
+  ul.meniu ul {
+    width: 100%;
+    position: relative;
+    transform-origin: top;
   }
+}
+ul.meniu > li:hover ul {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
 
+#hamburger, #ch-menu {
+  display: none;
+}
+
+/* --- LOGICA BURGER --- */
 @media (max-width: 700px) {
   #hamburger {
-    display: block;
+    display: flex;
     position: static;
-    transform: none;
-    left: 50%;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -193,14 +187,14 @@ ul.meniu li a {
   }
 }
 
+/* Deschiderea meniului la bifare */
 @media (max-width: 700px) {
   #ch-menu:checked + ul.meniu {
-    visibility: visible;
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
+    display: flex;
   }
 }
 
+/* --- LOGO SI HEADER --- */
 .logo-nav {
   background-color: var(--culoare-3);
   display: flex;

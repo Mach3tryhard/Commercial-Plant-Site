@@ -457,13 +457,7 @@ figure.fg-img > img{
 
     #grid-pagina > *:last-child {
         margin-bottom: 0;
-    }
-
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-    
+    }    
 }
 
 /* Task: link-top --------------*/

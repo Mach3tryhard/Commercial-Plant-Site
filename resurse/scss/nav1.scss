@@ -71,7 +71,7 @@ ul.meniu {
 
   /* Layout Mobil */
   @media (max-width: 700px) {
-    display: none; /* Ascuns default pe mobil */
+    display: flex; /* Ascuns default pe mobil */
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -79,9 +79,24 @@ ul.meniu {
     width: 100%;
     z-index: 2;
     background-color: var(--culoare-3);
+    
+    // TRANZITIA GRADIENT OMG
+    visibility: hidden;
+    
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
+    
+    -webkit-mask-size: 100% 200%;
+    mask-size: 100% 200%;
+    
+    -webkit-mask-position: bottom;
+    mask-position: bottom;
+    transition: -webkit-mask-position var(--animation-time) linear, 
+                mask-position var(--animation-time) linear,
+                visibility 0s linear var(--animation-time);
+    
   }
 
-  /* Stiluri generale pentru TOATE elementele LI (meniu + submeniu) */
   li {
     position: relative;
     font-weight: bold;
@@ -107,6 +122,9 @@ ul.meniu {
       box-sizing: border-box;
       .text-icon {
         display: inline-block;
+      }
+      .acasa .text-icon {
+        display: none;
       }
     }
 
@@ -151,12 +169,6 @@ ul.meniu {
     @media (max-width: 1000px) {
       width: 100%;
     }
-
-    @media (max-width: 700px) {
-      width: 100%;
-      position: relative;
-      transform-origin: top; 
-    }
   }
 
   > li:hover ul {
@@ -193,6 +205,14 @@ ul.meniu {
 #ch-menu:checked + ul.meniu {
   @media (max-width: 700px) {
     display: flex;
+
+    // TRANZITIA GRADIENT
+    -webkit-mask-position: top;
+    mask-position: top;
+    visibility: visible;
+    transition: -webkit-mask-position var(--animation-time) linear, 
+                mask-position var(--animation-time) linear,
+                visibility 0s linear 0s;
   }
 }
 

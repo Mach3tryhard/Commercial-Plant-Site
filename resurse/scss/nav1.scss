@@ -82,7 +82,7 @@ ul.meniu {
     
     // TRANZITIA GRADIENT OMG
     visibility: hidden;
-    
+    padding-bottom: 100vh;
     -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
     mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
     

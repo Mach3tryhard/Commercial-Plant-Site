@@ -82,6 +82,7 @@ ul.meniu {
     z-index: 2;
     background-color: var(--culoare-3);
     visibility: hidden;
+    padding-bottom: 100vh;
     -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
     mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
     -webkit-mask-size: 100% 200%;

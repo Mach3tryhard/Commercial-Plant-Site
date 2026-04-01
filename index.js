@@ -15,9 +15,26 @@ obGlobal = {
     folderBackup:path.join(__dirname,"backup"),
 }
 
+const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
+for (let numeFolder of vect_foldere) {
+    let caleFolder = path.join(__dirname, numeFolder);
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(caleFolder);
+    }
+}
+
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
+
+app.get("/favicon.ico", function(req, res) {
+    res.sendFile(path.join(__dirname, "resurse/imagini/favicon/favicon.ico"));
+});
+
+app.use(function(req, res, next) {
+    res.locals.ip = req.ip;
+    next();
+});
 
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
@@ -79,20 +96,36 @@ fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
 })
 
 function afisareEroare(res, identificator, titlu, text, imagine){
-    let eroare=obGlobal.obErori.info_erori.find((elem) =>
-        elem.identificator==identificator);
-
+    let eroare = obGlobal.obErori.info_erori.find((elem) => elem.identificator == identificator);
     let errDefault = obGlobal.obErori.eroare_default;
-    res.render("pagini/eroare",{
-        imagine: imagine || eroare?.imagine || errDefault.imagine,
-        titlu : titlu || eroare?.titlu || errDefault.titlu,
-        text: text || eroare?.text || errDefault.text,
-    })
 
+    let titluGasit = titlu || eroare?.titlu || errDefault.titlu;
+    let textGasit = text || eroare?.text || errDefault.text;
+    let imagineGasita = imagine || eroare?.imagine || errDefault.imagine;
+
+    if (eroare && eroare.status) {
+        res.status(identificator);
+    } else if (!eroare) {
+        res.status(500);
+    }
+
+    res.render("pagini/eroare", {
+        imagine: imagineGasita,
+        titlu: titluGasit,
+        text: textGasit,
+    });
 }
 
 app.get(["/", "/index", "/home",],function(req,res){
     res.render("pagini/index");
+});
+
+app.use("/resurse", function(req, res, next) {
+    let caleCompleta = path.join(__dirname, "resurse", req.url.split('?')[0]);
+    if (fs.existsSync(caleCompleta) && fs.statSync(caleCompleta).isDirectory()) {
+        return afisareEroare(res, 403);
+    }
+    next();
 });
 
 app.use("/resurse",express.static(path.join(__dirname,"resurse")));
@@ -102,6 +135,9 @@ app.get("/eroare",function(req,res){
     afisareEroare(res,404,"Eroare 404");
 });
 
+app.get(/\.ejs$/, function(req, res) {
+    afisareEroare(res, 400); 
+});
 
 app.get("/*pagina",function(req,res){
     res.render("pagini"+req.url,function(err,rezRandare){

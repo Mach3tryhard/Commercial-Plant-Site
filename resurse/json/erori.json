@@ -26,6 +26,13 @@
             "titlu": "Eroare de server",
             "text": "Serverul a întâmpinat o situație neașteptată care l-a împiedicat să îndeplinească cererea.",
             "imagine": "500.png"
+        },
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "Eroare de client",
+            "text": "Serverul a întâmpinat o cerere pe care nu doreste sa o indeplineasca.",
+            "imagine": "400.png"
         }
     ]
 }

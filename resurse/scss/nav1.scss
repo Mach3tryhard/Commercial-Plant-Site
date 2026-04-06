@@ -71,7 +71,7 @@ ul.meniu {
 
   /* Layout Mobil */
   @media (max-width: 700px) {
-    display: flex; /* Ascuns default pe mobil */
+    display: flex;
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -254,8 +254,6 @@ ul.meniu {
 
 // BONUSURI
 
-/* 1. Definim animația cu minim 3 cadre cheie (0%, 50%, 100%)
-   care schimbă opacitatea, transformarea geometrică și culoarea */
 @keyframes aparitie-bara {
   0% {
     opacity: 0;
@@ -265,7 +263,7 @@ ul.meniu {
   50% {
     opacity: 0.5;
     transform: translateX(10px) scaleX(1.2);
-    background-color: var(--culoare-opus); /* Folosește o culoare de tranzit din variabilele tale */
+    background-color: var(--culoare-opus);
   }
   100% {
     opacity: 1;

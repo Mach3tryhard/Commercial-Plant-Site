@@ -542,6 +542,19 @@ figure.fg-img > img{
 /* MEDIA PRINTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT */
 
 @media print {
+    #banner-print{
+        display: block !important;
+        position: absolute;
+        top:0;
+        left:50%;
+        transform: translateX(-50%);
+        width:80%;
+        border: 2px dotted black;
+        text-align: center;
+        padding: 10px;
+        margin: 0;
+        background: var(--culoare-opus);
+    }
     html, body {
         width: 210mm;
         overflow: visible !important;
@@ -631,48 +644,4 @@ figure.fg-img > img{
 @page :right {
     margin-left: 0.5cm;
     margin-right: 2.5cm;
-}
-
-#calcul-pamant math {
-    font-size: 2rem;
-    font-family: 'Courier Prime', monospace;
-    background-color: var(--culoare-opus);
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px dashed var(--culoare-contur);
-    margin: 20px auto;
-}
-
-#calcul-pamant math > mi {
-    color: var(--culoare-5);
-    font-weight: bold;
-    font-size: 2.5rem;
-}
-
-#calcul-pamant math mo {
-    color: var(--culoare-3);
-    font-weight: 900;
-    padding: 0 4px;
-}
-
-#calcul-pamant math mn {
-    color: var(--culoare-2);
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-#calcul-pamant math mfrac mrow mi:first-child {
-    color: var(--culoare-7);
-    font-style: normal;
-    font-weight: bold;
-    font-size: 2.2rem;
-}
-
-#calcul-pamant math msup mi, 
-#calcul-pamant math mrow > mi {
-    color: var(--culoare-contur);
-    font-style: italic;
-    text-decoration: underline;
-    text-decoration-color: var(--culoare-2);
-    text-decoration-thickness: 3px;
 }

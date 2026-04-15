@@ -152,6 +152,110 @@ app.get("/*pagina",function(req,res){
     });
 });
 
+function validareDateErori() {
+    const caleJson = path.join(__dirname, "resurse/json/erori.json");
+
+    // 1. Verificare existență fișier (0.025p)
+    if (!fs.existsSync(caleJson)) {
+        console.error("Eroare critică: Fișierul erori.json nu există. Aplicația se va închide.");
+        process.exit(1); 
+    }
+
+    const rawData = fs.readFileSync(caleJson, "utf-8");
+
+    // 2. Verificare proprietăți duplicate pe string (0.2p)
+    let depth = 0;
+    let keysStack = [[]];
+    let regexChei = /\{|\}|"([^"]+)"\s*:/g;
+    let match;
+
+    while ((match = regexChei.exec(rawData)) !== null) {
+        if (match[0] === '{') {
+            depth++;
+            if (!keysStack[depth]) keysStack[depth] = [];
+            else keysStack[depth].length = 0; 
+        } else if (match[0] === '}') {
+            depth--;
+        } else if (match[1]) {
+            let cheie = match[1];
+            if (keysStack[depth].includes(cheie)) {
+                console.error(`Eroare formatare JSON: Proprietatea "${cheie}" apare de mai multe ori în același obiect.`);
+            } else {
+                keysStack[depth].push(cheie);
+            }
+        }
+    }
+
+    let obErori;
+    try {
+        obErori = JSON.parse(rawData);
+    } catch (e) {
+        console.error("Eroare de sintaxă: Fișierul erori.json nu este un JSON valid.");
+        return;
+    }
+
+    // 3. Verificare proprietăți globale (0.025p)
+    if (!obErori.info_erori || !obErori.cale_baza || !obErori.eroare_default) {
+        console.error("Eroare conținut: Lipsesc una sau mai multe proprietăți de bază (info_erori, cale_baza, eroare_default).");
+    }
+
+    // 4. Verificare proprietăți eroare_default (0.025p)
+    if (obErori.eroare_default) {
+        let errDef = obErori.eroare_default;
+        if (!errDef.titlu || !errDef.text || !errDef.imagine) {
+            console.error("Eroare eroare_default: Lipsesc una sau mai multe proprietăți obligatorii (titlu, text, imagine).");
+        }
+    }
+
+    // 5. Verificare existență folder cale_baza (0.025p)
+    let caleBazaCompleta = "";
+    if (obErori.cale_baza) {
+        caleBazaCompleta = path.join(__dirname, obErori.cale_baza);
+        if (!fs.existsSync(caleBazaCompleta)) {
+            console.error(`Eroare cale: Folderul specificat în cale_baza ("${obErori.cale_baza}") nu există în sistemul de fișiere.`);
+        }
+    }
+
+    // 6. Verificare existență imagini (0.05p)
+    if (obErori.cale_baza && obErori.info_erori && obErori.eroare_default) {
+        let imaginiDeVerificat = [obErori.eroare_default.imagine];
+        
+        for (let err of obErori.info_erori) {
+            if (err.imagine) imaginiDeVerificat.push(err.imagine);
+        }
+
+        for (let img of imaginiDeVerificat) {
+            let caleImg = path.join(caleBazaCompleta, img);
+            if (!fs.existsSync(caleImg)) {
+                console.error(`Eroare imagine lipsă: Fișierul imagine "${img}" nu există la calea specificată.`);
+            }
+        }
+    }
+
+    // 7. Verificare identificatori duplicați (0.15p)
+    if (obErori.info_erori) {
+        let dictionarId = {};
+        
+        for (let err of obErori.info_erori) {
+            if (!dictionarId[err.identificator]) {
+                dictionarId[err.identificator] = [];
+            }
+            
+            // Extragem toate proprietatile in afara de identificator
+            let { identificator, ...proprietatiFaraId } = err;
+            dictionarId[err.identificator].push(proprietatiFaraId);
+        }
+
+        for (let id in dictionarId) {
+            if (dictionarId[id].length > 1) {
+                console.error(`Eroare duplicare ID: Există mai multe erori cu identificatorul "${id}". Proprietățile acestora sunt:`);
+                console.error(JSON.stringify(dictionarId[id], null, 4));
+            }
+        }
+    }
+}
+
+validareDateErori();
 
 app.listen(8080);
 console.log("Serverul a pornit!");

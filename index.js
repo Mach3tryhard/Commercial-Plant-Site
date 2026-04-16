@@ -152,18 +152,58 @@ app.get("/*pagina",function(req,res){
     });
 });
 
+const fs = require("fs");
+const path = require("path");
+
 function validareDateErori() {
     const caleJson = path.join(__dirname, "resurse/json/erori.json");
+    const rawData = fs.readFileSync(caleJson, "utf-8");
 
-    // 1. Verificare existență fișier (0.025p)
+    // Cerința A (0.025p): Nu există fisierul erori.json
     if (!fs.existsSync(caleJson)) {
         console.error("Eroare critică: Fișierul erori.json nu există. Aplicația se va închide.");
         process.exit(1); 
     }
 
-    const rawData = fs.readFileSync(caleJson, "utf-8");
+    // Cerința B (0.025p): Nu există una dintre proprietățile: info_erori, cale_baza, eroare_default
+    if (!obErori.info_erori || !obErori.cale_baza || !obErori.eroare_default) {
+        console.error("Eroare conținut: Lipsesc una sau mai multe proprietăți de bază (info_erori, cale_baza, eroare_default).");
+    }
 
-    // 2. Verificare proprietăți duplicate pe string (0.2p)
+    // Cerința C (0.025p): Pentru eroarea default lipseste titlu, text sau imagine
+    if (obErori.eroare_default) {
+        let errDef = obErori.eroare_default;
+        if (!errDef.titlu || !errDef.text || !errDef.imagine) {
+            console.error("Eroare eroare_default: Lipsesc una sau mai multe proprietăți obligatorii (titlu, text, imagine).");
+        }
+    }
+
+    // Cerința D (0.025p): Folderul specificat în "cale_baza" nu există
+    let caleBazaCompleta = "";
+    if (obErori.cale_baza) {
+        caleBazaCompleta = path.join(__dirname, obErori.cale_baza);
+        if (!fs.existsSync(caleBazaCompleta)) {
+            console.error(`Eroare cale: Folderul specificat în cale_baza ("${obErori.cale_baza}") nu există în sistemul de fișiere.`);
+        }
+    }
+
+    // Cerința E (0.05p): Nu există vreunul dintre fișierele imagine asociate erorilor
+    if (obErori.cale_baza && obErori.info_erori && obErori.eroare_default) {
+        let imaginiDeVerificat = [obErori.eroare_default.imagine];
+        
+        for (let err of obErori.info_erori) {
+            if (err.imagine) imaginiDeVerificat.push(err.imagine);
+        }
+
+        for (let img of imaginiDeVerificat) {
+            let caleImg = path.join(caleBazaCompleta, img);
+            if (!fs.existsSync(caleImg)) {
+                console.error(`Eroare imagine lipsă: Fișierul imagine "${img}" nu există la calea specificată.`);
+            }
+        }
+    }
+
+    // Cerința F (0.2p): Proprietate specificată de mai multe ori (verificare pe string)
     let depth = 0;
     let keysStack = [[]];
     let regexChei = /\{|\}|"([^"]+)"\s*:/g;
@@ -194,45 +234,7 @@ function validareDateErori() {
         return;
     }
 
-    // 3. Verificare proprietăți globale (0.025p)
-    if (!obErori.info_erori || !obErori.cale_baza || !obErori.eroare_default) {
-        console.error("Eroare conținut: Lipsesc una sau mai multe proprietăți de bază (info_erori, cale_baza, eroare_default).");
-    }
-
-    // 4. Verificare proprietăți eroare_default (0.025p)
-    if (obErori.eroare_default) {
-        let errDef = obErori.eroare_default;
-        if (!errDef.titlu || !errDef.text || !errDef.imagine) {
-            console.error("Eroare eroare_default: Lipsesc una sau mai multe proprietăți obligatorii (titlu, text, imagine).");
-        }
-    }
-
-    // 5. Verificare existență folder cale_baza (0.025p)
-    let caleBazaCompleta = "";
-    if (obErori.cale_baza) {
-        caleBazaCompleta = path.join(__dirname, obErori.cale_baza);
-        if (!fs.existsSync(caleBazaCompleta)) {
-            console.error(`Eroare cale: Folderul specificat în cale_baza ("${obErori.cale_baza}") nu există în sistemul de fișiere.`);
-        }
-    }
-
-    // 6. Verificare existență imagini (0.05p)
-    if (obErori.cale_baza && obErori.info_erori && obErori.eroare_default) {
-        let imaginiDeVerificat = [obErori.eroare_default.imagine];
-        
-        for (let err of obErori.info_erori) {
-            if (err.imagine) imaginiDeVerificat.push(err.imagine);
-        }
-
-        for (let img of imaginiDeVerificat) {
-            let caleImg = path.join(caleBazaCompleta, img);
-            if (!fs.existsSync(caleImg)) {
-                console.error(`Eroare imagine lipsă: Fișierul imagine "${img}" nu există la calea specificată.`);
-            }
-        }
-    }
-
-    // 7. Verificare identificatori duplicați (0.15p)
+    // Cerința G (0.15p): Există mai multe erori cu același identificator
     if (obErori.info_erori) {
         let dictionarId = {};
         
@@ -241,7 +243,7 @@ function validareDateErori() {
                 dictionarId[err.identificator] = [];
             }
             
-            // Extragem toate proprietatile in afara de identificator
+            // Extragem toate proprietatile in afara de identificator pentru afișare
             let { identificator, ...proprietatiFaraId } = err;
             dictionarId[err.identificator].push(proprietatiFaraId);
         }

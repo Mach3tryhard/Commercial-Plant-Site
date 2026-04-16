@@ -547,7 +547,7 @@ figure.fg-img > img{
     display: block;
     margin: 20px auto; 
     border: 2px solid var(--culoare-contur, black); 
-    border-radius: 10px; 
+    /* border-radius: 10px;  */
 }
 
 ::cue {
@@ -561,7 +561,7 @@ figure.fg-img > img{
 /* --- LINK --- CERINTA 4 */
 
 a:visited {
-    color: var(--culoare-5); 
+    color: var(--culoare-contur); 
 }
 
 main a[href^="http"] {

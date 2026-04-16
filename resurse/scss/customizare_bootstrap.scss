@@ -2,5 +2,24 @@
 (
     $primary: red,
     $secondary:purple,
-    $h1-font-size:3.0,
+    $body-bg: #FEFAAD,
+
+    $body-color: black,
+    
+    $h1-font-size: 3.0rem,
+    
+    $border-radius: 0.75rem,
+    
+    $font-family-sans-serif: ('Poppins', sans-serif),
+    
+    $btn-disabled-opacity: 0.45,
+
+    $grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 850px, 
+        lg: 1050px,
+        xl: 1200px,
+        xxl: 1400px
+    )
 )

@@ -89,6 +89,7 @@ footer{
 
 .social-icons a:hover {
     transform: scale(1.1);
+    color: #231f20;
 }
 
 .newsletter p {

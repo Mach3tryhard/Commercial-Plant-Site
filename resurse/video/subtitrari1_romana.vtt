@@ -1,4 +1,13 @@
 WEBVTT
 
-00:00.000 --> 00:05.000
-Bate vantul frunzele!
+1
+00:00:00.000 --> 00:00:02.000 line:0 position:50% align:center
+Bate <i>vântul</i> frunzele!
+
+2
+00:00:02.000 --> 00:00:04.000 line:0 position:50% align:center
+Se-nvârtesc moriștile
+
+3
+00:00:04.000 --> 00:00:05.000 line:0 position:50% align:center
+Rândunica așa zboară

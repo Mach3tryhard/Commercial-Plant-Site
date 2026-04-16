@@ -15,21 +15,43 @@ obGlobal = {
     folderBackup:path.join(__dirname,"backup"),
 }
 
-const vect_foldere = ["temp", "logs", "backup", "fisiere_uploadate"];
-for (let numeFolder of vect_foldere) {
-    let caleFolder = path.join(__dirname, numeFolder);
+let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
+for (let folder of vect_foldere){
+    let caleFolder=path.join(__dirname, folder);
     if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(caleFolder);
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
     }
 }
+
+app.use("/resurse",express.static(path.join(__dirname, "resurse")));
+app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
+
+app.get("/favicon.ico", function(req, res){
+    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
+});
+
+app.get(["/", "/index","/home"], function(req, res){
+    const dataCurenta = new Date();
+    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
+    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
+
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+        return img.intervale_luni && img.intervale_luni.includes(lunaCurenta);
+    });
+
+    if (imaginiFiltrate.length % 2 !== 0) {
+        imaginiFiltrate.pop();
+    }
+
+    res.render("pagini/index", {
+        ip: req.ip,
+        imagini: obGlobal.obImagini.imagini
+    });
+});
 
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
-
-app.get("/favicon.ico", function(req, res) {
-    res.sendFile(path.join(__dirname, "resurse/imagini/favicon/favicon.ico"));
-});
 
 app.use(function(req, res, next) {
     res.locals.ip = req.ip;
@@ -46,6 +68,31 @@ function initErori(){
     }
 }
 initErori();
+
+
+function initImagini(){
+    var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
+
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+    let caleGalerie=obGlobal.obImagini.cale_galerie
+
+    let caleAbs=path.join(__dirname,caleGalerie);
+    let caleAbsMediu=path.join(caleAbs, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+    
+    for (let imag of vImagini){
+        [numeFis, ext]=imag.cale_relativa.split(".");
+        let caleFisAbs=path.join(caleAbs,imag.cale_relativa);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        sharp(caleFisAbs).resize(300).toFile(caleFisMediuAbs);
+        imag.cale_relativa_mediu=path.join("/", caleGalerie, "mediu", numeFis+".webp" )
+        imag.cale_relativa=path.join("/", caleGalerie, imag.cale_relativa)
+        
+    }
+}
+initImagini();
 
 function compileazaScss(caleScss, caleCss){
     if(!caleCss){
@@ -112,10 +159,6 @@ function afisareEroare(res, identificator, titlu, text, imagine){
     });
 }
 
-app.get(["/", "/index", "/home",],function(req,res){
-    res.render("pagini/index");
-});
-
 app.use("/resurse", function(req, res, next) {
     let caleCompleta = path.join(__dirname, "resurse", req.url.split('?')[0]);
     if (fs.existsSync(caleCompleta) && fs.statSync(caleCompleta).isDirectory()) {
@@ -123,9 +166,6 @@ app.use("/resurse", function(req, res, next) {
     }
     next();
 });
-
-app.use("/resurse",express.static(path.join(__dirname,"resurse")));
-app.use("/dist",express.static(path.join(__dirname,"node_modules/bootstrap/dist")));
 
 app.get("/eroare",function(req,res){
     afisareEroare(res,404,"Eroare 404");
@@ -135,29 +175,52 @@ app.get(/\.ejs$/, function(req, res) {
     afisareEroare(res, 400); 
 });
 
-app.get("/*pagina",function(req,res){
-    res.render("pagini"+req.url,function(err,rezRandare){
-        if(err){
-            if(err.message.includes("Failed to lookup view")){
-                afisareEroare(res,404)
+app.get("/*pagina", function(req, res){
+    console.log("Cale pagina", req.url);
+    if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
+        afisareEroare(res,403);
+        return;
+    }
+    if (path.extname(req.url)==".ejs"){
+        afisareEroare(res,400);
+        return;
+    }
+    try{
+        res.render("pagini"+req.url, function(err, rezRandare){
+            if (err){
+                if (err.message.includes("Failed to lookup view")){
+                    afisareEroare(res,404)
+                }
+                else{
+                    afisareEroare(res);
+                }
             }
             else{
-                afisareEroare(res);
+                res.send(rezRandare);
             }
+        });
+    }
+    catch(err){
+        if (err.message.includes("Cannot find module")){
+            afisareEroare(res,404)
         }
-        else {
-            res.send(rezRandare);
-            console.log("Randare finalizată cu succes");
+        else{
+            afisareEroare(res);
         }
-    });
+    }
 });
-
-const fs = require("fs");
-const path = require("path");
 
 function validareDateErori() {
     const caleJson = path.join(__dirname, "resurse/json/erori.json");
     const rawData = fs.readFileSync(caleJson, "utf-8");
+    /// ASTA E TOT F
+    let obErori;
+    try {
+        obErori = JSON.parse(rawData);
+    } catch (e) {
+        console.error("Eroare de sintaxă: Fișierul erori.json nu este un JSON valid.");
+        return;
+    }
 
     // Cerința A (0.025p): Nu există fisierul erori.json
     if (!fs.existsSync(caleJson)) {
@@ -226,14 +289,6 @@ function validareDateErori() {
         }
     }
 
-    let obErori;
-    try {
-        obErori = JSON.parse(rawData);
-    } catch (e) {
-        console.error("Eroare de sintaxă: Fișierul erori.json nu este un JSON valid.");
-        return;
-    }
-
     // Cerința G (0.15p): Există mai multe erori cu același identificator
     if (obErori.info_erori) {
         let dictionarId = {};
@@ -243,7 +298,6 @@ function validareDateErori() {
                 dictionarId[err.identificator] = [];
             }
             
-            // Extragem toate proprietatile in afara de identificator pentru afișare
             let { identificator, ...proprietatiFaraId } = err;
             dictionarId[err.identificator].push(proprietatiFaraId);
         }

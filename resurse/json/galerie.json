@@ -2,40 +2,102 @@
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie","octombrie"]
+			"cale_relativa":"imagine-galerie-1.jpg",
+			"nume_imag":"imagine-galerie-1",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie","octombrie"]
+			"cale_relativa":"imagine-galerie-2.jpg",
+			"nume_imag":"imagine-galerie-2",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"],
+			"autor": "Alex Ionescu"
+		},
+		{
+			"cale_relativa":"imagine-galerie-3.jpg",
+			"nume_imag":"imagine-galerie-3",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
+		},
+		{
+			"cale_relativa":"imagine-galerie-4.jpg",
+			"nume_imag":"imagine-galerie-4",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
+		},
+		{
+			"cale_relativa":"imagine-galerie-5.jpg",
+			"nume_imag":"imagine-galerie-5",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
 			
 		},
 		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
+			"cale_relativa":"imagine-galerie-6.jpg",
+			"nume_imag":"imagine-galerie-6",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
+			"cale_relativa":"imagine-galerie-7.jpg",
+			"nume_imag":"imagine-galerie-7",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
+		},
+		{
+			"cale_relativa":"imagine-galerie-8.jpg",
+			"nume_imag":"imagine-galerie-8",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
 			
-			"luni":["noiembrie","aprilie", "decembrie"]
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
+			"cale_relativa":"imagine-galerie-9.jpg",
+			"nume_imag":"imagine-galerie-9",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
 			
-			"luni":["noiembrie","aprilie", "decembrie","octombrie"]
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"cale_relativa":"imagine-galerie-10.jpg",
+			"nume_imag":"imagine-galerie-10",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
+			
 		},
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+			"cale_relativa":"imagine-galerie-11.jpg",
+			"nume_imag":"imagine-galerie-11",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","mai","iunie","iulie","august","septembrie"]
+			
+		},
+		{
+			"cale_relativa":"imagine-galerie-12.jpg",
+			"nume_imag":"imagine-galerie-12",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","mai","iunie","iulie","august","septembrie"]
+			
+		},
+		{
+			"cale_relativa":"imagine-galerie-13.jpg",
+			"nume_imag":"imagine-galerie-13",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","mai","iunie","iulie","august","septembrie"]
+			
+		},
+		{
+			"cale_relativa":"imagine-galerie-14.jpg",
+			"nume_imag":"imagine-galerie-14",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","mai","iunie","iulie","august","septembrie"]
+		},
+		{
+			"cale_relativa":"imagine-galerie-15.jpg",
+			"nume_imag":"imagine-galerie-15",
+			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
+			"intervale_luni":["martie","mai","iunie","iulie","august","septembrie"]
 		}
 	]
 }

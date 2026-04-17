@@ -1,6 +1,5 @@
 #galerie-json {
     display: grid;
-    /* Folosim 1fr pentru a întinde cele 3 coloane pe absolut toată lățimea disponibilă */
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px; 
     width: 100%;

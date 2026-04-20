@@ -6,11 +6,83 @@
 </head>
 <body>
     <%- include('../fragmente/header') %>
-    
     <main>
-        DESPRE
-    </main>
+        <div id="grid-pagina">
+            <section id="welcome">
+                <hgroup class="hgroup-titlu">
+                    <h2 class="titlu">ATÂT DE VERDE<br>
+                                    CĂ O SĂ STRIGI<br>
+                                    IUBESC PLANTELE!</h2>
+                    <p class="subtitlu">Avem cele mai bune plante, flori, semințe și cei mai buni arbuști din toate universele. Cumpărați cât timp mai puteți deoarece stocul e limitat iar cererea e mare!</p>
+                </hgroup>
+            </section>
+            <section id="despre-noi">
+            <h2 class="titlu">Despre Noi</h2>
+            
+            <div class="continut-despre">
+                <p>
+                    <strong>Seedlingrounds</strong> a luat naștere din pasiunea pentru natură și dorința de a aduce un colț de verdeață în fiecare casă. 
+                    Suntem un magazin dedicat iubitorilor de plante, oferind o gamă variată de semințe, arbuști, flori și instrumente de grădinărit.
+                </p>
+                <p>
+                    Fie că ești un grădinar experimentat sau abia îți descoperi "mâna verde", echipa noastră este aici să te ajute cu produse de cea mai bună calitate. 
+                    Ne poți comanda produsele online, bucurându-te de o livrare rapidă și sigură prin curier, sau ne poți face o vizită fizică pentru a alege personal planta care ți se potrivește.
+                </p>
+            </div>
 
+            <div class="locatie-magazin">
+                <h3>Unde ne găsești fizic</h3>
+                <p>Te așteptăm cu drag la sediul nostru pentru a discuta despre plantele tale preferate!</p>
+
+                <!-- Task 1.4Bonus -->
+                <div class="container-harta">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d933.3603882730125!2d26.100137537985052!3d44.43532696249532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFaculty%20of%20Mathematics%20and%20Computer%20Science!5e0!3m2!1sen!2sro!4v1772717397845!5m2!1sen!2sro" 
+                        width="800" 
+                        height="450" 
+                        style="border:0; max-width: 100%;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Task 1.5Bonus-->
+            <section id="playlist-video">
+                <h2>Videoclipuri cu locatia fizica</h2>
+                <div class="container-harta">
+                    <iframe 
+                        width="800" 
+                        height="450" 
+                        style="border:0; max-width: 100%;"
+                        src="https://www.youtube.com/embed/RWr566IYR10?playlist=tBlr1fNm59w,7_5IUMzc21I&autoplay=1&loop=1&controls=1&mute=1" 
+                        title="YouTube video playlist" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+            </section>
+            <section id="anunturi">
+            <h2 class="titlu">Anunțuri</h2>
+            <!-- Task 1.10 -->
+            <ul><!-- Task 1.12 -->
+                <li><time datetime="2026-03-02">2 martie 2026</time> <b>Nu uitati de plante </b>Nu avem nimic de anunțat, doar am vrut să vă spunem că feriga aia din colț chiar are nevoie de apă azi.</li>
+                <li><time datetime="2025-11-10">10 noiembrie 2025</time> <b>Lampi UV </b> Iarna nu-i ca vara! Am adus lămpi UV pentru plantele voastre triste.</li>
+                <li><time datetime="2025-05-15">15 mai 2025</time> <b>Mai multe plante noi </b> <span>Am adăugat un Monstera Deliciosa uriaș în stoc</span></li>
+                <li><time datetime="2025-04-05">5 aprilie 2025</time> <b>Plante noi </b> <span>Am adăugat o varietate nouă de suculente</span></li>
+                <li><time datetime="2024-07-05">5 iulie 2024</time> <b>Gluma</b> Atenție! Dacă vorbești cu plantele tale, ele cresc mai repede. Dacă ele îți răspund, sună-ne.</li>
+                <li><time datetime="2024-03-20">20 martie 2020</time> <b>Ghiveci nou</b> Am adăugat un ghivezi auto-irigabil pentru cei care uită de ele.</li>
+                <li><time datetime="2023-12-24">24 decembrie 2023</time> <b>Sarbatori fericite</b> Crăciun fericit! Sperăm că bradul vă lasă ace prin casă.</li>
+                <li><time datetime="2023-09-15">15 septembrie 2023</time> <b>Pamant nou</b> Am adăugat un mix de pământ special pentru cactuși.</li>
+                <li><time datetime="2023-01-01">1 ianuarie 2023</time> <b>Sarbatori fericite</b> Un an nou verde și plin de oxigen!</li>
+                <li><time datetime="2022-02-11">11 februarie 2022</time> <b>Gluma</b> Studiile au arătat că cine are mai mult de 10 plante în casă este mai fericit.</li>
+            </ul>
+        </section>
+        </div>
+    </main>
     <%- include('../fragmente/footer') %>
 </body>
 </html>

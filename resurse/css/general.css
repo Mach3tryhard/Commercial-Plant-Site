@@ -11,7 +11,6 @@ body{
     --culoare-contur: black;
     --culoare-opus: white;
     background-color: var(--culoare-fundal);
-    /* Task: layout-responsive - Prevenire scroll orizontal (overflow) */
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
 }
@@ -26,12 +25,6 @@ main{
     margin-right: var(--margine-pagina);
 }
 
-#grid-galerie{
-    display: grid;
-    gap:10px;
-    grid-template-columns: 2fr 2fr;
-}
-
 #grid-produse-detaliat{
     display: grid;
     gap:10px;
@@ -41,7 +34,7 @@ main{
 #grid-pagina{
     display: grid;
     gap: var(--gap-grid);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-areas: "welcome welcome welcome welcome"
                          "welcome welcome welcome welcome"
                          "utilizatori-online statistici statistici date-server"
@@ -59,7 +52,6 @@ main{
     border: 1px solid var(--culoare-contur); 
     box-shadow: 0 0 5px var(--culoare-contur); 
     padding: 10px;
-    /* Task: layout-responsive - Pastreaza elementele in interiorul containerului pt a evita overflow-ul */
     box-sizing: border-box; 
     max-width: 100%;
 }
@@ -171,9 +163,6 @@ figure.fg-img > img{
     border: 1px solid var(--culoare-contur);
     color:black;
     text-decoration: none;
-    /* border-top-left-radius: 5px; */
-    /* border-top-right-radius: 5px; */
-    /* margin-right: 10px; */
     transition:all 0.2s ease;
 }
 
@@ -186,7 +175,6 @@ figure.fg-img > img{
     height:50%;
     display:flex;
     flex-direction: column;
-    /* height: 100%; */
 }
 
 .container-iframe{
@@ -287,7 +275,7 @@ figure.fg-img > img{
     padding-bottom: 75%;
     height: 0;
     overflow: hidden;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     border: 2px solid var(--culoare-contur);
 }
 
@@ -538,6 +526,75 @@ figure.fg-img > img{
     visibility: visible;
 }
 /* Task: link-top --------------*/
+
+/* --- VIDEOUL --- CERINTA 4 */
+#video-vtt {
+    width: 80%;
+    min-width: 300px; 
+    max-width: 800px;
+    display: block;
+    margin: 20px auto; 
+    border: 2px solid var(--culoare-contur, black); 
+    /* border-radius: 10px;  */
+}
+
+::cue {
+    background-color: var(--culoare-opus, white);
+    color: var(--culoare-contur, black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* --- LINK --- CERINTA 4 */
+
+a:visited {
+    color: var(--culoare-contur); 
+}
+
+main a[href^="http"] {
+    display: inline-flex;
+    align-items: center; 
+    gap: 6px; 
+    white-space: nowrap; 
+    text-decoration: none; 
+}
+
+main a[href^="http"]::before {
+    content: "⮳";
+    font-size: 1.5em; 
+    line-height: 1; 
+    transition: color 0.1s linear;
+}
+
+main a[href^="http"]:hover::before {
+    color: var(--culoare-3); 
+}
+
+main p a, 
+main li a,
+main h3 a {
+    background-image: radial-gradient(
+        circle, 
+        var(--culoare-4) 0%, 
+        var(--culoare-4) 40%, 
+        transparent 60%, 
+        transparent 100%
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0% 0%;
+    transition: background-size 1s linear;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+main p a:hover, 
+main li a:hover,
+main h3 a:hover {
+    background-size: 100% 100%;
+    color: var(--culoare-contur);
+}
 
 /* MEDIA PRINTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT */
 

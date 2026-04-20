@@ -3,17 +3,20 @@
 <head>
     <title><%= titlu %> - Seedlingrounds</title>
     <%- include('../fragmente/head') %>
+    <link rel="stylesheet" href="/resurse/css/eroare.css" type="text/css"/>
 </head>
 <body>
     <%- include('../fragmente/header') %>
     
-    <main>
-        <section class="container-eroare">
-            <h1><%= titlu %></h1>
-            <img src="<%= imagine %>" alt="Eroare: <%= titlu %>">
-            <p><%= text %></p>
+    <main class="main-eroare">
+        <section class="container-eroare-overlay">
+            <img src="<%= imagine %>" alt="Eroare" class="imagine-fundal-eroare">
             
-            <a href="/" class="btn-inapoi"><i class="fa-solid fa-house"></i> Înapoi la pagina principală</a>
+            <div class="continut-eroare">
+                <h2 class="titlu-eroare titlu"><%= titlu %></h2>
+                <p class="descriere-eroare"><%= text %></p>
+                <a href="/" class="btn-inapoi">Înapoi Acasă</a>
+            </div>
         </section>
     </main>
 

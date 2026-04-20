@@ -1,4 +1,13 @@
 WEBVTT
 
-00:00.000 --> 00:05.000
-The wind is blowing!
+1
+00:00:00.000 --> 00:00:02.000 line:0 position:50% align:center
+The <i>wind</i> is blowing the leaves!
+
+2
+00:00:02.000 --> 00:00:04.000 line:0 position:50% align:center
+The pinwheels are spinning
+
+3
+00:00:04.000 --> 00:00:05.000 line:0 position:50% align:center
+That's how the bird flies

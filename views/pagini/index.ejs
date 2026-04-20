@@ -14,16 +14,17 @@
     <!-- Task 1.5 -->
     <main>
         <div id="grid-pagina">
-            <section id="calendar" class="zona-placeholder">
-                <h2 class="titlu">Calendar Evenimente</h2>
-                <div class="calendar-container">
-                    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23FEFAAD&ctz=Europe%2FBucharest&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&src=ID_UL_TAU_DE_CALENDAR_AICI" 
-                    style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-                </div>
+            <section id="welcome">
+                <hgroup class="hgroup-titlu">
+                    <h2 class="titlu">ATÂT DE VERDE<br>
+                                    CĂ O SĂ STRIGI<br>
+                                    IUBESC PLANTELE!</h2>
+                    <p class="subtitlu">Avem cele mai bune plante, flori, semințe și cei mai buni arbuști din toate universele. Cumpărați cât timp mai puteți deoarece stocul e limitat iar cererea e mare!</p>
+                </hgroup>
             </section>
 
             <section id="utilizatori-online" class="zona-placeholder">
-                <h2 class="titlu">Utilizatori Online</h2>
+                <h2 class="titlu">Membri online</h2>
                 <div class="card-corp">
                     <div class="card-icon"><i class="fa-solid fa-users"></i></div>
                     <div class="card-info">
@@ -57,14 +58,13 @@
                 </div>
                 <div class="card-footer">Ping: 12ms</div>
             </section>
-            <section id="welcome">
-                <button class="btn btn-primary">Buton Bootstrap</button>
-                <hgroup class="hgroup-titlu">
-                    <h2 class="titlu">ATÂT DE VERDE<br>
-                                    CĂ O SĂ STRIGI<br>
-                                    IUBESC PLANTELE!</h2>
-                    <p class="subtitlu">Avem cele mai bune plante, flori, semințe și cei mai buni arbuști din toate universele. Cumpărați cât timp mai puteți deoarece stocul e limitat iar cererea e mare!</p>
-                </hgroup>
+            
+            <section id="calendar" class="zona-placeholder">
+                <h2 class="titlu">Calendar Evenimente</h2>
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23FEFAAD&ctz=Europe%2FBucharest&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&src=ID_UL_TAU_DE_CALENDAR_AICI" 
+                    frameborder="0" scrolling="no"></iframe>
+                </div>
             </section>
             <!-- Task 1.6 -->
             <section id="promotii">
@@ -177,6 +177,19 @@
                         <li><i>Pulverizator</i></li>
                     </ul>
                 </section>
+                <section>
+                    <div id="container-video">
+                        <video id="video-vtt" playsinline loop muted controls poster="resurse/imagini/video_cover.jpg" preload="metadata">    
+                            <source src="resurse/video/film1.mp4" type="video/mp4">
+                            <source src="resurse/video/film1.webm" type="video/webm">
+                            
+                            <track default src="resurse/video/subtitrari1_romana.vtt" kind="captions" srclang="ro" label="romana">
+                            <track src="resurse/video/subtitrari1_engleza.vtt" kind="captions" srclang="en" label="engleza">
+                            
+                            Browserul dumneavoastră nu suportă acest videoclip.
+                        </video>
+                    </div>
+                </section>
             </section>
             <section id="orar">
                 <h2 class="titlu">Orar</h2>
@@ -258,6 +271,13 @@
                 </table>
                 </div>
                 <p><strong>Atentie!!!</strong> in prima zi a lunii facem inventar.</p>
+                <div class="container-centrat">
+                    <div id="text-reflexie">
+                        Ciclul Naturii
+                        <div id="text-reflectat">Ciclul Naturii</div>
+                    </div>
+                </div>
+                <div id="duotones"></div>
             </section>
             <!-- Task 1.13.d -->
             <section id="fig1" class="fg-img">
@@ -566,82 +586,14 @@
             </article>
 
         </div>
-    </section>
-
+        </section>
         <section id="galerie-statica">
             <h2 class="titlu">Galerie</h2>
-            <div id="grid-galerie">
-                <figure>
-                    <!-- Task 1.13.e -->
-                    <div>
-                        <img src="resurse/imagini/planta5-1.jpg" alt="planta 1">
-                    </div>
-                    <figcaption>Lalele - 
-                        <a href="resurse/imagini/planta5-1.jpg" download="planta5-1_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-2.jpg" alt="planta 2">
-                    <figcaption>Suculenta - 
-                        <a href="resurse/imagini/planta5-2.jpg" download="planta5-2_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-3.jpg" alt="planta 3">
-                    <figcaption>Cactus - 
-                        <a href="resurse/imagini/planta5-3.jpg" download="planta5-3_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-4.jpg" alt="planta 4">
-                    <figcaption>Begonia - 
-                        <a href="resurse/imagini/planta5-4.jpg" download="planta5-4_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-5.jpg" alt="planta 5">
-                    <figcaption>Gypsophila - 
-                        <a href="resurse/imagini/planta5-5.jpg" download="planta5-5_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-6.jpg" alt="planta 6">
-                    <figcaption>Trandafir - 
-                        <a href="resurse/imagini/planta5-6.jpg" download="planta5-6_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-7.jpg" alt="planta 7">
-                    <figcaption>Salcie - 
-                        <a href="resurse/imagini/planta5-7.jpg" download="planta5-7_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img src="resurse/imagini/planta5-8.jpg" alt="planta 8">
-                    <figcaption>Feriga - 
-                        <a href="resurse/imagini/planta5-8.jpg" download="planta5-8_downloaded">
-                            Descarcati
-                        </a>
-                    </figcaption>
-                </figure>
-            </div>
+            <%- include('../fragmente/galerie_animata') %>
         </section>
-        </div>
+    </div>
     </main>
+    <hr class="hr-custom">
     <%- include('../fragmente/footer') %>
 </body>
 </html>

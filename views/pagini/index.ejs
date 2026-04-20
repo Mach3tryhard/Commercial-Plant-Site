@@ -589,7 +589,11 @@
         </section>
         <section id="galerie-statica">
             <h2 class="titlu">Galerie</h2>
-            <%- include('../fragmente/galerie_animata') %>
+            <%- include('../fragmente/galerie_statica', { imagini: imaginiStatice }) %>
+        </section>
+        <section id="sectiune-galerie-animata">
+            <h2 class="titlu">Galerie Animata</h2>
+            <%- include('../fragmente/galerie_animata.ejs', { imagini: imaginiAnimate }) %>
         </section>
     </div>
     </main>

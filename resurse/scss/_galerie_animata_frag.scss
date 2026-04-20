@@ -1,0 +1,85 @@
+@use "sass:math";
+
+$transformare_i: scaleX(1) !default;
+$transformare_f: scaleX(0) !default;
+$nrimag: 7 !default;
+
+#galerie-animata {
+    width: 400px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    border: 10px solid #29539b; 
+    
+    &:hover figure {
+        animation-play-state: running;
+    }
+
+    figure {	
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        z-index: -10; 
+        opacity: 0;
+        animation-name: gal_exemplu;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both; 
+        animation-duration: #{$nrimag * 3}s;
+        
+        animation-play-state: paused;	
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        figcaption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+            margin: 0;
+        }
+    }
+}
+
+@for $i from 1 through $nrimag {
+    #galerie-animata figure:nth-of-type(#{$i}) {
+        animation-delay: #{($nrimag - $i) * 2}s;
+    }
+}
+
+$p_activ: math.div(100, $nrimag) * 1%;
+$p_pre_active: 100% - $p_activ;
+
+@keyframes gal_exemplu { 
+    0% { z-index: 10; opacity: 1; transform: translateX(0); } 
+    #{$p_activ * 0.5} { z-index: 10; opacity: 1; transform: translateX(0); } 
+    
+    #{$p_activ * 0.65} { z-index: 10; opacity: 1; transform: translateX(30px); } 
+    
+    #{$p_activ * 0.85} { z-index: 10; opacity: 0.4; transform: translateX(-40px); }
+    
+    #{$p_activ} { z-index: 10; opacity: 0; transform: translateX(100%); }
+    
+    #{$p_activ + 0.001%} { z-index: -10; opacity: 0; transform: translateX(0); }
+    #{$p_pre_active} { z-index: -10; opacity: 0; transform: translateX(0); }
+
+    /* Imaginea devine vizibilă în spate (z-index: 1) EXACT pe durata mișcărilor imaginii de deasupra ei */
+    #{$p_pre_active + 0.001%} { z-index: 1; opacity: 1; transform: translateX(0); }
+    100% { z-index: 1; opacity: 1; transform: translateX(0); }
+}
+
+@media screen and (max-width: 1050px) {
+    #sectiune-galerie-animata {
+        display: none;
+    }
+}

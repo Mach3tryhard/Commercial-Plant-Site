@@ -4,6 +4,7 @@ const fs=require("fs");
 const sass=require("sass");
 const sharp=require("sharp");
 const pg = require("pg");
+const ejs = require("ejs");
 
 app= express();
 app.set("view engine", "ejs")
@@ -44,9 +45,42 @@ app.get(["/", "/index","/home"], function(req, res){
         imaginiFiltrate.pop();
     }
 
+    // 1. Alegem numărul par aleator (6, 8, 10, 12) conform cerinței
+    const numerePosibile = [6, 8, 10, 12];
+    const nrImagini = numerePosibile[Math.floor(Math.random() * numerePosibile.length)];
+
+    // 2. Extragem și amestecăm imaginile din JSON, păstrând exact numărul ales
+    let imaginiAmestecate = obGlobal.obImagini.imagini.sort(() => 0.5 - Math.random());
+    let imaginiSelectate = imaginiAmestecate.slice(0, nrImagini);
+
+    // 3. Generăm SCSS-ul DINAMIC
+    var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");
+    var culori = ["navy", "black", "purple", "grey"];
+    var culoareAleatoare = culori[Math.floor(Math.random() * culori.length)];
+    var scssProcesatEjs = ejs.render(sirScss, { culoare: culoareAleatoare });
+
+    // ATENȚIE: am folosit variabila $nrimag pentru a comunica cu SCSS-ul profesoarei
+    var rezScss = `$nrimag: ${nrImagini};\n` + scssProcesatEjs;
+    var caleScss = path.join(__dirname, "temp/galerie_animata.scss");
+    fs.writeFileSync(caleScss, rezScss);
+
+    // 4. Compilăm SCSS -> CSS și salvăm direct în folderul accesibil browserului
+    try {
+        var rezCompilare = sass.compile(caleScss, { 
+            sourceMap: false,
+            loadPaths: [path.join(__dirname, "resurse/scss")] 
+        });
+        
+        var caleCss = path.join(__dirname, "resurse/css/galerie_animata.css");
+        fs.writeFileSync(caleCss, rezCompilare.css);
+    } catch (err) {
+        console.log("Eroare compilare SASS Galerie:", err);
+    }
+
     res.render("pagini/index", {
         ip: req.ip,
-        imagini: obGlobal.obImagini.imagini
+        imaginiStatice: imaginiFiltrate, // Vectorul pentru galeria statică
+        imaginiAnimate: imaginiSelectate
     });
 });
 
@@ -59,15 +93,14 @@ app.use(function(req, res, next) {
     next();
 });
 
-client=new Client({
-    database:"cti_2026",
-    user:"tris",
-    password:"1243",
-    host:"localhost",
-    port:5432
-})
-
-client.connect()
+// client=new Client({
+//     database:"cti_2026",
+//     user:"tris",
+//     password:"1243",
+//     host:"localhost",
+//     port:5432
+// })
+// client.connect()
 
 
 function initErori(){
@@ -324,6 +357,38 @@ function validareDateErori() {
 }
 
 validareDateErori();
+
+app.get(/.*\/galerie-animata\.css$/, function(req, res) {
+    var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");
+    var culori = ["navy", "black", "purple", "grey"];
+    var culoareAleatoare = culori[Math.floor(Math.random() * culori.length)];
+    var numerePosibile = [6, 8, 10, 12];
+    var nrImagini = numerePosibile[Math.floor(Math.random() * numerePosibile.length)]; 
+    var scssProcesatEjs = ejs.render(sirScss, { culoare: culoareAleatoare });
+    
+    var rezScss = `$n: ${nrImagini};\n` + scssProcesatEjs;
+    
+    var caleScss = path.join(__dirname, "temp/galerie_animata.scss");
+    fs.writeFileSync(caleScss, rezScss);
+    
+    try {
+        var rezCompilare = sass.compile(caleScss, { sourceMap: true });
+        
+        var caleCss = path.join(__dirname, "temp/galerie_animata.css");
+        fs.writeFileSync(caleCss, rezCompilare.css);
+        
+        res.setHeader("Content-Type", "text/css");
+        res.sendFile(caleCss);
+    }
+    catch (err) {
+        console.log("Eroare compilare SASS:", err);
+        res.send("Eroare");
+    }
+});
+
+app.get(/.*\/galerie-animata\.css\.map$/, function(req, res) {
+    res.sendFile(path.join(__dirname, "temp/galerie_animata.css.map"));
+});
 
 app.listen(8080);
 console.log("Serverul a pornit!");

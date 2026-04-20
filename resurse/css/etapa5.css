@@ -101,3 +101,20 @@ hr.hr-custom {
     background-color: var(--culoare-fundal); /* Prima proprietate modificată */
     color: var(--culoare-5);         /* A doua proprietate modificată */
 }
+
+/* TEXT PE COLOANE */
+
+.continut-despre {
+    column-count: 2; 
+    column-gap: 40px; 
+    column-rule: 2px dashed var(--culoare-contur); 
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .continut-despre {
+        column-count: 1; 
+        column-rule: none;
+    }
+}

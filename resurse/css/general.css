@@ -45,7 +45,8 @@ main{
                          "produse produse promotii promotii"
                          "catalog-produse catalog-produse catalog-produse catalog-produse"
                          "index-intrebari index-intrebari despre-noi despre-noi"
-                         "galerie-statica galerie-statica galerie-statica galerie-statica";
+                         "galerie-statica galerie-statica galerie-statica galerie-statica"
+                         "galerie-animata galerie-animata galerie-animata galerie-animata";
 }
 
 #grid-pagina > * {
@@ -60,7 +61,6 @@ main{
     height: min-content;
 }
 
-
 #despre-noi{
     background-color: var(--culoare-4);
     grid-area: despre-noi;
@@ -69,6 +69,11 @@ main{
 #catalog-produse{
     background-color: var(--culoare-3);
     grid-area: catalog-produse;
+}
+
+#sectiune-galerie-animata{
+    background-color: var(--culoare-6);
+    grid-area:galerie-animata;
 }
 
 #galerie-statica{
@@ -412,7 +417,7 @@ figure.fg-img > img{
                              "promotii"
                              "catalog-produse"
                              "index-intrebari"
-                             "galerie-statica";
+                             "galerie-statica"
     }
 
     #grid-galerie {
@@ -421,7 +426,9 @@ figure.fg-img > img{
 }
 
 @media screen and (max-width:700px){
-
+    sectiune-galerie-animata{
+        display: none;
+    }
     #tab-orar{
         border-spacing: 0px;
     }

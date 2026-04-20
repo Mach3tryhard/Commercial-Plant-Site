@@ -1,17 +1,12 @@
-<div id="galerie-json">
-    <% vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"]
-    for (let imag of locals.imagini) { 
-        lunaCurenta = vectLuni[(new Date()).getMonth()];
-        if(imag.intervale_luni && imag.intervale_luni.includes(lunaCurenta)) {
-        //if(imag.intervale_luni?.includes(lunaCurenta)) {
-            %>
-            <figure>
-                <picture>
-                    <source srcset="<%- imag.cale_relativa_mediu %>" media="(max-width:1000px)" />
-                    <img src="<%- imag.cale_relativa %>" alt="<%- imag.alternativ %>">
-                </picture>
-                <figcaption><%- imag.nume_imag %></figcaption>
-            </figure>
-        <% }  %>
-    <% }  %>
-</div>
+    <div id="galerie-animata" class="galerie-a">
+        <% for (let imag of locals.imagini) { 
+                     %>
+                        <figure>
+                            <picture>
+                                <source srcset="<%- imag.cale_relativa_mediu %>" media="(max-width:1000px)" />
+                                <img src="<%- imag.cale_relativa %>" alt="imagine">
+                            </picture>
+                            <figcaption><%- imag.nume_imag %></figcaption>
+                        </figure>
+                <% }  %>
+    </div>

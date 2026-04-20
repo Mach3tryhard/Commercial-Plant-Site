@@ -3,6 +3,7 @@ const path= require("path");
 const fs=require("fs");
 const sass=require("sass");
 const sharp=require("sharp");
+const pg = require("pg");
 
 app= express();
 app.set("view engine", "ejs")
@@ -35,6 +36,17 @@ app.use(function(req, res, next) {
     res.locals.ip = req.ip;
     next();
 });
+
+client=new Client({
+    database:"cti_2026",
+    user:"tris",
+    password:"1243",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+
 
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");

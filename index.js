@@ -79,6 +79,26 @@ app.get(["/", "/index","/home"], function(req, res){
     });
 });
 
+app.get("/galerie", function(req, res){
+    // 1. Filtrăm imaginile pentru luna curentă, exact ca la pagina de index
+    const dataCurenta = new Date();
+    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
+    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
+
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+        return img.intervale_luni && img.intervale_luni.includes(lunaCurenta);
+    });
+
+    if (imaginiFiltrate.length % 2 !== 0) {
+        imaginiFiltrate.pop();
+    }
+
+    res.render("pagini/galerie", {
+        titlu: "Galerie", 
+        imagini: imaginiFiltrate 
+    });
+})
+
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);

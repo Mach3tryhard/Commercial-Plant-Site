@@ -45,26 +45,21 @@ app.get(["/", "/index","/home"], function(req, res){
         imaginiFiltrate.pop();
     }
 
-    // 1. Alegem numărul par aleator (6, 8, 10, 12) conform cerinței
     const numerePosibile = [6, 8, 10, 12];
     const nrImagini = numerePosibile[Math.floor(Math.random() * numerePosibile.length)];
 
-    // 2. Extragem și amestecăm imaginile din JSON, păstrând exact numărul ales
     let imaginiAmestecate = obGlobal.obImagini.imagini.sort(() => 0.5 - Math.random());
     let imaginiSelectate = imaginiAmestecate.slice(0, nrImagini);
 
-    // 3. Generăm SCSS-ul DINAMIC
     var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");
     var culori = ["navy", "black", "purple", "grey"];
     var culoareAleatoare = culori[Math.floor(Math.random() * culori.length)];
     var scssProcesatEjs = ejs.render(sirScss, { culoare: culoareAleatoare });
 
-    // ATENȚIE: am folosit variabila $nrimag pentru a comunica cu SCSS-ul profesoarei
     var rezScss = `$nrimag: ${nrImagini};\n` + scssProcesatEjs;
     var caleScss = path.join(__dirname, "temp/galerie_animata.scss");
     fs.writeFileSync(caleScss, rezScss);
 
-    // 4. Compilăm SCSS -> CSS și salvăm direct în folderul accesibil browserului
     try {
         var rezCompilare = sass.compile(caleScss, { 
             sourceMap: false,
@@ -119,6 +114,9 @@ function initImagini(){
     var continut= fs.readFileSync(path.join(__dirname,"resurse/json/galerie.json")).toString("utf-8");
 
     obGlobal.obImagini=JSON.parse(continut);
+
+    verificaDateImagini(obGlobal.obImagini);
+
     let vImagini=obGlobal.obImagini.imagini;
     let caleGalerie=obGlobal.obImagini.cale_galerie
 
@@ -139,31 +137,36 @@ function initImagini(){
 }
 initImagini();
 
-function compileazaScss(caleScss, caleCss){
-    if(!caleCss){
-
-        let numeFisExt=path.basename(caleScss);
-        let numeFis=numeFisExt.split(".")[0]
-        caleCss=numeFis+".css";
+function compileazaScss(caleScss, caleCss) {
+    if (!caleCss) {
+        // BONUS 4: path.parse() în loc de split(".")
+        // path.parse().name returnează șirul până la ultimul punct
+        let numeFis = path.parse(caleScss).name;
+        caleCss = numeFis + ".css";
     }
     
     if (!path.isAbsolute(caleScss))
-        caleScss=path.join(obGlobal.folderScss,caleScss )
+        caleScss = path.join(obGlobal.folderScss, caleScss);
     if (!path.isAbsolute(caleCss))
-        caleCss=path.join(obGlobal.folderCss,caleCss )
+        caleCss = path.join(obGlobal.folderCss, caleCss);
     
-    let caleBackup=path.join(obGlobal.folderBackup, "resurse/css");
+    let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
     if (!fs.existsSync(caleBackup)) {
-        fs.mkdirSync(caleBackup,{recursive:true})
+        fs.mkdirSync(caleBackup, { recursive: true });
     }
 
-    let numeFisCss=path.basename(caleCss);
-    if (fs.existsSync(caleCss)){
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup, "resurse/css",numeFisCss ))
+    if (fs.existsSync(caleCss)) {
+        // BONUS 3: Generăm un timestamp și îl adăugăm la numele fișierului de backup
+        let numeFisCss = path.basename(caleCss);
+        let numeFaraExtensie = path.parse(numeFisCss).name;
+        let timestamp = Date.now();
+        let numeFisBackup = `${numeFaraExtensie}_${timestamp}.css`;
+        
+        fs.copyFileSync(caleCss, path.join(caleBackup, numeFisBackup));
     }
-    rez=sass.compile(caleScss, {"sourceMap":true});
-    fs.writeFileSync(caleCss,rez.css)
     
+    let rez = sass.compile(caleScss, { "sourceMap": true });
+    fs.writeFileSync(caleCss, rez.css);
 }
 
 vFisiere=fs.readdirSync(obGlobal.folderScss);
@@ -267,18 +270,18 @@ function validareDateErori() {
         return;
     }
 
-    // Cerința A (0.025p): Nu există fisierul erori.json
+    // Cerința A: Nu există fisierul erori.json
     if (!fs.existsSync(caleJson)) {
         console.error("Eroare critică: Fișierul erori.json nu există. Aplicația se va închide.");
         process.exit(1); 
     }
 
-    // Cerința B (0.025p): Nu există una dintre proprietățile: info_erori, cale_baza, eroare_default
+    // Cerința B: Nu există una dintre proprietățile: info_erori, cale_baza, eroare_default
     if (!obErori.info_erori || !obErori.cale_baza || !obErori.eroare_default) {
         console.error("Eroare conținut: Lipsesc una sau mai multe proprietăți de bază (info_erori, cale_baza, eroare_default).");
     }
 
-    // Cerința C (0.025p): Pentru eroarea default lipseste titlu, text sau imagine
+    // Cerința C: Pentru eroarea default lipseste titlu, text sau imagine
     if (obErori.eroare_default) {
         let errDef = obErori.eroare_default;
         if (!errDef.titlu || !errDef.text || !errDef.imagine) {
@@ -286,7 +289,7 @@ function validareDateErori() {
         }
     }
 
-    // Cerința D (0.025p): Folderul specificat în "cale_baza" nu există
+    // Cerința D: Folderul specificat în "cale_baza" nu există
     let caleBazaCompleta = "";
     if (obErori.cale_baza) {
         caleBazaCompleta = path.join(__dirname, obErori.cale_baza);
@@ -295,7 +298,7 @@ function validareDateErori() {
         }
     }
 
-    // Cerința E (0.05p): Nu există vreunul dintre fișierele imagine asociate erorilor
+    // Cerința E: Nu există vreunul dintre fișierele imagine asociate erorilor
     if (obErori.cale_baza && obErori.info_erori && obErori.eroare_default) {
         let imaginiDeVerificat = [obErori.eroare_default.imagine];
         
@@ -311,7 +314,7 @@ function validareDateErori() {
         }
     }
 
-    // Cerința F (0.2p): Proprietate specificată de mai multe ori (verificare pe string)
+    // Cerința F: Proprietate specificată de mai multe ori (verificare pe string)
     let depth = 0;
     let keysStack = [[]];
     let regexChei = /\{|\}|"([^"]+)"\s*:/g;
@@ -334,7 +337,7 @@ function validareDateErori() {
         }
     }
 
-    // Cerința G (0.15p): Există mai multe erori cu același identificator
+    // Cerința G: Există mai multe erori cu același identificator
     if (obErori.info_erori) {
         let dictionarId = {};
         
@@ -355,8 +358,32 @@ function validareDateErori() {
         }
     }
 }
-
 validareDateErori();
+
+function verificaDateImagini(obImagini) {
+    if (!obImagini) return;
+
+    const caleGalerie = obImagini.cale_galerie;
+    const caleAbsolutaGalerie = path.join(__dirname, caleGalerie);
+
+    // Bonus 5.1: Verificăm dacă folderul galeriei există
+    if (!fs.existsSync(caleAbsolutaGalerie)) {
+        console.error(`\n[EROARE GALERIE CRITICĂ] Folderul "${caleGalerie}" specificat în "cale_galerie" nu a fost găsit în sistemul de fișiere!`);
+        console.error(`-> Soluție: Verificați dacă ați creat folderul și dacă ați scris corect calea în fișierul JSON.\n`);
+    } else {
+        // Bonus 5.2: Verificăm existența fiecărei imagini în parte
+        if (obImagini.imagini && Array.isArray(obImagini.imagini)) {
+            obImagini.imagini.forEach(img => {
+                const caleFisierImagine = path.join(caleAbsolutaGalerie, img.cale_relativa);
+
+                if (!fs.existsSync(caleFisierImagine)) {
+                    console.error(`[EROARE IMAGINE LIPSĂ] Fișierul "${img.cale_relativa}" nu a fost găsit în folderul "${caleGalerie}"!`);
+                    console.error(`-> Soluție: Asigurați-vă că fișierul există pe disc și că ați scris corect numele și extensia (.jpg, .png, etc.) în JSON.\n`);
+                }
+            });
+        }
+    }
+}
 
 app.get(/.*\/galerie-animata\.css$/, function(req, res) {
     var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");

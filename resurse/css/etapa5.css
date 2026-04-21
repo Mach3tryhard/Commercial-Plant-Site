@@ -118,3 +118,135 @@ hr.hr-custom {
         column-rule: none;
     }
 }
+
+/* TABEL RESPONSIVE */
+#tabel-produse {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#tabel-produse th, #tabel-produse td {
+    border: 1px solid var(--culoare-contur);
+    padding: 12px;
+    text-align: center;
+}
+
+#tabel-produse thead {
+    background-color: var(--culoare-2);
+}
+
+#tabel-produse tfoot {
+    background-color: var(--culoare-2);
+}
+
+#tabel-produse tbody tr:nth-child(even) { background-color: var(--culoare-fundal); }
+#tabel-produse tbody tr:nth-child(odd) { background-color: var(--culoare-6); }
+/* TABEL RESPONSIVE*/
+@media screen and (min-width: 701px) and (max-width: 1050px) {
+    #tabel-produse {
+        display: flex; 
+        overflow: hidden;
+        border: 2px solid var(--culoare-contur);
+    }
+
+    #tabel-produse thead {
+        display: flex;
+        flex-shrink: 0; /* Capul de tabel devine prima coloană fixă */
+    }
+
+    #tabel-produse tbody {
+        display: flex; 
+        position: relative;
+        overflow-x: auto; /* Permite scroll orizontal dacă sunt multe produse */
+    }
+
+    #tabel-produse tr {
+        display: flex;
+        flex-direction: column; /* Forțăm celulele din fiecare rând să stea vertical */
+        flex-shrink: 0;
+        min-width: 150px;
+    }
+
+    #tabel-produse th, #tabel-produse td {
+        display: block;
+        width: 100%;
+        height: 50px; 
+        box-sizing: border-box;
+        border: 0.5px solid var(--culoare-contur);
+        line-height: 30px;
+    }
+
+    #tabel-produse th {
+        background-color: var(--culoare-2);
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    #tabel-produse, 
+    #tabel-produse tbody, 
+    #tabel-produse tr {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #tabel-produse thead { display: none; }
+
+    #tabel-produse tr {
+        border: 2px solid var(--culoare-contur);
+        margin-bottom: 15px;
+        overflow: hidden;
+    }
+
+    #tabel-produse td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+        border: none;
+        border-bottom: 1px dashed var(--culoare-contur);
+        padding: 0.5em;
+        clear: both;
+        overflow: hidden;
+    }
+
+    #tabel-produse td::before {
+        float: left; 
+        width: 40%;
+        font-weight: bold;
+        background: var(--culoare-3);
+        padding: 2px 5px;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+
+    #tabel-produse td:nth-child(1)::before { content: "Nume: "; }
+    #tabel-produse td:nth-child(2)::before { content: "Categorie: "; }
+    #tabel-produse td:nth-child(3)::before { content: "Preț: "; }
+    #tabel-produse td:nth-child(4)::before { content: "Lumină: "; }
+    #tabel-produse td:nth-child(5)::before { content: "Udare: "; }
+    #tabel-produse td:nth-child(6)::before { content: "Dificultate: "; }
+
+    #tabel-produse td:last-child { border-bottom: none; }
+}
+
+/* VIDEO BACKGROUND */
+
+#video-fundal-global {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -40%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100; 
+    object-fit: center; 
+    pointer-events: none;
+}

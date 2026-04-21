@@ -5,7 +5,8 @@
   position: relative;
   overflow: hidden;
   margin: 0 auto;
-  border: 10px solid #29539b;
+  border: 12px solid transparent;
+  border-image: url("/resurse/imagini/planta1-0.jpg") 30 round;
 }
 #galerie-animata:hover figure {
   animation-play-state: running;

@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <video id="video-fundal-global" autoplay loop muted playsinline>
+        <source src="/resurse/video/film1.mp4" type="video/mp4">
+    </video>
     <!-- Task 1.8 -->
     <%- include('../fragmente/header') %>
     <!-- Task 1.5 -->
@@ -585,6 +588,67 @@
                 </div>
             </article>
 
+        </div>
+        <div class="container-tabel-produse">
+            <table id="tabel-produse">
+                <thead>
+                    <tr>
+                        <th>Denumire Plantă</th>
+                        <th>Categorie</th>
+                        <th>Preț</th>
+                        <th>Lumină</th>
+                        <th>Udare</th>
+                        <th>Dificultate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monstera Deliciosa</td>
+                        <td>Tropical</td>
+                        <td>85</td>
+                        <td>Medie</td>
+                        <td>Săptămânal</td>
+                        <td>Mediu</td>
+                    </tr>
+                    <tr>
+                        <td>Cactus</td>
+                        <td>Desert</td>
+                        <td>25</td>
+                        <td>Ridicată</td>
+                        <td>Lunar</td>
+                        <td>Ușor</td>
+                    </tr>
+                    <tr>
+                        <td>Orhidee Phalaenopsis</td>
+                        <td>Cu flori</td>
+                        <td>60</td>
+                        <td>Medie</td>
+                        <td>Săptămânal</td>
+                        <td>Greu</td>
+                    </tr>
+                    <tr>
+                        <td>Sansevieria</td>
+                        <td>Purificatoare</td>
+                        <td>45</td>
+                        <td>Scăzută</td>
+                        <td>La 2 săptămâni</td>
+                        <td>Ușor</td>
+                    </tr>
+                    <tr>
+                        <td>Ficus Lyrata</td>
+                        <td>Tropicale</td>
+                        <td>120</td>
+                        <td>Ridicată</td>
+                        <td>Săptămânal</td>
+                        <td>Mediu</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">Număr plante recomandate: 4</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         </section>
         <section id="galerie-statica">

@@ -190,6 +190,24 @@ figure.fg-img > img{
     max-width: 100%;
 }
 
+@media screen and (max-width: 1600px) {
+    .container-iframe {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .taburi-iframe {
+        width: 100%;
+        flex-direction: row; 
+        flex-wrap: wrap; 
+    }
+    
+    .container-iframe iframe {
+        width: 100% !important; 
+        margin-top: 10px;
+    }
+}
+
 .indie-flower-regular {
   font-family: "Indie Flower", cursive;
   font-weight: 400;
@@ -418,10 +436,11 @@ figure.fg-img > img{
                              "catalog-produse"
                              "index-intrebari"
                              "galerie-statica"
+                             "galerie-animata";
     }
 
     #grid-galerie {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
@@ -708,4 +727,24 @@ main h3 a:hover {
 @page :right {
     margin-left: 0.5cm;
     margin-right: 2.5cm;
+}
+
+#calcul-pamant math {
+    font-size: 1.8rem;
+}
+
+#calcul-pamant math mi {
+    color: var(--culoare-2);
+    font-style: italic;
+    font-weight: bold;
+}
+
+#calcul-pamant math mn {
+    color: var(--culoare-3);
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#calcul-pamant math mo {
+    color: var(--culoare-5);
 }

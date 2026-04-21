@@ -1,0 +1,301 @@
+nav {
+  --latime-buton: 250px;
+  --latime-buton--2: 150px;
+  --inaltime-buton: 30px;
+  --animation-time: 0.4s;
+  background-color: var(--culoare-3);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+@media (max-width: 700px) {
+  nav {
+    justify-content: space-between;
+    position: relative;
+  }
+}
+
+@media (max-width: 1000px) {
+  .text-icon {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .text-icon {
+    display: flex;
+  }
+}
+
+.acasa .text-icon {
+  width: auto;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 0;
+  display: inline-block;
+  transition: opacity var(--animation-time) linear;
+}
+.acasa:hover .text-icon {
+  opacity: 1;
+}
+@media (max-width: 700px) {
+  .acasa .text-icon {
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+    display: none;
+  }
+}
+
+.text-icon, .imag-icon {
+  display: flex;
+}
+
+ul.meniu, ul.meniu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.meniu {
+  display: flex;
+  position: relative;
+}
+@media (max-width: 1000px) {
+  ul.meniu {
+    font-size: 0.85rem;
+  }
+}
+ul.meniu {
+  /* Layout Mobil */
+}
+@media (max-width: 700px) {
+  ul.meniu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: var(--culoare-3);
+    visibility: hidden;
+    padding-bottom: 100vh;
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 80%);
+    -webkit-mask-size: 100% 200%;
+    mask-size: 100% 200%;
+    -webkit-mask-position: bottom;
+    mask-position: bottom;
+    transition: -webkit-mask-position var(--animation-time) linear, mask-position var(--animation-time) linear, visibility 0s linear var(--animation-time);
+  }
+}
+ul.meniu li {
+  position: relative;
+  font-weight: bold;
+  width: var(--latime-buton);
+  height: var(--inaltime-buton);
+  background-color: var(--culoare-3);
+  color: var(--culoare-contur);
+  text-align: center;
+  line-height: var(--inaltime-buton);
+  transition: color var(--animation-time) linear;
+}
+@media (max-width: 1000px) {
+  ul.meniu li {
+    width: var(--latime-buton--2);
+  }
+  ul.meniu li .text-icon {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  ul.meniu li {
+    width: 100%;
+    height: auto;
+    min-height: var(--inaltime-buton);
+    box-sizing: border-box;
+  }
+  ul.meniu li .text-icon {
+    display: inline-block;
+  }
+  ul.meniu li .acasa .text-icon {
+    display: none;
+  }
+}
+ul.meniu li:hover {
+  cursor: pointer;
+  color: var(--culoare-opus);
+}
+ul.meniu li:has(ul:hover) {
+  color: var(--culoare-contur);
+}
+ul.meniu li a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  min-height: var(--inaltime-buton);
+  text-decoration: none;
+  color: inherit;
+}
+ul.meniu ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: var(--latime-buton);
+  background-color: var(--culoare-3);
+  z-index: 10;
+  display: block;
+  visibility: hidden;
+  transform: scale(0);
+  transform-origin: top center;
+  transition: transform var(--animation-time) linear, visibility var(--animation-time);
+}
+@media (max-width: 1000px) {
+  ul.meniu ul {
+    width: 100%;
+  }
+}
+ul.meniu > li:hover ul {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+#hamburger, #ch-menu {
+  display: none;
+}
+
+/* --- LOGICA BURGER --- */
+@media (max-width: 700px) {
+  #hamburger {
+    display: flex;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  #hamburger > img {
+    height: 3em;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* Deschiderea meniului la bifare */
+@media (max-width: 700px) {
+  #ch-menu:checked + ul.meniu {
+    display: flex;
+    -webkit-mask-position: top;
+    mask-position: top;
+    visibility: visible;
+    transition: -webkit-mask-position var(--animation-time) linear, mask-position var(--animation-time) linear, visibility 0s linear 0s;
+  }
+}
+
+/* --- LOGO SI HEADER --- */
+.logo-nav {
+  background-color: var(--culoare-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--culoare-contur);
+}
+.logo-nav img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+.logo-nav span {
+  font-size: 2.2rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.nav-spatiu-stanga {
+  padding-left: 100px;
+  flex: 1;
+}
+
+.nav-grup-dreapta {
+  padding-right: 30px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@keyframes aparitie-bara {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) scaleX(0);
+    background-color: transparent;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(10px) scaleX(1.2);
+    background-color: var(--culoare-opus);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scaleX(1);
+    background-color: var(--culoare-contur);
+  }
+}
+/* --- LOGICA BURGER --- */
+#hamburger, #ch-menu {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  #hamburger {
+    display: flex;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 0;
+  }
+  #hamburger .burger-lines {
+    position: relative;
+    width: 40px;
+    height: 30px;
+  }
+  #hamburger .burger-lines span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    border-radius: 4px;
+    opacity: 0;
+    animation: aparitie-bara 0.6s ease-in-out both;
+  }
+  #hamburger .burger-lines span:nth-child(1) {
+    top: 0;
+  }
+  #hamburger .burger-lines span:nth-child(2) {
+    top: calc(50% - 2.5px);
+  }
+  #hamburger .burger-lines span:nth-child(3) {
+    bottom: 0;
+  }
+  #hamburger .burger-lines span:nth-child(1) {
+    animation-delay: 300ms;
+  }
+  #hamburger .burger-lines span:nth-child(2) {
+    animation-delay: 600ms;
+  }
+  #hamburger .burger-lines span:nth-child(3) {
+    animation-delay: 900ms;
+  }
+}

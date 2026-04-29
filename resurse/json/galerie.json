@@ -5,7 +5,7 @@
 			"cale_relativa":"imagine-galerie-1.jpg",
 			"nume_imag":"imagine-galerie-1",
 			"alternativ":"text alternativ imagine","descriere_imag":"text descriere",
-			"intervale_luni":["martie","aprilie","mai","iunie","iulie","august","septembrie"]
+			"intervale_luni":["martie-aprilie","aprilie","mai","iunie","iulie","august","septembrie"]
 		},
 		{
 			"cale_relativa":"imagine-galerie-2.jpg",

@@ -21,7 +21,7 @@ let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
 for (let folder of vect_foldere){
     let caleFolder=path.join(__dirname, folder);
     if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});
     }
 }
 
@@ -239,10 +239,6 @@ app.get("/eroare",function(req,res){
     afisareEroare(res,404,"Eroare 404");
 });
 
-app.get(/\.ejs$/, function(req, res) {
-    afisareEroare(res, 400); 
-});
-
 app.get("/*pagina", function(req, res){
     console.log("Cale pagina", req.url);
     if (req.url.startsWith("/resurse") && path.extname(req.url)==""){
@@ -366,7 +362,9 @@ function validareDateErori() {
                 dictionarId[err.identificator] = [];
             }
             
-            let { identificator, ...proprietatiFaraId } = err;
+            let proprietatiFaraId = Object.assign({}, err);
+            delete proprietatiFaraId.identificator;
+            
             dictionarId[err.identificator].push(proprietatiFaraId);
         }
 

@@ -5,6 +5,7 @@ const sass=require("sass");
 const sharp=require("sharp");
 const pg = require("pg");
 const ejs = require("ejs");
+const { Client } = require('pg');
 
 app= express();
 app.set("view engine", "ejs")
@@ -21,7 +22,7 @@ let vect_foldere=[ "temp", "logs", "backup", "fisiere_uploadate" ]
 for (let folder of vect_foldere){
     let caleFolder=path.join(__dirname, folder);
     if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(path.join(caleFolder), {recursive:true});
+        fs.mkdirSync(path.join(caleFolder), {recursive:true});   
     }
 }
 
@@ -107,16 +108,6 @@ app.use(function(req, res, next) {
     res.locals.ip = req.ip;
     next();
 });
-
-// client=new Client({
-//     database:"cti_2026",
-//     user:"tris",
-//     password:"1243",
-//     host:"localhost",
-//     port:5432
-// })
-// client.connect()
-
 
 function initErori(){
     let continut = fs.readFileSync(path.join(__dirname,"resurse/json/erori.json")).toString("utf-8");
@@ -227,6 +218,57 @@ function afisareEroare(res, identificator, titlu, text, imagine){
     });
 }
 
+/// CONEXIUNEA CU BAZA DE DATE -------------------------------------------------------------------------------------
+
+client=new Client({
+    database:"cti_2026",
+    user:"tris",
+    password:"1243",
+    host:"localhost",
+    port:5432
+})
+client.connect();
+
+app.get("/produse", function(req, res) {
+    let clauzaWhere="";
+    if(req.query.categorie){
+        clauzaWhere=` WHERE categorie='${req.query.categorie}'`;
+    }
+    client.query(`SELECT * FROM plante ${clauzaWhere}`, function(err, rez){
+        if (err) {
+            console.error("Eroare la interogarea bazei de date:", err);
+            afisareEroare(res,2)
+        }
+        else {
+            //console.log(rez)
+            res.render("pagini/produse", {
+                produse: rez.rows,
+                optiuni:[]
+                //optiuni: rezOpt.rows
+            })
+        }
+    });
+})
+
+app.get("/produs/:id", function(req, res) {
+    client.query(`SELECT * FROM plante where id=${req.params.id}`, function(err, rez){
+        if (err) {
+            console.error("Eroare la interogarea bazei de date:", err);
+            afisareEroare(res,2)
+        }
+        else {
+            if(rez.rowCount==0){
+                afisareEroare(res,404,"Produs inexistent");
+            }
+            else{
+                res.render("pagini/produs", {
+                    prod: rez.rows[0],
+                })
+            }
+        }
+    });
+})
+/// CONEXIUNEA CU BAZA DE DATE -------------------------------------------------------------------------------------
 app.use("/resurse", function(req, res, next) {
     let caleCompleta = path.join(__dirname, "resurse", req.url.split('?')[0]);
     if (fs.existsSync(caleCompleta) && fs.statSync(caleCompleta).isDirectory()) {
@@ -362,9 +404,7 @@ function validareDateErori() {
                 dictionarId[err.identificator] = [];
             }
             
-            let proprietatiFaraId = Object.assign({}, err);
-            delete proprietatiFaraId.identificator;
-            
+            let { identificator, ...proprietatiFaraId } = err;
             dictionarId[err.identificator].push(proprietatiFaraId);
         }
 

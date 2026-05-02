@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Detalii despre <%- locals.prod.nume %> - Magazinul nostru oferă plante de interior, exotice și decorative.">
+        <!-- Am adăugat keywords dinamice pentru SEO -->
+        <meta name="keywords" content="plante, <%- locals.prod.categorie %>, <%- locals.prod.nume %>, <%- locals.prod.culoare_principala %>">
+        
+        <title>Magazin Plante - <%- locals.prod.nume %></title>
+        <%- include("../fragmente/head") %>     
+        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include("../fragmente/header") %>
+
+    <main>
+        <section>
+            <h2>Detalii Plantă</h2>
+            <article id="art-produs">
+                <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                
+                <div class="info-container">
+                    <p><strong>Preț:</strong> <span class="pret"><%- locals.prod.pret %> RON</span></p>
+                    <p><strong>Descriere:</strong> <span class="descriere"><%- locals.prod.descriere %> </span></p>
+                    
+                    <!-- Înălțime în loc de calorii -->
+                    <p><strong>Înălțime:</strong> <span class="inaltime"><%- locals.prod.inaltime_cm %> cm</span></p>
+                    
+                    <p><strong>Categorie:</strong> <span class="categorie"><%- locals.prod.categorie %> </span></p>
+                    <p><strong>Mod prezentare:</strong> <span class="prezentare"><%- locals.prod.prezentare %> </span></p>
+                    
+                    <!-- Caracteristica cu valori multiple (conditii_ingrijire) -->
+                    <p><strong>Condiții îngrijire:</strong> <span class="ingrediente"><%- locals.prod.conditii_ingrijire %> </span></p>
+                    
+                    <!-- Caracteristica cu valoare unică din set (culoare) -->
+                    <p><strong>Culoare principală:</strong> <span class="culoare"><%- locals.prod.culoare_principala %> </span></p>
+                    
+                    <!-- Boolean: Toxic pentru animale -->
+                    <p><strong>Toxic animale:</strong> 
+                        <span class="toxic_animale">
+                            <%- locals.prod.toxic_animale ? "⚠️ Da (Atenție la animalele de companie)" : "✅ Nu (Sigură pentru animale)" %> 
+                        </span>
+                    </p>
+                    
+                    <!-- Data adăugării (formatată) -->
+                    <p><strong>În ofertă din data:</strong> 
+                        <span class="data">
+                            <% 
+                               let d = new Date(locals.prod.data_adaugare);
+                               let data_formatata = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+                            %>
+                            <%- data_formatata %>
+                        </span>
+                    </p>
+                </div>
+
+                <figure class="imag-produs">
+                    <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" style="max-width:400px; height:auto;" />
+                </figure>    
+            </article>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

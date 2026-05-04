@@ -230,25 +230,30 @@ client=new Client({
 client.connect();
 
 app.get("/produse", function(req, res) {
-    let clauzaWhere="";
-    if(req.query.categorie){
-        clauzaWhere=` WHERE categorie='${req.query.categorie}'`;
+    let clauzaWhere = "";
+    if (req.query.categorie && req.query.categorie !== 'toate') {
+        clauzaWhere = ` WHERE categorie = '${req.query.categorie}'`;
     }
-    client.query(`SELECT * FROM plante ${clauzaWhere}`, function(err, rez){
+
+    client.query(`SELECT * FROM plante ${clauzaWhere}`, function(err, rezPlante) {
         if (err) {
-            console.error("Eroare la interogarea bazei de date:", err);
-            afisareEroare(res,2)
+            console.error("Eroare la plante:", err);
+            return afisareEroare(res, 2);
         }
-        else {
-            //console.log(rez)
+
+        client.query("SELECT unnest(enum_range(NULL::categ_planta))", function(err, rezOptiuni) {
+            if (err) {
+                console.error("Eroare la categorii:", err);
+                return afisareEroare(res, 2);
+            }
+
             res.render("pagini/produse", {
-                produse: rez.rows,
-                optiuni:[]
-                //optiuni: rezOpt.rows
-            })
-        }
+                produse: rezPlante.rows, 
+                optiuni: []
+            });
+        });
     });
-})
+});
 
 app.get("/produs/:id", function(req, res) {
     client.query(`SELECT * FROM plante where id=${req.params.id}`, function(err, rez){

@@ -3,7 +3,6 @@
 <head>
     <%- include("../fragmente/head") %>     
     <script type="text/javascript" src="/resurse/js/produse.js"></script>
-    <script type="text/javascript" src="/resurse/js/produse-cos.js"></script>
 </head>
 <body>
 
@@ -13,7 +12,7 @@
     <!-- Filtrare după Nume -->
     <label> Nume plantă: <input type="text" id="inp-nume"></label>
     
-    <!-- Filtrare după Înălțime (în loc de calorii) -->
+    <!-- Filtrare după Înălțime -->
     <div> Înălțime (cm):
         <p><label>Mici (0 - 30 cm)
             <input id="i_rad1" name="gr_rad" value="0:30" type="radio"/>
@@ -29,7 +28,7 @@
         </label></p>
     </div>
 
-    <!-- Filtrare după Preț (Am ajustat max la 400 pentru Pink Princess) -->
+    <!-- Filtrare după Preț -->
     <label> Preț minim: <input type="range" id="inp-pret" value="0" min="0" max="400"> <span id="infoRange">(0)</span></label>
     
     <label>Categorie:
@@ -55,18 +54,17 @@
         <div class="grid-produse">
             <% for( let prod of locals.produse) { %>
                 <article class="produs">
-                    <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                    <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-name"><%- prod.nume%></span></a></h3>
                     
                     <div class="info-prod">
                         <p class="pret">Preț: <span class="val-pret"><%- prod.pret%></span> RON</p>
-                        <!-- Folosim val-calorii ca ID in JS pentru inaltime ca sa nu modifici tot fisierul .js -->
+                        <!-- val-calorii este păstrat pentru compatibilitatea cu scriptul JS existent -->
                         <p class="inaltime">Înălțime: <span class="val-calorii"><%- prod.inaltime_cm%></span> cm</p>
-                        <p class="prezentare">Prezentare: <span class="val-prezentare"><%- prod.prezentare%></span></p>
+                        <p class="prezentare">Mod prezentare: <span class="val-prezentare"><%- prod.prezentare%></span></p>
                     </div>
                     
                     <p class="categorie">Categorie: <span class="val-categorie"><%- prod.categorie%></span></p>
                     
-                    <!-- Afișăm dacă este toxică sau nu -->
                     <p class="toxic">Toxic animale: <span><%- prod.toxic_animale ? "DA" : "NU" %></span></p>
 
                     <figure>

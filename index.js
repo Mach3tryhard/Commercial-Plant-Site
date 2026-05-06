@@ -249,7 +249,8 @@ app.get("/produse", function(req, res) {
 
             res.render("pagini/produse", {
                 produse: rezPlante.rows, 
-                optiuni: []
+                optiuni: [],
+                //optiuni: rezOptiuni.rows,
             });
         });
     });

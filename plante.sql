@@ -43,7 +43,7 @@ INSERT INTO plante (nume, descriere, imagine, categorie, prezentare, pret, inalt
 ('Hoya Kerrii', 'Vândută adesea ca o singură frunză în formă de inimă.', 'Hoya_kerrii.jpg', 'exotic', 'ghiveci', 45.00, 15, 'verde', 'lumina multa, udare foarte rara, cadou', False),
 
 ('Peace Lily', 'Excelentă pentru purificarea aerului; "anunță" când vrea apă.', 'Peace_lily.jpg', 'interior', 'ghiveci', 40.00, 50, 'alb-verde', 'umbra, udare abundenta, purificare aer', True),
-('Echeveria', 'Suculentă compactă și colorată, ușor de expediat.', 'Assorted_succulents.jpg', 'decorativ', 'ghiveci', 20.00, 10, 'albastrui-roz', 'soare, udare minima, compacta', False),
-('Jade Plant', 'Simbolizează norocul și are o durată de viață foarte lungă.', 'Crassula_ovata.jpg', 'decorativ', 'ghiveci', 35.00, 25, 'verde smarald', 'soare, udare rara, longevitate', False),
-('Air Plants', 'Nu necesită sol; unice și foarte ieftin de expediat.', 'Air_plants.jpg', 'exotic', 'seminte', 15.00, 10, 'verde gri', 'pulverizare apa, fara sol, ventilatie', False),
+('Echeveria', 'Suculentă compactă și colorată, ușor de expediat.', 'Assorted_succulents.jpg', 'exterior', 'ghiveci', 20.00, 10, 'albastrui-roz', 'soare, udare minima, compacta', False),
+('Jade Plant', 'Simbolizează norocul și are o durată de viață foarte lungă.', 'Crassula_ovata.jpg', 'exterior', 'ghiveci', 35.00, 25, 'verde smarald', 'soare, udare rara, longevitate', False),
+('Air Plants', 'Nu necesită sol; unice și foarte ieftin de expediat.', 'Air_plants.jpg', 'exterior', 'seminte', 15.00, 10, 'verde gri', 'pulverizare apa, fara sol, ventilatie', False),
 ('African Violet', 'Oferă culoare constantă la interior prin florile sale.', 'African_violet.jpg', 'interior', 'ghiveci', 25.00, 15, 'violet', 'apa la baza, lumina indirecta, inflorire constanta', False);

@@ -8,76 +8,160 @@
 
 <%- include("../fragmente/header") %>
 
-<main>
-    <!-- Filtrare după Nume -->
-    <label> Nume plantă: <input type="text" id="inp-nume"></label>
-    
-    <!-- Filtrare după Înălțime -->
-    <div> Înălțime (cm):
-        <p><label>Mici (0 - 30 cm)
-            <input id="i_rad1" name="gr_rad" value="0:30" type="radio"/>
-        </label></p>
-        <p><label>Medii (30 - 70 cm)
-            <input id="i_rad2" name="gr_rad" value="30:70" type="radio"/>
-        </label></p>
-        <p><label>Mari (70+ cm)
-            <input id="i_rad3" name="gr_rad" value="70:1000000" type="radio"/>
-        </label></p>
-        <p><label>Toate
-            <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-        </label></p>
-    </div>
+<main class="container py-4">
+    <section id="filtre" class="mb-5 p-4 bg-light border border-dark rounded-4 shadow-sm">
+        <h2 class="titlu">Filtre</h2>
+        <div class="row g-3 align-items-center">
+            
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control border-dark" id="inp-nume" placeholder="Nume plantă">
+                    <label for="inp-nume">Nume plantă</label>
+                </div>
+            </div>
 
-    <!-- Filtrare după Preț -->
-    <label> Preț minim: <input type="range" id="inp-pret" value="0" min="0" max="400"> <span id="infoRange">(0)</span></label>
-    
-    <label>Categorie:
-        <select id="inp-categorie">
-            <option id="sel-toate" selected value="toate">toate</option>
-            <% for (let opt of locals.optiuni) { %>
-                <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-            <% } %>
-        </select>
-    </label>
+            <div class="col-md-4">
+                <label for="inp-pret" class="form-label fw-bold">Preț minim: <span id="infoRange">(0)</span></label>
+                <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="400">
+            </div>
 
-    <p>
-        <button id="filtrare">Filtrează</button> 
-        <button id="resetare">Resetează</button><br/>
-        <button id="sortCrescNume">Sortează crescător după preț și nume</button>
-        <button id="sortDescrescNume">Sortează descrescător după preț și nume</button>
-    </p>
-  
-    <p id="p-suma">Apăsați Alt+"c" pentru suma prețurilor plantelor afișate. </p>
-
-    <section id="produse">
-        <h2>Plante disponibile</h2>
-        <div class="grid-produse">
-            <% for( let prod of locals.produse) { %>
-                <article class="produs">
-                    <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-name"><%- prod.nume%></span></a></h3>
-                    
-                    <div class="info-prod">
-                        <p class="pret">Preț: <span class="val-pret"><%- prod.pret%></span> RON</p>
-                        <!-- val-calorii este păstrat pentru compatibilitatea cu scriptul JS existent -->
-                        <p class="inaltime">Înălțime: <span class="val-calorii"><%- prod.inaltime_cm%></span> cm</p>
-                        <p class="prezentare">Mod prezentare: <span class="val-prezentare"><%- prod.prezentare%></span></p>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <select id="inp-categorie" class="form-select border-dark">
+                        <option id="sel-toate" selected value="toate">Toate</option>
+                        <% for (let opt of locals.optiuni) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                        <% } %>
+                    </select>
+                    <label for="inp-categorie">Categorie</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control border-dark" id="inp-observatii" placeholder="Lasă un mesaj" style="height: 100px"></textarea>
+                    <label for="inp-observatii">Observații filtrare (minim 5 caractere)</label>
+                    <div class="invalid-feedback">
+                        Textul introdus este prea scurt (minim 5 caractere) sau invalid!
                     </div>
-                    
-                    <p class="categorie">Categorie: <span class="val-categorie"><%- prod.categorie%></span></p>
-                    
-                    <p class="toxic">Toxic animale: <span><%- prod.toxic_animale ? "DA" : "NU" %></span></p>
+                </div>
+            </div>
+        </div>
 
-                    <figure>
-                        <a href="/produs/<%-prod.id %>" >
-                            <img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" />
-                        </a>
-                    </figure>
+        <div class="row mt-4">
+            <div class="col-md-8 col-lg-6">
+                <label class="d-block mb-2 fw-bold">Înălțime (cm):</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:30" autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad1">Mici</label>
 
-                    <label class="selecteaza-cos">
-                        Selectează:<br/>
-                        <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                    </label>
-                </article>
+                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="30:70" autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad2">Medii</label>
+
+                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="70:1000000" autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad3">Mari</label>
+
+                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad4">Toate</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 d-flex flex-wrap gap-3">
+                <button id="filtrare" class="btn btn-dark d-flex align-items-center px-4">
+                    <i class="bi bi-funnel-fill"></i> <span class="d-none d-sm-inline ms-2">Filtrează</span>
+                </button>
+                <button id="resetare" class="btn btn-outline-dark d-flex align-items-center px-4">
+                    <i class="bi bi-arrow-counterclockwise"></i> <span class="d-none d-sm-inline ms-2">Resetează</span>
+                </button>
+                <button id="sortCrescNume" class="btn btn-secondary d-flex align-items-center">
+                    <i class="bi bi-sort-numeric-down"></i> <span class="d-none d-sm-inline ms-2">Sort Crescător</span>
+                </button>
+                <button id="sortDescrescNume" class="btn btn-secondary d-flex align-items-center">
+                    <i class="bi bi-sort-numeric-up"></i> <span class="d-none d-sm-inline ms-2">Sort Descrescător</span>
+                </button>
+            </div>
+        </div>
+        
+        <p id="p-suma" class="mt-3 text-muted small">Apăsați Alt+"c" pentru suma prețurilor plantelor afișate.</p>
+    </section>
+
+    <section id="produse" class="p-4 rounded-4 border border-dark">
+        <h2 class="titlu">Produse</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-produse">
+            <% for( let prod of locals.produse) { %>
+                <div class="col">
+                    <article id="elem_<%- prod.id %>" class="produs h-100 d-flex flex-column p-0 overflow-hidden shadow border-dark <%- prod.categorie.replace(/\s+/g, '') %>">
+                        
+                        <h3 class="nume h5 fw-bolder text-uppercase m-3 text-center border-bottom border-dark pb-2">
+                            <a href="/produs/<%-prod.id %>" class="text-dark text-decoration-none">
+                                <span class="val-nume"><%- prod.nume%></span>
+                            </a>
+                        </h3>
+                        
+                        <div class="d-flex flex-row px-3 flex-grow-1 align-items-center">
+                            
+                            <div class="w-60 pe-2">
+                                <table class="table table-sm table-borderless mb-0 small bg-light">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Înălțime:</strong></td>
+                                            <td><span class="val-calorii"><%- prod.inaltime_cm%></span> cm</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Prezentare:</strong></td>
+                                            <td><span class="val-prezentare"><%- prod.prezentare%></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Îngrijire:</strong></td>
+                                            <td><span class="val-ingrijire"><%- prod.conditii_ingrijire %></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Adăugat:</strong></td>
+                                            <td>
+                                                <% 
+                                                    const zile = ['Duminică', 'Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă'];
+                                                    const luni = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
+                                                    let d = new Date(prod.data_adaugare);
+                                                    let dataFormatata = d.getDate() + ' ' + luni[d.getMonth()] + ' ' + d.getFullYear() + ' (' + zile[d.getDay()] + ')';
+                                                %>
+                                                <time datetime="<%- d.toISOString() %>"><%- dataFormatata %></time>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Toxic:</strong></td>
+                                            <td><span><%- prod.toxic_animale ? "DA" : "NU" %></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="w-40 text-center">
+                                <figure class="mb-0">
+                                    <a href="/produs/<%-prod.id %>">
+                                        <img src="/resurse/imagini/produse/<%- prod.imagine %>" class="img-fluid rounded border border-dark" style="max-height: 120px; object-fit: contain;" alt="[imagine <%- prod.nume %>]" />
+                                    </a>
+                                </figure>
+                            </div>
+
+                        </div> <div class="px-3 pb-2 pt-2 border-top border-dark mt-2">
+                            <p class="descriere mb-1 small text-dark"><%- prod.descriere %></p>
+                            <p class="mb-1 small text-muted"><strong>Categorie:</strong> <span class="val-categorie"><%- prod.categorie%></span></p>
+                            <p class="mb-0 fw-bold"><strong>Preț:</strong> <span class="val-pret"><%- prod.pret %></span> RON</p>
+                        </div>
+
+                        <div class="p-3 pt-0 mt-auto w-100">
+                            <input type="checkbox" class="btn-check select-cos" id="cos_<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
+                            <label class="btn btn-outline-dark w-100 fw-bold btn-add-to-cart" for="cos_<%-prod.id %>">
+                                Selectează / Adaugă
+                            </label>
+                        </div>
+
+                    </article>
+                </div>
             <% }%>
         </div>
     </section>

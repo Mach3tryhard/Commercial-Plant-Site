@@ -3,7 +3,6 @@ const path= require("path");
 const fs=require("fs");
 const sass=require("sass");
 const sharp=require("sharp");
-const pg = require("pg");
 const ejs = require("ejs");
 const { Client } = require('pg');
 
@@ -81,7 +80,7 @@ app.get(["/", "/index","/home"], function(req, res){
 });
 
 app.get("/galerie", function(req, res){
-    // 1. Filtrăm imaginile pentru luna curentă, exact ca la pagina de index
+    // Filtrăm imaginile pentru luna curentă, exact ca la pagina de index
     const dataCurenta = new Date();
     const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
     const lunaCurenta = vectLuni[dataCurenta.getMonth()];

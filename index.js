@@ -39,7 +39,7 @@ app.get(["/", "/index","/home"], function(req, res){
     const lunaCurenta = vectLuni[dataCurenta.getMonth()];
 
     let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
-        return img.intervale_luni && img.intervale_luni.includes(lunaCurenta);
+        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
     });
 
     if (imaginiFiltrate.length % 2 !== 0) {
@@ -87,7 +87,7 @@ app.get("/galerie", function(req, res){
     const lunaCurenta = vectLuni[dataCurenta.getMonth()];
 
     let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
-        return img.intervale_luni && img.intervale_luni.includes(lunaCurenta);
+        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
     });
 
     if (imaginiFiltrate.length % 2 !== 0) {
@@ -422,6 +422,37 @@ function validareDateErori() {
     }
 }
 validareDateErori();
+
+function verificaLunaInIntervale(lunaCautata, intervale_luni) {
+    if (!Array.isArray(intervale_luni)) return false;
+    
+    const vectLuni = ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"];
+    const indexCurent = vectLuni.indexOf(lunaCautata.toLowerCase());
+
+    for (let item of intervale_luni) {
+        let s = item.toLowerCase().trim();
+        if (s.includes("-")) {
+            // Cazul interval: "martie-aprilie"
+            let [start, end] = s.split("-").map(x => x.trim());
+            let iStart = vectLuni.indexOf(start);
+            let iEnd = vectLuni.indexOf(end);
+            
+            if (iStart !== -1 && iEnd !== -1) {
+                if (iStart <= iEnd) {
+                    // Interval normal în același an (ex: martie-iunie)
+                    if (indexCurent >= iStart && indexCurent <= iEnd) return true;
+                } else { 
+                    // Interval care trece peste sfârșitul anului (ex: noiembrie-februarie)
+                    if (indexCurent >= iStart || indexCurent <= iEnd) return true;
+                }
+            }
+        } else {
+            // Cazul unei singure luni: "aprilie"
+            if (s === lunaCautata.toLowerCase()) return true;
+        }
+    }
+    return false;
+}
 
 function verificaDateImagini(obImagini) {
     if (!obImagini) return;

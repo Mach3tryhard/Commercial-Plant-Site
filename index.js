@@ -25,80 +25,6 @@ for (let folder of vect_foldere){
     }
 }
 
-app.use("/resurse",express.static(path.join(__dirname, "resurse")));
-app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
-
-app.get("/favicon.ico", function(req, res){
-    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
-});
-
-app.get(["/", "/index","/home"], function(req, res){
-    const dataCurenta = new Date();
-    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
-    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
-
-    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
-        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
-    });
-
-    if (imaginiFiltrate.length % 2 !== 0) {
-        imaginiFiltrate.pop();
-    }
-
-    const numerePosibile = [6, 8, 10, 12];
-    const nrImagini = numerePosibile[Math.floor(Math.random() * numerePosibile.length)];
-
-    let imaginiAmestecate = obGlobal.obImagini.imagini.sort(() => 0.5 - Math.random());
-    let imaginiSelectate = imaginiAmestecate.slice(0, nrImagini);
-
-    var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");
-    var culori = ["navy", "black", "purple", "grey"];
-    var culoareAleatoare = culori[Math.floor(Math.random() * culori.length)];
-    var scssProcesatEjs = ejs.render(sirScss, { culoare: culoareAleatoare });
-
-    var rezScss = `$nrimag: ${nrImagini};\n` + scssProcesatEjs;
-    var caleScss = path.join(__dirname, "temp/galerie_animata.scss");
-    fs.writeFileSync(caleScss, rezScss);
-
-    try {
-        var rezCompilare = sass.compile(caleScss, { 
-            sourceMap: false,
-            loadPaths: [path.join(__dirname, "resurse/scss")] 
-        });
-        
-        var caleCss = path.join(__dirname, "resurse/css/galerie_animata.css");
-        fs.writeFileSync(caleCss, rezCompilare.css);
-    } catch (err) {
-        console.log("Eroare compilare SASS Galerie:", err);
-    }
-
-    res.render("pagini/index", {
-        ip: req.ip,
-        imaginiStatice: imaginiFiltrate, // Vectorul pentru galeria statică
-        imaginiAnimate: imaginiSelectate
-    });
-});
-
-app.get("/galerie", function(req, res){
-    // Filtrăm imaginile pentru luna curentă, exact ca la pagina de index
-    const dataCurenta = new Date();
-    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
-    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
-
-    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
-        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
-    });
-
-    if (imaginiFiltrate.length % 2 !== 0) {
-        imaginiFiltrate.pop();
-    }
-
-    res.render("pagini/galerie", {
-        titlu: "Galerie", 
-        imagini: imaginiFiltrate 
-    });
-})
-
 console.log("Folder index.js", __dirname);
 console.log("Folder curent (de lucru)", process.cwd());
 console.log("Cale fisier", __filename);
@@ -228,6 +154,19 @@ client=new Client({
 })
 client.connect();
 
+// TRIMITEREA DE CATEGORII IN LOCALS PENTRU NAVIGATION 
+app.use(function(req, res, next) {
+    client.query("SELECT unnest(enum_range(NULL::categ_planta)) as nume", function(err, rez) {
+        if (err) {
+            console.error("Eroare la preluarea categoriilor pentru meniu:", err);
+            res.locals.optiuniMeniu = [];
+        } else {
+            res.locals.optiuniMeniu = rez.rows;
+        }
+        next();
+    });
+});
+
 app.get("/produse", function(req, res) {
     let clauzaWhere = "";
     if (req.query.categorie && req.query.categorie !== 'toate') {
@@ -273,6 +212,82 @@ app.get("/produs/:id", function(req, res) {
     });
 })
 /// CONEXIUNEA CU BAZA DE DATE -------------------------------------------------------------------------------------
+
+
+app.use("/resurse",express.static(path.join(__dirname, "resurse")));
+app.use("/dist",express.static(path.join(__dirname, "node_modules/bootstrap/dist")));
+
+app.get("/favicon.ico", function(req, res){
+    res.sendFile(path.join(__dirname,"resurse/imagini/favicon/favicon.ico"))
+});
+
+app.get(["/", "/index","/home"], function(req, res){
+    const dataCurenta = new Date();
+    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
+    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
+
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
+    });
+
+    if (imaginiFiltrate.length % 2 !== 0) {
+        imaginiFiltrate.pop();
+    }
+
+    const numerePosibile = [6, 8, 10, 12];
+    const nrImagini = numerePosibile[Math.floor(Math.random() * numerePosibile.length)];
+
+    let imaginiAmestecate = obGlobal.obImagini.imagini.sort(() => 0.5 - Math.random());
+    let imaginiSelectate = imaginiAmestecate.slice(0, nrImagini);
+
+    var sirScss = fs.readFileSync(path.join(__dirname, "resurse/scss/galerie_animata.scss")).toString("utf8");
+    var culori = ["navy", "black", "purple", "grey"];
+    var culoareAleatoare = culori[Math.floor(Math.random() * culori.length)];
+    var scssProcesatEjs = ejs.render(sirScss, { culoare: culoareAleatoare });
+
+    var rezScss = `$nrimag: ${nrImagini};\n` + scssProcesatEjs;
+    var caleScss = path.join(__dirname, "temp/galerie_animata.scss");
+    fs.writeFileSync(caleScss, rezScss);
+
+    try {
+        var rezCompilare = sass.compile(caleScss, { 
+            sourceMap: false,
+            loadPaths: [path.join(__dirname, "resurse/scss")] 
+        });
+        
+        var caleCss = path.join(__dirname, "resurse/css/galerie_animata.css");
+        fs.writeFileSync(caleCss, rezCompilare.css);
+    } catch (err) {
+        console.log("Eroare compilare SASS Galerie:", err);
+    }
+
+    res.render("pagini/index", {
+        ip: req.ip,
+        imaginiStatice: imaginiFiltrate, // Vectorul pentru galeria statică
+        imaginiAnimate: imaginiSelectate
+    });
+});
+
+app.get("/galerie", function(req, res){
+    // Filtrăm imaginile pentru luna curentă, exact ca la pagina de index
+    const dataCurenta = new Date();
+    const vectLuni=["ianuarie", "februarie","martie", "aprilie", "mai","iunie","iulie", "august","septembrie","octombrie","noiembrie","decembrie"];
+    const lunaCurenta = vectLuni[dataCurenta.getMonth()];
+
+    let imaginiFiltrate = obGlobal.obImagini.imagini.filter(img => {
+        return verificaLunaInIntervale(lunaCurenta, img.intervale_luni);
+    });
+
+    if (imaginiFiltrate.length % 2 !== 0) {
+        imaginiFiltrate.pop();
+    }
+
+    res.render("pagini/galerie", {
+        titlu: "Galerie", 
+        imagini: imaginiFiltrate 
+    });
+})
+
 app.use("/resurse", function(req, res, next) {
     let caleCompleta = path.join(__dirname, "resurse", req.url.split('?')[0]);
     if (fs.existsSync(caleCompleta) && fs.statSync(caleCompleta).isDirectory()) {

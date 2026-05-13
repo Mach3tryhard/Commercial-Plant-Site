@@ -19,9 +19,27 @@
             <a href="/produse"> <div class="imag-icon" ><i class="fa-solid fa-shop"></i></div> <div class="text-icon">Produse</div></a>
             <ul>
                 <li><a href="/produse"><i class="fa-solid fa-list-ul"></i> Catalog</a></li>
-                <li><a href="/produse?categorie=interior"><i class="fa-solid fa-glass-water"></i> Interior</a></li>
-                <li><a href="/produse?categorie=exotic"><i class="fa-solid fa-cannabis"></i> Exotic</a></li>
-                <li><a href="/produse?categorie=decorativ"><i class="fa-brands fa-pagelines"></i> Decorativ</a></li>
+                <% for (let opt of locals.optiuniMeniu) { %>
+                    <li>
+                        <a href="/produse?categorie=<%- opt.nume %>">
+                            <% if (opt.nume === "interior") { %>
+                                <i class="fa-solid fa-glass-water"></i>
+                            <% } else if (opt.nume === "exotic") { %>
+                                <i class="fa-solid fa-cannabis"></i>
+                            <% } else if (opt.nume === "decorativ") { %>
+                                <i class="fa-brands fa-pagelines"></i>
+                            <% } else if (opt.nume === "medicinal") { %>
+                                <i class="fa-solid fa-hand-holding-medical"></i>
+                            <% } else if (opt.nume === "exterior") { %>
+                                <i class="fa-solid fa-sun"></i> 
+                            <% }%>
+                            <%- opt.nume %>
+                        </a>
+                    </li>
+                <% } %>
+                <!-- <li><a href="/produse?categorie=interior"><i class="fa-solid fa-glass-water"></i> Interior</a></li> -->
+                <!-- <li><a href="/produse?categorie=exotic"><i class="fa-solid fa-cannabis"></i> Exotic</a></li> -->
+                <!-- <li><a href="/produse?categorie=decorativ"><i class="fa-brands fa-pagelines"></i> Decorativ</a></li> -->
                 <li><a href="/index#promotii"><i class="fa-solid fa-percent"></i> Promotii</a></li>
             </ul>
         </li>

@@ -120,6 +120,10 @@
                                             <td><span class="val-ingrijire"><%- prod.conditii_ingrijire %></span></td>
                                         </tr>
                                         <tr>
+                                            <td><strong>Categorie:</strong></td>
+                                            <td><span class="val-categorie"><%- prod.categorie%></span></td>
+                                        </tr>
+                                        <tr>
                                             <td><strong>Adăugat:</strong></td>
                                             <td>
                                                 <% 
@@ -130,10 +134,6 @@
                                                 %>
                                                 <time datetime="<%- d.toISOString() %>"><%- dataFormatata %></time>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Toxic:</strong></td>
-                                            <td><span><%- prod.toxic_animale ? "DA" : "NU" %></span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -148,8 +148,7 @@
                             </div>
 
                         </div> <div class="px-3 pb-2 pt-2 border-top border-dark mt-2">
-                            <p class="descriere mb-1 small text-dark"><%- prod.descriere %></p>
-                            <p class="mb-1 small text-muted"><strong>Categorie:</strong> <span class="val-categorie"><%- prod.categorie%></span></p>
+                            <!-- <p class="descriere mb-1 small text-dark"><%- prod.descriere %></p> -->
                             <p class="mb-0 fw-bold"><strong>Preț:</strong> <span class="val-pret"><%- prod.pret %></span> RON</p>
                         </div>
 

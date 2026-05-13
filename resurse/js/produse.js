@@ -13,6 +13,10 @@ window.onload=function(){
             let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
             let inpPretMin = parseFloat(document.getElementById("inp-pret").value);
             let inpCategorie = document.getElementById("inp-categorie").value.trim().toLowerCase();
+            let inpPrezentare = document.getElementById("inp-prezentare").value.trim().toLowerCase();
+            let inpToxic = document.getElementById("inp-toxic").checked;
+            let inpCulori = Array.from(document.getElementById("inp-culori").selectedOptions).map(opt => opt.value);
+            let inpIngrijire = document.getElementById("inp-ingrijire-text").value.trim().toLowerCase();
 
             let inaltimeMin = 0, inaltimeMax = 1000000, isToateInaltimi = false;
             let grupRadio = document.getElementsByName("gr_rad");
@@ -37,13 +41,21 @@ window.onload=function(){
                 let pret = parseFloat(prod.querySelector(".val-pret").textContent.trim());
                 let inaltime = parseInt(prod.querySelector(".val-calorii").textContent.trim());
                 let categorie = prod.querySelector(".val-categorie").textContent.trim().toLowerCase();
+                let prezentare = prod.querySelector(".val-prezentare").textContent.trim().toLowerCase();
+                let isToxic = prod.querySelector(".val-toxic").textContent.trim() === "DA";
+                let culoareProdus = prod.querySelector(".val-culoare").textContent.trim().toLowerCase();
+                let ingrijire = prod.querySelector(".val-ingrijire").textContent.trim().toLowerCase();
 
                 let condNume = nume.includes(inpNume);
                 let condPret = pret >= inpPretMin;
                 let condCateg = inpCategorie === "toate" || categorie === inpCategorie;
                 let condInalt = isToateInaltimi || (inaltime >= inaltimeMin && inaltime < inaltimeMax);
+                let condPrez = (inpPrezentare === "") || (prezentare.includes(inpPrezentare));
+                let condToxic = !inpToxic || (isToxic === false);
+                let condCulori = (inpCulori.length === 0) || (inpCulori.includes(culoareProdus));
+                let condIngrijire = (inpIngrijire.length < 5) || (ingrijire.includes(inpIngrijire));
 
-                if (condNume && condPret && condCateg && condInalt) {
+                if (condNume && condPret && condCateg && condInalt && condPrez && condToxic && condCulori && condIngrijire) {
                     colWrapper.style.display = "block";
                 } else {
                     colWrapper.style.display = "none";
@@ -60,6 +72,13 @@ window.onload=function(){
             document.getElementById("infoRange").textContent = "(0)";
             document.getElementById("inp-categorie").value = "toate";
             document.getElementById("i_rad4").checked = true;
+            document.getElementById("inp-prezentare").value = "";
+            document.getElementById("inp-toxic").checked = false;
+            let selCulori = document.getElementById("inp-culori");
+            for (let i = 0; i < selCulori.options.length; i++) {
+                selCulori.options[i].selected = false;
+            }
+            document.getElementById("inp-ingrijire-text").value = "";
 
             let produse = document.querySelectorAll(".produs");
             for (let prod of produse) {

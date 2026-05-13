@@ -11,8 +11,8 @@
 <main class="container py-4">
     <section id="filtre" class="mb-5 p-4 bg-light border border-dark rounded-4 shadow-sm">
         <h2 class="titlu">Filtre</h2>
+        
         <div class="row g-3 align-items-center">
-            
             <div class="col-md-4">
                 <div class="form-floating">
                     <input type="text" class="form-control border-dark" id="inp-nume" placeholder="Nume plantă">
@@ -22,7 +22,11 @@
 
             <div class="col-md-4">
                 <label for="inp-pret" class="form-label fw-bold">Preț minim: <span id="infoRange">(0)</span></label>
-                <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="400">
+                <div class="d-flex align-items-center">
+                    <span class="me-2 fw-bold">0</span>     
+                    <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="400">
+                    <span class="ms-2 fw-bold text-nowrap">400</span>
+                </div>
             </div>
 
             <div class="col-md-4">
@@ -37,20 +41,8 @@
                 </div>
             </div>
         </div>
-        
-        <div class="row mt-3">
-            <div class="col-12">
-                <div class="form-floating">
-                    <textarea class="form-control border-dark" id="inp-observatii" placeholder="Lasă un mesaj" style="height: 100px"></textarea>
-                    <label for="inp-observatii">Observații filtrare (minim 5 caractere)</label>
-                    <div class="invalid-feedback">
-                        Textul introdus este prea scurt (minim 5 caractere) sau invalid!
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="row mt-4">
+        <div class="row mt-4 align-items-end">
             <div class="col-md-8 col-lg-6">
                 <label class="d-block mb-2 fw-bold">Înălțime (cm):</label>
                 <div class="btn-group w-100" role="group">
@@ -66,6 +58,65 @@
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
                     <label class="btn btn-outline-dark fw-bold" for="i_rad4">Toate</label>
                 </div>
+            </div>
+
+            <div class="col-md-4 col-lg-6 mt-3 mt-md-0">
+                <label for="inp-prezentare" class="form-label fw-bold mb-2">Mod de prezentare:</label>
+                <input class="form-control border-dark" list="optiuni-prezentare" id="inp-prezentare" placeholder="Scrie sau alege o opțiune...">
+                <datalist id="optiuni-prezentare">
+                    <option value="ghiveci">
+                    <option value="buchet">
+                    <option value="seminte">
+                    <option value="floare taiata">
+                </datalist>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea class="form-control border-dark" id="inp-ingrijire-text" placeholder="Mod de îngrijire..." style="height: 100px"></textarea>
+                    <label for="inp-ingrijire-text">Caută după modul de îngrijire- minim 5 caractere</label>
+                    <div class="invalid-feedback">
+                        Textul introdus este prea scurt sau invalid!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 align-items-start">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <div class="form-check form-switch fs-5 mt-2">
+                    <input class="form-check-input border-dark" type="checkbox" role="switch" id="inp-toxic">
+                    <label class="form-check-label fw-bold" for="inp-toxic">Doar plante sigure pentru animale (Non-toxice)</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="inp-culori" class="form-label fw-bold mb-2">Culoare principală (Select multiplu):</label>
+                <select id="inp-culori" class="form-select border-dark" multiple size="6">
+                    <option value="verde">Verde</option>
+                    <option value="smarald">Smarald</option>
+                    <option value="masliniu">Măsliniu</option>
+                    <option value="lime">Lime</option>
+                    <option value="menta">Mentă</option>
+                    <option value="fistic">Fistic</option>
+                    <option value="kaki">Kaki</option>
+                    <option value="salvie">Salvie</option>
+                    <option value="argintiu">Argintiu</option>
+                    <option value="purpuriu">Purpuriu</option>
+                    <option value="carmin">Carmin</option>
+                    <option value="roz">Roz</option>
+                    <option value="jad">Jad</option>
+                    <option value="glauc">Glauc</option>
+                    <option value="alb">Alb</option>
+                    <option value="cian">Cian</option>
+                    <option value="bordo">Bordo</option>
+                    <option value="violet">Violet</option>
+                </select>
+                <small class="text-muted d-block mt-1">
+                    * Ține apăsat <strong>Ctrl</strong> (sau <strong>Cmd</strong> pe Mac) pentru a selecta mai multe opțiuni simultan.
+                </small>
             </div>
         </div>
 
@@ -91,7 +142,7 @@
 
     <section id="produse" class="p-4 rounded-4 border border-dark">
         <h2 class="titlu">Produse</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-produse">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-produse mt-2">
             <% for( let prod of locals.produse) { %>
                 <div class="col">
                     <article id="elem_<%- prod.id %>" class="produs h-100 d-flex flex-column p-0 overflow-hidden shadow border-dark <%- prod.categorie.replace(/\s+/g, '') %>">
@@ -105,7 +156,7 @@
                         <div class="d-flex flex-row px-3 flex-grow-1 align-items-center">
                             
                             <div class="w-60 pe-2">
-                                <table class="table table-sm table-borderless mb-0 small bg-light">
+                                <table class="table table-sm table-borderless mb-0 small bg-transparent">
                                     <tbody>
                                         <tr>
                                             <td><strong>Înălțime:</strong></td>
@@ -119,9 +170,9 @@
                                             <td><strong>Îngrijire:</strong></td>
                                             <td><span class="val-ingrijire"><%- prod.conditii_ingrijire %></span></td>
                                         </tr>
-                                        <tr>
-                                            <td><strong>Categorie:</strong></td>
-                                            <td><span class="val-categorie"><%- prod.categorie%></span></td>
+                                        <tr style="display:none;">
+                                            <td>Culoare:</td>
+                                            <td><span class="val-culoare"><%- prod.culoare_principala %></span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Adăugat:</strong></td>
@@ -135,6 +186,10 @@
                                                 <time datetime="<%- d.toISOString() %>"><%- dataFormatata %></time>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td><strong>Toxic:</strong></td>
+                                            <td><span class="val-toxic"><%- prod.toxic_animale ? "DA" : "NU" %></span></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -146,19 +201,20 @@
                                     </a>
                                 </figure>
                             </div>
+                        </div> 
 
-                        </div> <div class="px-3 pb-2 pt-2 border-top border-dark mt-2">
-                            <!-- <p class="descriere mb-1 small text-dark"><%- prod.descriere %></p> -->
+                        <div class="px-3 pb-2 pt-2 border-top border-dark mt-2">
+                            <p class="descriere mb-1 small text-dark"><%- prod.descriere %></p>
+                            <p class="mb-1 small text-muted"><strong>Categorie:</strong> <span class="val-categorie"><%- prod.categorie%></span></p>
                             <p class="mb-0 fw-bold"><strong>Preț:</strong> <span class="val-pret"><%- prod.pret %></span> RON</p>
                         </div>
 
                         <div class="p-3 pt-0 mt-auto w-100">
                             <input type="checkbox" class="btn-check select-cos" id="cos_<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
-                            <label class="btn btn-outline-dark w-100 fw-bold btn-add-to-cart" for="cos_<%-prod.id %>">
+                            <label class="btn btn-info w-100 fw-bold border-dark" for="cos_<%-prod.id %>">
                                 Selectează / Adaugă
                             </label>
                         </div>
-
                     </article>
                 </div>
             <% }%>

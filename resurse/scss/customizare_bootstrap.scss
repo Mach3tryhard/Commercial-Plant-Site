@@ -4,6 +4,7 @@
     $secondary:white,
     $body-bg: #FEFAAD,
     $body-color: black,
+    $info: #ff9eb3, 
     
     $h1-font-size: 3.0rem,
     $border-radius: 0.75rem,
@@ -27,6 +28,7 @@
     $form-range-thumb-width: 1.5rem,
     $form-range-thumb-height: 1.5rem,
     $form-range-thumb-bg: #ff9eb3, 
+    $form-check-input-bg: #ff9eb3,
     $form-range-thumb-border: 2px solid black,
     $form-range-thumb-border-radius: 1rem,
     $form-range-track-bg: #e9ecef, 
@@ -41,6 +43,11 @@
     background-color: #ffac00;
     border: 2px solid black;
     border-radius: 1.5rem !important;
+
+    .table {
+        --bs-table-bg: transparent;
+        color: black;
+    }
 
     img {
         border: none; 

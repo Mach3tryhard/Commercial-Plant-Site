@@ -11890,3 +11890,7 @@ textarea.form-control-lg {
   background-color: black;
   color: #ff9eb3;
 }
+
+.form-floating > label::after {
+  background-color: #ff9eb3 !important;
+}

@@ -73,3 +73,7 @@
         color: #ff9eb3;
     }
 }
+
+.form-floating > label::after {
+    background-color: #ff9eb3 !important;
+}

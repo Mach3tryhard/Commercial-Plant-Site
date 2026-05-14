@@ -17,15 +17,18 @@
                 <div class="form-floating">
                     <input type="text" class="form-control border-dark" id="inp-nume" placeholder="Nume plantă">
                     <label for="inp-nume">Nume plantă</label>
+                    <div class="invalid-feedback">
+                        Numele plantei nu poate conține cifre!
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <label for="inp-pret" class="form-label fw-bold">Preț minim: <span id="infoRange">(0)</span></label>
+                <label for="inp-pret" class="form-label fw-bold">Inaltime minima: <span id="infoRange">(0)</span></label>
                 <div class="d-flex align-items-center">
                     <span class="me-2 fw-bold">0</span>     
-                    <input type="range" class="form-range" id="inp-pret" value="0" min="0" max="400">
-                    <span class="ms-2 fw-bold text-nowrap">400</span>
+                    <input type="range" class="form-range" id="inp-inaltime" value="0" min="0" max="180">
+                    <span class="ms-2 fw-bold text-nowrap">180</span>
                 </div>
             </div>
 
@@ -44,16 +47,16 @@
 
         <div class="row mt-4 align-items-end">
             <div class="col-md-8 col-lg-6">
-                <label class="d-block mb-2 fw-bold">Înălțime (cm):</label>
+                <label class="d-block mb-2 fw-bold">Pret (ron):</label>
                 <div class="btn-group w-100" role="group">
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:30" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad1">Mici</label>
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad1">Mic</label>
 
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="30:70" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad2">Medii</label>
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad2">Mediu</label>
 
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="70:1000000" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad3">Mari</label>
+                    <label class="btn btn-outline-dark fw-bold" for="i_rad3">Mare</label>
 
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
                     <label class="btn btn-outline-dark fw-bold" for="i_rad4">Toate</label>
@@ -86,9 +89,16 @@
 
         <div class="row mt-4 align-items-start">
             <div class="col-md-6 mb-3 mb-md-0">
-                <div class="form-check form-switch fs-5 mt-2">
-                    <input class="form-check-input border-dark" type="checkbox" role="switch" id="inp-toxic">
-                    <label class="form-check-label fw-bold" for="inp-toxic">Doar plante sigure pentru animale (Non-toxice)</label>
+                <label class="fw-bold d-block mb-2">Toxică pentru animale:</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="gr_toxic" id="toxic_da" value="da" autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="toxic_da">Da</label>
+
+                    <input type="radio" class="btn-check" name="gr_toxic" id="toxic_nu" value="nu" autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="toxic_nu">Nu</label>
+
+                    <input type="radio" class="btn-check" name="gr_toxic" id="toxic_toate" value="toate" checked autocomplete="off">
+                    <label class="btn btn-outline-dark fw-bold" for="toxic_toate">Toate</label>
                 </div>
             </div>
 
@@ -133,6 +143,9 @@
                 </button>
                 <button id="sortDescrescNume" class="btn btn-secondary d-flex align-items-center">
                     <i class="bi bi-sort-numeric-up"></i> <span class="d-none d-sm-inline ms-2">Sort Descrescător</span>
+                </button>
+                <button id="calculare" class="btn btn-info d-flex align-items-center">
+                    <i class="bi bi-calculator"></i> <span class="d-none d-sm-inline ms-2">Calculează Suma</span>
                 </button>
             </div>
         </div>

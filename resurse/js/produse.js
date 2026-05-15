@@ -205,7 +205,7 @@ window.onload=function(){
         }
 
         if (!isValid) {
-            alert("Vă rugăm să corectați filtrele cu erori (marcate cu roșu) înainte de a efectua operația!");
+            alert("Vă rugăm să corectați filtrele cu erori înainte de a efectua operația!");
         }
 
         return isValid;

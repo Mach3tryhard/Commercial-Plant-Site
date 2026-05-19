@@ -113,15 +113,15 @@ window.onload=function(){
         vColoane.sort(function(colA, colB) {
             let pretA = parseFloat(colA.querySelector(".val-pret").textContent.trim());
             let inaltimeA = parseInt(colA.querySelector(".val-calorii").textContent.trim());
-            let rapA = inaltimeA / pretA; // Cheia 1
+            let rapA = inaltimeA / pretA;
 
             let pretB = parseFloat(colB.querySelector(".val-pret").textContent.trim());
             let inaltimeB = parseInt(colB.querySelector(".val-calorii").textContent.trim());
-            let rapB = inaltimeB / pretB; // Cheia 1
+            let rapB = inaltimeB / pretB;
 
             if (Math.abs(rapA - rapB) < 0.0001) {
-                let prezA = colA.querySelector(".val-prezentare").textContent.trim().toLowerCase(); // Cheia 2
-                let prezB = colB.querySelector(".val-prezentare").textContent.trim().toLowerCase(); // Cheia 2
+                let prezA = colA.querySelector(".val-prezentare").textContent.trim().toLowerCase();
+                let prezB = colB.querySelector(".val-prezentare").textContent.trim().toLowerCase();
                 return semn * prezA.localeCompare(prezB);
             }
 

@@ -75,8 +75,7 @@ initImagini();
 
 function compileazaScss(caleScss, caleCss) {
     if (!caleCss) {
-        // BONUS 4: path.parse() în loc de split(".")
-        // path.parse().name returnează șirul până la ultimul punct
+        // BONUS 4: parse() in loc de split()
         let numeFis = path.parse(caleScss).name;
         caleCss = numeFis + ".css";
     }
@@ -92,7 +91,7 @@ function compileazaScss(caleScss, caleCss) {
     }
 
     if (fs.existsSync(caleCss)) {
-        // BONUS 3: Generăm un timestamp și îl adăugăm la numele fișierului de backup
+        // BONUS 3: timestamp
         let numeFisCss = path.basename(caleCss);
         let numeFaraExtensie = path.parse(numeFisCss).name;
         let timestamp = Date.now();

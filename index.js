@@ -178,16 +178,62 @@ app.get("/produse", function(req, res) {
             return afisareEroare(res, 2);
         }
 
-        client.query("SELECT unnest(enum_range(NULL::categ_planta))", function(err, rezOptiuni) {
-            if (err) {
-                console.error("Eroare la categorii:", err);
-                return afisareEroare(res, 2);
-            }
+        client.query("SELECT unnest(enum_range(NULL::categ_planta))",async function(err, rezOptiuni) {
+            //BONUS1 ETAPA 6
+            try{
+                let rezInaltime = await client.query("SELECT MIN(inaltime_cm) AS min, MAX(inaltime_cm) AS max FROM plante");
+                let inaltimeMin = rezInaltime.rows[0].min;
+                let inaltimeMax = rezInaltime.rows[0].max;
 
-            res.render("pagini/produse", {
-                produse: rezPlante.rows, 
-                optiuni: rezOptiuni.rows,
-            });
+                let rezPrez = await client.query("SELECT DISTINCT prezentare FROM plante WHERE prezentare IS NOT NULL");
+                let optiuniPrezentare = [];
+                for (let i = 0; i < rezPrez.rows.length; i++) {
+                    optiuniPrezentare.push(rezPrez.rows[i].prezentare);
+                }
+
+                let rezCulori = await client.query("SELECT DISTINCT culoare_principala FROM plante WHERE culoare_principala IS NOT NULL");
+                let culori = [];
+                for (let i = 0; i < rezCulori.rows.length; i++) {
+                    culori.push(rezCulori.rows[i].culoare_principala);
+                }
+
+                let rezPret = await client.query("SELECT MIN(pret) AS min, MAX(pret) AS max FROM plante");
+                let pMin = parseFloat(rezPret.rows[0].min);
+                let pMax = parseFloat(rezPret.rows[0].max);
+                let step = Math.ceil((pMax - pMin) / 3); 
+                
+                let intervalePret = [
+                    { id: "i_rad1", label: "Mic", val: `${pMin}:${pMin + step}` },
+                    { id: "i_rad2", label: "Mediu", val: `${pMin + step + 1}:${pMin + 2 * step}` },
+                    { id: "i_rad3", label: "Mare", val: `${pMin + 2 * step + 1}:1000000` }
+                ];
+
+                let numePlaceholder = "Ficus";
+                if (rezPlante.rows.length > 0) {
+                    let indexRandom = Math.floor(Math.random() * rezPlante.rows.length);
+                    numePlaceholder = rezPlante.rows[indexRandom].nume;
+                }
+
+                if (err) {
+                    console.error("Eroare la categorii:", err);
+                    return afisareEroare(res, 2);
+                }
+
+                res.render("pagini/produse", {
+                    produse: rezPlante.rows, 
+                    optiuni: rezOptiuni.rows,
+                    inaltimeMin: inaltimeMin,
+                    inaltimeMax: inaltimeMax,
+                    optiuniPrezentare: optiuniPrezentare,
+                    culori: culori,
+                    intervalePret: intervalePret,
+                    numePlaceholder: numePlaceholder,
+                });
+            }
+            catch (err) {
+                console.error("Eroare la baza de date:", err);
+                afisareEroare(res, 2);
+            }
         });
     });
 });

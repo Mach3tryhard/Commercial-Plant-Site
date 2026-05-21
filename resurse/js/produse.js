@@ -40,6 +40,9 @@ window.onload=function(){
             }
         }
 
+        //BONUS3 BONUS15 etapa 6
+        let produseVizibile = 0;
+
         let produse = document.querySelectorAll(".produs");
         for (let prod of produse) {
             let colWrapper = prod.closest(".col");
@@ -64,9 +67,19 @@ window.onload=function(){
 
             if (condNume && condPret && condCateg && condInalt && condPrez && condToxic && condCulori && condIngrijire) {
                 colWrapper.style.display = "block";
+                produseVizibile+=1;
             } else {
                 colWrapper.style.display = "none";
             }
+        }
+        
+        ///Trimitere rezultat 
+        document.getElementById("numar-produse").textContent = produseVizibile;
+        let mesajGoli = document.getElementById("mesaj-filtrare-goala");
+        if (produseVizibile === 0) {
+            mesajGoli.classList.remove("d-none");
+        } else {
+            mesajGoli.classList.add("d-none");
         }
     }
 
@@ -80,7 +93,7 @@ window.onload=function(){
     });
     document.getElementById("inp-categorie").onchange = aplicaFiltre;
     document.getElementById("inp-prezentare").oninput = aplicaFiltre;
-    document.getElementById("inp-ingrijire-text").addEventListener("change", aplicaFiltre);
+    document.getElementById("inp-ingrijire-text").addEventListener("change ", aplicaFiltre);
     document.getElementById("inp-culori").onchange = aplicaFiltre;
     let radioPret = document.getElementsByName("gr_rad");
     for (let rad of radioPret) {
@@ -124,6 +137,9 @@ window.onload=function(){
                         colWrapper.style.display = "block";
                     }
                 }
+                let totalProduse = document.querySelectorAll(".produs").length;
+                document.getElementById("numar-produse").textContent = totalProduse;
+                document.getElementById("mesaj-filtrare-goala").classList.add("d-none");
             }
         };
     }
@@ -235,4 +251,56 @@ window.onload=function(){
 
         return isValid;
     }
+
+    //BONUS11 ETAPA 6
+    let modal = document.getElementById("modal-produs");
+    let btnInchide = document.getElementById("modal-inchide");
+    let containerDate = document.getElementById("modal-date");
+    let articoleProduse = document.querySelectorAll(".produs");
+
+    for (let art of articoleProduse) {
+        art.addEventListener("click", function(e) {
+            let linkApasat = e.target.closest("a");
+            if (linkApasat) {
+                return;
+            }
+
+            if (e.target.closest(".select-cos") || e.target.closest("label[for^='cos_']")) {
+                return;
+            }
+
+            let nume = art.querySelector(".val-nume").textContent;
+            let imagine = art.querySelector("img").src;
+            let categorie = art.querySelector(".val-categorie").textContent;
+            let pret = art.querySelector(".val-pret").textContent;
+            let inaltime = art.querySelector(".val-calorii").textContent;
+            let descriere = art.querySelector(".descriere").textContent;
+
+            containerDate.innerHTML = `
+                <h3 class="text-center mb-3 border-bottom border-dark pb-2">${nume}</h3>
+                <div class="d-flex flex-column flex-md-row gap-3 align-items-center">
+                    <img src="${imagine}" alt="${nume}" style="max-height: 200px; border: 2px solid var(--culoare-contur); border-radius: 10px; object-fit: contain;">
+                    <div>
+                        <p class="mb-1"><strong>Categorie:</strong> ${categorie}</p>
+                        <p class="mb-1"><strong>Înălțime:</strong> ${inaltime} cm</p>
+                        <p class="mb-1"><strong>Preț:</strong> <span class="fw-bold">${pret} RON</span></p>
+                        <p class="mb-0 mt-2 small">${descriere}</p>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove("modal-ascuns");
+        });
+    }
+
+    if (btnInchide) {
+        btnInchide.onclick = function() {
+            modal.classList.add("modal-ascuns");
+        };
+    }
+    window.addEventListener("click", function(e) {
+        if (e.target === modal) {
+            modal.classList.add("modal-ascuns");
+        }
+    });
 }

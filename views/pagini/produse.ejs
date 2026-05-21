@@ -15,8 +15,8 @@
         <div class="row g-3 align-items-center">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input type="text" class="form-control border-dark" id="inp-nume" placeholder="Nume plantă">
-                    <label for="inp-nume">Nume plantă</label>
+                    <input type="text" class="form-control border-dark" id="inp-nume" placeholder="Ex: <%= locals.numePlaceholder %>">
+                    <label for="inp-nume">Nume plantă (Ex: <%= locals.numePlaceholder %>)</label>
                     <div class="invalid-feedback">
                         Numele plantei nu poate conține cifre!
                     </div>
@@ -24,11 +24,11 @@
             </div>
 
             <div class="col-md-4">
-                <label for="inp-pret" class="form-label fw-bold">Inaltime minima: <span id="infoRange">(0)</span></label>
+                <label for="inp-pret" class="form-label fw-bold">Inaltime minima: <span id="infoRange">(<%= inaltimeMin %>)</span></label>
                 <div class="d-flex align-items-center">
-                    <span class="me-2 fw-bold">0</span>     
-                    <input type="range" class="form-range" id="inp-inaltime" value="0" min="0" max="180">
-                    <span class="ms-2 fw-bold text-nowrap">180</span>
+                    <span class="me-2 fw-bold"><%= inaltimeMin %></span>     
+                    <input type="range" class="form-range" id="inp-inaltime" value="<%= inaltimeMin %>" min="<%= inaltimeMin %>" max="<%= inaltimeMax %>">
+                    <span class="ms-2 fw-bold text-nowrap"><%= inaltimeMax %></span>
                 </div>
             </div>
 
@@ -49,15 +49,12 @@
             <div class="col-md-8 col-lg-6">
                 <label class="d-block mb-2 fw-bold">Pret (ron):</label>
                 <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad1" value="0:30" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad1">Mic</label>
-
-                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad2" value="30:70" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad2">Mediu</label>
-
-                    <input type="radio" class="btn-check" name="gr_rad" id="i_rad3" value="70:1000000" autocomplete="off">
-                    <label class="btn btn-outline-dark fw-bold" for="i_rad3">Mare</label>
-
+                    <% for (let interval of locals.intervalePret) { %>
+                        <input type="radio" class="btn-check" name="gr_rad" id="<%= interval.id %>" value="<%= interval.val %>" autocomplete="off">
+                        <label class="btn btn-outline-dark fw-bold" for="<%= interval.id %>">
+                            <%= interval.label %> (<%= interval.val.split(':')[0] %>-<%= interval.val.split(':')[1] === '1000000' ? 'MAX' : interval.val.split(':')[1] %>)
+                        </label>
+                    <% } %>
                     <input type="radio" class="btn-check" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
                     <label class="btn btn-outline-dark fw-bold" for="i_rad4">Toate</label>
                 </div>
@@ -67,10 +64,9 @@
                 <label for="inp-prezentare" class="form-label fw-bold mb-2">Mod de prezentare:</label>
                 <input class="form-control border-dark" list="optiuni-prezentare" id="inp-prezentare" placeholder="Scrie sau alege o opțiune...">
                 <datalist id="optiuni-prezentare">
-                    <option value="ghiveci">
-                    <option value="buchet">
-                    <option value="seminte">
-                    <option value="floare taiata">
+                    <% for(let opt of locals.optiuniPrezentare) { %>
+                        <option value="<%= opt %>">
+                    <% } %>
                 </datalist>
             </div>
         </div>
@@ -105,24 +101,9 @@
             <div class="col-md-6">
                 <label for="inp-culori" class="form-label fw-bold mb-2">Culoare principală (Select multiplu):</label>
                 <select id="inp-culori" class="form-select border-dark" multiple size="6">
-                    <option value="verde">Verde</option>
-                    <option value="smarald">Smarald</option>
-                    <option value="masliniu">Măsliniu</option>
-                    <option value="lime">Lime</option>
-                    <option value="menta">Mentă</option>
-                    <option value="fistic">Fistic</option>
-                    <option value="kaki">Kaki</option>
-                    <option value="salvie">Salvie</option>
-                    <option value="argintiu">Argintiu</option>
-                    <option value="purpuriu">Purpuriu</option>
-                    <option value="carmin">Carmin</option>
-                    <option value="roz">Roz</option>
-                    <option value="jad">Jad</option>
-                    <option value="glauc">Glauc</option>
-                    <option value="alb">Alb</option>
-                    <option value="cian">Cian</option>
-                    <option value="bordo">Bordo</option>
-                    <option value="violet">Violet</option>
+                    <% for(let culoare of locals.culori) { %>
+                        <option value="<%= culoare %>"><%= culoare.charAt(0).toUpperCase() + culoare.slice(1) %></option>
+                    <% } %>
                 </select>
                 <small class="text-muted d-block mt-1">
                     * Ține apăsat <strong>Ctrl</strong> (sau <strong>Cmd</strong> pe Mac) pentru a selecta mai multe opțiuni simultan.
@@ -155,6 +136,13 @@
 
     <section id="produse" class="p-4 rounded-4 border border-dark">
         <h2 class="titlu">Produse</h2>
+        <div class="mb-3 text-end fw-bold">
+            Produse afișate: <span id="numar-produse" class="text-primary"><%= produse.length %></span>
+        </div>
+
+        <div id="mesaj-filtrare-goala" class="alert alert-warning text-center fw-bold d-none my-4">
+            Nu există produse conform filtrării curente. Încercați să resetați filtrele!
+        </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 grid-produse mt-2">
             <% for( let prod of locals.produse) { %>
                 <div class="col">
@@ -234,6 +222,14 @@
         </div>
     </section>
 </main>
+
+<div id="modal-produs" class="modal-ascuns">
+    <div id="modal-continut">
+        <button id="modal-inchide">&times;</button>
+        <div id="modal-date">
+            </div>
+    </div>
+</div>
 
 <%- include("../fragmente/footer") %>
 </body>

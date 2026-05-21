@@ -46,7 +46,35 @@
 
                 <figure class="imag-produs">
                     <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" style="max-width:400px; height:auto;"/>
-                </figure>    
+                </figure>
+                <!-- BONUS9 ETAPA 6 -->
+                <div id="caruselProdus" class="carousel slide" data-bs-ride="carousel">
+    
+                    <div class="carousel-indicators">
+                        <% for(let i = 0; i < imaginiProdus.length; i++) { %>
+                            <button type="button" data-bs-target="#caruselProdus" data-bs-slide-to="<%= i %>" class="<%= i === 0 ? 'active' : '' %>" aria-current="<%= i === 0 ? 'true' : 'false' %>" aria-label="Slide <%= i + 1 %>"></button>
+                        <% } %>
+                    </div>
+
+                    <div class="carousel-inner rounded border border-dark">
+                        <% for(let i = 0; i < imaginiProdus.length; i++) { %>
+                            <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                                <img src="/resurse/imagini/produse/multe/<%= idProdus %>/<%= imaginiProdus[i] %>" class="d-block w-100" style="max-height: 400px; object-fit: contain;" alt="Imagine produs <%= i + 1 %>">
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <% if (imaginiProdus.length > 1) { %>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#caruselProdus" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#caruselProdus" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <% } %>
+                </div>
             </article>
         </section>
     </main>

@@ -203,9 +203,22 @@ app.get("/produs/:id", function(req, res) {
                 afisareEroare(res,404,"Produs inexistent");
             }
             else{
-                res.render("pagini/produs", {
+                let idProdus = req.params.id;
+
+                let caleFolder = path.join(__dirname, 'resurse', 'imagini', 'produse','multe', String(idProdus));
+                let imaginiProdus = [];
+
+                if (fs.existsSync(caleFolder)) {
+                    imaginiProdus = fs.readdirSync(caleFolder).filter(fisier => {
+                        return fisier.endsWith('.jpg') || fisier.endsWith('.png') || fisier.endsWith('.jpeg') || fisier.endsWith('.webp');
+                    });
+                }
+
+                res.render('pagini/produs', { 
                     prod: rez.rows[0],
-                })
+                    imaginiProdus: imaginiProdus,  
+                    idProdus: idProdus
+                });
             }
         }
     });

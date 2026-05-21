@@ -7,70 +7,95 @@ window.onload=function(){
         };
     }
 
+    function aplicaFiltre() {
+        if (!valideazaDate()) return;
+
+        let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+        let inpInaltime = parseFloat(document.getElementById("inp-inaltime").value);
+        let inpCategorie = document.getElementById("inp-categorie").value.trim().toLowerCase();
+        let inpPrezentare = document.getElementById("inp-prezentare").value.trim().toLowerCase();
+        let valToxic = "toate";
+        let radToxic = document.getElementsByName("gr_toxic");
+        for (let r of radToxic) {
+            if (r.checked) {
+                valToxic = r.value;
+                break;
+            }
+        }
+        let inpCulori = Array.from(document.getElementById("inp-culori").selectedOptions).map(opt => opt.value);
+        let inpIngrijire = document.getElementById("inp-ingrijire-text").value.trim().toLowerCase();
+
+        let pretMin = 0, pretMax = 1000000, isToatePreturi = false;
+        let grupRadio = document.getElementsByName("gr_rad");
+        for (let rad of grupRadio) {
+            if (rad.checked) {
+                if (rad.value !== "toate") {
+                    let interval = rad.value.split(":");
+                    pretMin = parseInt(interval[0]);
+                    pretMax = parseInt(interval[1]);
+                } else {
+                    isToatePreturi = true;
+                }
+                break;
+            }
+        }
+
+        let produse = document.querySelectorAll(".produs");
+        for (let prod of produse) {
+            let colWrapper = prod.closest(".col");
+            
+            let nume = prod.querySelector(".val-nume").textContent.trim().toLowerCase();
+            let pret = parseFloat(prod.querySelector(".val-pret").textContent.trim());
+            let inaltime = parseInt(prod.querySelector(".val-calorii").textContent.trim());
+            let categorie = prod.querySelector(".val-categorie").textContent.trim().toLowerCase();
+            let prezentare = prod.querySelector(".val-prezentare").textContent.trim().toLowerCase();
+            let isToxic = prod.querySelector(".val-toxic").textContent.trim() === "DA";
+            let culoareProdus = prod.querySelector(".val-culoare").textContent.trim().toLowerCase();
+            let ingrijire = prod.querySelector(".val-ingrijire").textContent.trim().toLowerCase();
+
+            let condNume = nume.includes(inpNume);
+            let condInalt = inaltime >= inpInaltime;
+            let condCateg = inpCategorie === "toate" || categorie === inpCategorie;
+            let condPret = isToatePreturi || (pret >= pretMin && pret < pretMax);
+            let condPrez = (inpPrezentare === "") || (prezentare.includes(inpPrezentare));
+            let condToxic = (valToxic === "toate") || (valToxic === "da" && isToxic === true) ||  (valToxic === "nu" && isToxic === false);
+            let condCulori = (inpCulori.length === 0) || (inpCulori.includes(culoareProdus));
+            let condIngrijire = (inpIngrijire.length < 5) || (ingrijire.includes(inpIngrijire));
+
+            if (condNume && condPret && condCateg && condInalt && condPrez && condToxic && condCulori && condIngrijire) {
+                colWrapper.style.display = "block";
+            } else {
+                colWrapper.style.display = "none";
+            }
+        }
+    }
+
+    /// BONUS4 ETAPA 6 -------------------------------
+    document.getElementById("inp-nume").oninput = aplicaFiltre;
+    let rangeInaltime = document.getElementById("inp-inaltime");
+    rangeInaltime.addEventListener("change", aplicaFiltre);
+    rangeInaltime.addEventListener("input", function() {
+        document.getElementById("infoRange").textContent = `(${this.value})`;
+        aplicaFiltre();
+    });
+    document.getElementById("inp-categorie").onchange = aplicaFiltre;
+    document.getElementById("inp-prezentare").oninput = aplicaFiltre;
+    document.getElementById("inp-ingrijire-text").addEventListener("change", aplicaFiltre);
+    document.getElementById("inp-culori").onchange = aplicaFiltre;
+    let radioPret = document.getElementsByName("gr_rad");
+    for (let rad of radioPret) {
+        rad.onchange = aplicaFiltre;
+    }
+    let radioToxic = document.getElementsByName("gr_toxic");
+    for (let rad of radioToxic) {
+        rad.onchange = aplicaFiltre;
+    }
+    /// BONUS4 ETAPA 6 -------------------------------
+
     let btnFiltrare = document.getElementById("filtrare");
     if (btnFiltrare) {
         btnFiltrare.onclick = function() {
-            
-            if (!valideazaDate()) return;
-
-            let inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
-            let inpInaltime = parseFloat(document.getElementById("inp-inaltime").value);
-            let inpCategorie = document.getElementById("inp-categorie").value.trim().toLowerCase();
-            let inpPrezentare = document.getElementById("inp-prezentare").value.trim().toLowerCase();
-            let valToxic = "toate";
-            let radToxic = document.getElementsByName("gr_toxic");
-            for (let r of radToxic) {
-                if (r.checked) {
-                    valToxic = r.value;
-                    break;
-                }
-            }
-            let inpCulori = Array.from(document.getElementById("inp-culori").selectedOptions).map(opt => opt.value);
-            let inpIngrijire = document.getElementById("inp-ingrijire-text").value.trim().toLowerCase();
-
-            let pretMin = 0, pretMax = 1000000, isToatePreturi = false;
-            let grupRadio = document.getElementsByName("gr_rad");
-            for (let rad of grupRadio) {
-                if (rad.checked) {
-                    if (rad.value !== "toate") {
-                        let interval = rad.value.split(":");
-                        pretMin = parseInt(interval[0]);
-                        pretMax = parseInt(interval[1]);
-                    } else {
-                        isToatePreturi = true;
-                    }
-                    break;
-                }
-            }
-
-            let produse = document.querySelectorAll(".produs");
-            for (let prod of produse) {
-                let colWrapper = prod.closest(".col");
-                
-                let nume = prod.querySelector(".val-nume").textContent.trim().toLowerCase();
-                let pret = parseFloat(prod.querySelector(".val-pret").textContent.trim());
-                let inaltime = parseInt(prod.querySelector(".val-calorii").textContent.trim());
-                let categorie = prod.querySelector(".val-categorie").textContent.trim().toLowerCase();
-                let prezentare = prod.querySelector(".val-prezentare").textContent.trim().toLowerCase();
-                let isToxic = prod.querySelector(".val-toxic").textContent.trim() === "DA";
-                let culoareProdus = prod.querySelector(".val-culoare").textContent.trim().toLowerCase();
-                let ingrijire = prod.querySelector(".val-ingrijire").textContent.trim().toLowerCase();
-
-                let condNume = nume.includes(inpNume);
-                let condInalt = inaltime >= inpInaltime;
-                let condCateg = inpCategorie === "toate" || categorie === inpCategorie;
-                let condPret = isToatePreturi || (pret >= pretMin && pret < pretMax);
-                let condPrez = (inpPrezentare === "") || (prezentare.includes(inpPrezentare));
-                let condToxic = (valToxic === "toate") || (valToxic === "da" && isToxic === true) ||  (valToxic === "nu" && isToxic === false);
-                let condCulori = (inpCulori.length === 0) || (inpCulori.includes(culoareProdus));
-                let condIngrijire = (inpIngrijire.length < 5) || (ingrijire.includes(inpIngrijire));
-
-                if (condNume && condPret && condCateg && condInalt && condPrez && condToxic && condCulori && condIngrijire) {
-                    colWrapper.style.display = "block";
-                } else {
-                    colWrapper.style.display = "none";
-                }
-            }
+            aplicaFiltre();
         };
     }
 

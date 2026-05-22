@@ -1,114 +1,127 @@
 <!DOCTYPE html>
 <html lang="ro">
-    <head>
-        <meta name="description" content="Detalii despre <%- locals.prod.nume %> - Magazinul nostru oferă plante de interior, exotice și decorative.">
-        <!-- Am adăugat keywords dinamice pentru SEO -->
-        <meta name="keywords" content="plante, <%- locals.prod.categorie %>, <%- locals.prod.nume %>, <%- locals.prod.culoare_principala %>">
-        
-        <title>Magazin Plante - <%- locals.prod.nume %></title>
-        <%- include("../fragmente/head") %>     
-        <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
-        <%- include("../fragmente/header") %>
-
-    <main>
-        <section>
-            <h2>Detalii Plantă</h2>
-            <article id="art-produs">
-                <h3><span class="nume"><%- locals.prod.nume %></span></h3> 
-                
-                <div class="info-container">
-                    <p><strong>Preț:</strong> <span class="pret"><%- locals.prod.pret %> RON</span></p>
-                    <p><strong>Descriere:</strong> <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    
-                    <p><strong>Înălțime:</strong> <span class="inaltime"><%- locals.prod.inaltime_cm %> cm</span></p>
-                    <p><strong>Categorie:</strong> <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p><strong>Mod prezentare:</strong> <span class="prezentare"><%- locals.prod.prezentare %> </span></p>
-                    <p><strong>Condiții îngrijire:</strong> <span class="ingrediente"><%- locals.prod.conditii_ingrijire %> </span></p>
-                    <p><strong>Culoare principală:</strong> <span class="culoare"><%- locals.prod.culoare_principala %> </span></p>
-                    <p><strong>Toxic animale:</strong> 
-                        <span class="toxic_animale">
-                            <%- locals.prod.toxic_animale ? "Da" : "Nu" %> 
-                        </span>
-                    </p>
-                    
-                    <p><strong>În ofertă din data:</strong> 
-                        <span class="data">
-                            <% 
-                               let d = new Date(locals.prod.data_adaugare);
-                               let data_formatata = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
-                            %>
-                            <%- data_formatata %>
-                        </span>
-                    </p>
-                </div>
-
-                <figure class="imag-produs">
-                    <img src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" style="max-width:400px; height:auto;"/>
-                </figure>
-                <!-- BONUS9 ETAPA 6 -->
-                <div id="caruselProdus" class="carousel slide" data-bs-ride="carousel">
+<head>
+    <meta name="description" content="Detalii despre <%- locals.prod.nume %> - Magazinul nostru oferă plante de interior, exotice și decorative.">
+    <meta name="keywords" content="plante, <%- locals.prod.categorie %>, <%- locals.prod.nume %>, <%- locals.prod.culoare_principala %>">
     
-                    <div class="carousel-indicators">
-                        <% for(let i = 0; i < imaginiProdus.length; i++) { %>
-                            <button type="button" data-bs-target="#caruselProdus" data-bs-slide-to="<%= i %>" class="<%= i === 0 ? 'active' : '' %>" aria-current="<%= i === 0 ? 'true' : 'false' %>" aria-label="Slide <%= i + 1 %>"></button>
-                        <% } %>
-                    </div>
+    <title>Magazin Plante - <%- locals.prod.nume %></title>
+    <%- include("../fragmente/head") %>     
 
-                    <div class="carousel-inner rounded border border-dark">
-                        <% for(let i = 0; i < imaginiProdus.length; i++) { %>
-                            <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-                                <img src="/resurse/imagini/produse/multe/<%= idProdus %>/<%= imaginiProdus[i] %>" class="d-block w-100" style="max-height: 400px; object-fit: contain;" alt="Imagine produs <%= i + 1 %>">
+</head>
+<body>
+<%- include("../fragmente/header") %>
+
+<main class="pag-produs">
+    <div class="container-produs">
+        
+        <div class="zona-media">
+            <div class="rama-carusel d-flex justify-content-center align-items-center">
+                <% if (locals.imaginiProdus && locals.imaginiProdus.length > 0) { %>
+                    <div id="caruselProdus" class="carousel slide w-100" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            
+                            <div class="carousel-item active">
+                                <img src="/resurse/imagini/produse/<%= locals.prod.imagine %>" class="d-block w-100" alt="Imagine principală <%= locals.prod.nume %>">
                             </div>
-                        <% } %>
-                    </div>
+                            
+                            <% for(let i = 0; i < imaginiProdus.length; i++) { %>
+                                <div class="carousel-item">
+                                    <img src="/resurse/imagini/produse/multe/<%= idProdus %>/<%= imaginiProdus[i] %>" class="d-block w-100" alt="Imagine extra <%= i + 1 %>">
+                                </div>
+                            <% } %>
+                        </div>
 
-                    <% if (imaginiProdus.length > 1) { %>
                         <button class="carousel-control-prev" type="button" data-bs-target="#caruselProdus" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">Precedent</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#caruselProdus" data-bs-slide="next">
                             <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="visually-hidden">Următor</span>
                         </button>
-                    <% } %>
+                    </div>
+                <% } else { %>
+                    <img src="/resurse/imagini/produse/<%= locals.prod.imagine %>" class="img-fluid d-block" alt="<%= locals.prod.nume %>">
+                <% } %>
+            </div>
+        </div>
+
+        <div class="zona-detalii">
+            <h2 class="titlu"><%- locals.prod.nume %></h1>
+            <p class="descriere-produs"><%- locals.prod.descriere %></p>
+            
+            <div class="grid-specificatii">
+                <div class="item-specificatie">
+                    <strong>Categorie</strong>
+                    <%- locals.prod.categorie %>
                 </div>
-            </article>
-        </section>
-        <section class="mt-5 border-top border-dark pt-4">
-            <h3 class="fw-bold mb-4">Disponibil în următoarele seturi promoționale:</h3>
-            <% if(locals.seturi && locals.seturi.length > 0) { %>
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <% for(let set of locals.seturi) { %>
-                        <div class="col">
-                            <div class="p-3 border border-dark rounded shadow-sm h-100" style="background-color: var(--culoare-4);">
-                                <h4 class="fw-bold text-dark mb-1"><%= set.nume %></h4>
-                                <p class="small text-dark mb-2"><%= set.descriere %></p>
-                                <p class="fw-bold text-danger mb-3">Preț pachet: <%= set.pretRedus %> RON</p>
-                                
-                                <h5 class="h6 text-muted small text-uppercase fw-bold mb-2">Componența setului:</h5>
-                                <div class="d-flex gap-2">
-                                    <% for(let prodSet of set.produse) { %>
-                                        <div class="bg-white p-2 border rounded text-center" style="width: 90px;">
-                                            <a href="/produs/<%= prodSet.id %>" class="text-decoration-none text-dark small">
-                                                <img src="/resurse/imagini/produse/<%= prodSet.imagine %>" alt="<%= prodSet.nume %>" class="img-fluid mb-1" style="height: 45px; object-fit: contain;">
-                                                <div class="text-truncate fw-bold" style="font-size: 0.75rem;"><%= prodSet.nume %></div>
-                                            </a>
-                                        </div>
-                                    <% } %>
-                                </div>
+                <div class="item-specificatie">
+                    <strong>Înălțime</strong>
+                    <%- locals.prod.inaltime_cm %> cm
+                </div>
+                <div class="item-specificatie">
+                    <strong>Culoare Principală</strong>
+                    <%- locals.prod.culoare_principala %>
+                </div>
+                <div class="item-specificatie">
+                    <strong>Mod Prezentare</strong>
+                    <%- locals.prod.prezentare %>
+                </div>
+                <div class="item-specificatie">
+                    <strong>Toxic pentru animale</strong>
+                    <%- locals.prod.toxic_animale ? "DA" : "NU" %>
+                </div>
+            </div>
+
+            <div class="zona-cumparare">
+                <div class="eticheta-pret"><%- locals.prod.pret %> RON</div>
+                
+                <div>
+                    <input type="checkbox" class="btn-check select-cos" id="cos_<%- locals.prod.id %>" value="<%- locals.prod.id %>" autocomplete="off">
+                    <label class="btn btn-info w-100 fw-bold border-dark py-2" for="cos_<%- locals.prod.id %>">
+                        Adaugă în coșul de cumpărături
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="sectiune-seturi-produs">
+        <h2 class="titlu">Disponibil în următoarele seturi promoționale</h2>
+        
+        <% if(locals.seturi && locals.seturi.length > 0) { %>
+            <div class="grid-seturi-produs">
+                <% for(let set of locals.seturi) { %>
+                    <div class="box-set-produs">
+                        <div>
+                            <h4 class="fw-bold text-uppercase mb-1" style="font-size: 1.1rem;"><%= set.nume %></h4>
+                            <p class="small text-muted mb-2"><%= set.descriere %></p>
+                            <p class="fw-bold text-danger mb-3" style="font-size: 1.05rem;">Preț pachet: <%= set.pretRedus %> RON</p>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-uppercase fw-bold text-muted small mb-2" style="font-size: 0.75rem; border-bottom: 1px solid var(--culoare-contur);">Componența setului:</h5>
+                            <div class="componenta-set-imagini">
+                                <% for(let prodSet of set.produse) { %>
+                                    <div class="avatar-planta-set">
+                                        <a href="/produs/<%= prodSet.id %>">
+                                            <img src="/resurse/imagini/produse/<%= prodSet.imagine %>" alt="<%= prodSet.nume %>">
+                                            <div class="text-truncate fw-bold text-dark mt-1" style="font-size: 0.7rem;" title="<%= prodSet.nume %>"><%= prodSet.nume %></div>
+                                        </a>
+                                    </div>
+                                <% } %>
                             </div>
                         </div>
-                    <% } %>
-                </div>
-            <% } else { %>
-                <p class="text-muted small">Acest produs nu este inclus în niciun set promoțional momentan.</p>
-            <% } %>
-        </section>
-    </main>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <p class="text-muted small">Acest produs nu este inclus în niciun set promoțional momentan.</p>
+        <% } %>
+    </section>
+</main>
 
-    <%- include("../fragmente/footer") %>
-    </body>
+<%- include("../fragmente/footer") %>
+</body>
 </html>

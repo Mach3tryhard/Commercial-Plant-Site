@@ -1,0 +1,346 @@
+.pag-seturi {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.titlu-pagina {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--culoare-contur, #000000);
+    color: var(--culoare-contur, #000000);
+}
+
+.lista-seturi {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+}
+
+.box-set {
+    background-color: var(--culoare-opus, #ffffff);
+    border: 2px solid var(--culoare-contur, #000000);
+    padding: 25px;
+    /* box-shadow: 6px 6px 0px var(--culoare-contur, #000000); */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+/* Schimbare în layout pe două coloane pe ecrane medii/mari */
+@media (min-width: 768px) {
+    .box-set {
+        grid-template-columns: 1fr 340px;
+        gap: 40px;
+    }
+}
+
+.info-set {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nume-set {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--culoare-contur, #000000);
+    color: var(--culoare-contur, #000000);
+}
+
+.descriere-set {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--culoare-contur, #000000);
+    margin: 0 0 20px 0;
+}
+
+.zona-preturi {
+    border-top: 2px solid var(--culoare-contur, #000000);
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.zona-preturi p {
+    margin: 4px 0;
+    font-size: 1rem;
+}
+
+.pret-vechi {
+    text-decoration: line-through;
+    color: #666666;
+}
+
+.pret-nou {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--culoare-1, #2b7a0b);
+}
+
+.produse-set {
+    border-top: 2px dashed var(--culoare-contur, #000000);
+    padding-top: 25px;
+}
+
+@media (min-width: 768px) {
+    .produse-set {
+        border-top: none;
+        border-left: 2px solid var(--culoare-contur, #000000);
+        padding-top: 0;
+        padding-left: 35px;
+    }
+}
+
+.produse-set h4 {
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin: 0 0 15px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--culoare-contur, #000000);
+    color: var(--culoare-contur, #000000);
+}
+
+.grid-mini-produse {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.mini-produs {
+    background-color: var(--culoare-fundal, #fefaad);
+    border: 2px solid var(--culoare-contur, #000000);
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mini-produs:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0px var(--culoare-contur, #000000);
+}
+
+.mini-produs a {
+    text-decoration: none;
+    color: var(--culoare-contur, #000000);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mini-produs figure {
+    margin: 0 0 8px 0;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.mini-produs img {
+    max-height: 75px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.mini-nume {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.mini-pret {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+#seturi-section{
+    background-color: var(--culoare-2);
+    border: 1px solid var(--culoare-contur); 
+    box-shadow: 0 0 5px var(--culoare-contur); 
+    padding: 10px;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.pag-produs {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.container-produs {
+    background-color: var(--culoare-5);
+    border: 2px solid var(--culoare-contur);
+    padding: 30px;
+    /* box-shadow: 6px 6px 0px var(--culoare-contur, #000000); */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+}
+
+@media (min-width: 768px) {
+    .container-produs {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+/* Cadru îmbunătățit pentru Carusel */
+.zona-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rama-carusel {
+    border: 2px solid var(--culoare-contur, #000000);
+    background-color: var(--culoare-fundal, #fefaad);
+    /* padding: 10px; */
+    /* box-shadow: 4px 4px 0px var(--culoare-contur, #000000); */
+    position: relative;
+}
+
+.rama-carusel img {
+    max-height: 450px;
+    object-fit: contain;
+}
+
+/* Detalii text */
+.zona-detalii {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.titlu-produs {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--culoare-contur, #000000);
+    color: var(--culoare-contur, #000000);
+}
+
+.descriere-produs {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--culoare-contur, #000000);
+    margin-bottom: 25px;
+}
+
+/* Grila de specificații tehnice */
+.grid-specificatii {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.item-specificatie {
+    background-color: var(--culoare-fundal, #fefaad);
+    border: 2px solid var(--culoare-contur, #000000);
+    padding: 12px;
+    font-size: 0.9rem;
+}
+
+.item-specificatie strong {
+    text-transform: uppercase;
+    display: block;
+    font-size: 0.75rem;
+    color: #555555;
+    margin-bottom: 4px;
+}
+
+/* Casetă Preț și Cumpărare */
+.zona-cumparare {
+    border-top: 2px dashed var(--culoare-contur, #000000);
+    padding-top: 20px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.eticheta-pret {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--culoare-scris);
+}
+
+/* Secțiunea Seturi Promoționale stilizată nativ */
+.sectiune-seturi-produs {
+    margin-top: 30px;
+    border: 2px solid var(--culoare-contur, #000000);
+    background-color: var(--culoare-6);
+    padding: 10px;
+}
+
+.subtitlu-seturi {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: var(--culoare-contur, #000000);
+}
+
+.grid-seturi-produs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .grid-seturi-produs {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.box-set-produs {
+    background-color: var(--culoare-opus, #ffffff);
+    border: 2px solid var(--culoare-contur, #000000);
+    padding: 20px;
+    /* box-shadow: 4px 4px 0px var(--culoare-contur, #000000); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.componenta-set-imagini {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.avatar-planta-set {
+    border: 1px solid var(--culoare-contur, #000000);
+    background-color: var(--culoare-fundal, #fefaad);
+    padding: 6px;
+    text-align: center;
+    width: 80px;
+    box-sizing: border-box;
+}
+
+.avatar-planta-set img {
+    max-height: 50px;
+    max-width: 100%;
+    object-fit: contain;
+}

@@ -7,45 +7,44 @@
 <body>
 <%- include("../fragmente/header") %>
 
-<main class="container py-4">
-    <section id="seturi" class="p-4 rounded-4 border border-dark">
-        <h2 class="titlu text-center mb-4">Seturi de Plante</h2>
-        
-        <div class="row row-cols-1 g-4">
-            <% for(let set of seturi) { %>
-                <div class="col">
-                    <article class="produs d-flex flex-column flex-md-row p-3 overflow-hidden shadow border border-dark justify-content-between gap-4">
+<main class="pag-seturi">
+    <section id="seturi-section">
+        <h2 class="titlu">Seturi de Plante</h1>
+        <div class="lista-seturi">
+                <% for(let set of seturi) { %>
+                    <article class="box-set">
                         
-                        <div class="flex-grow-1">
-                            <h3 class="nume h5 fw-bolder text-uppercase pb-2 border-bottom border-dark mb-3">
-                                <%= set.nume %>
-                            </h3>
+                        <div class="info-set">
+                            <div>
+                                <h2 class="nume-set"><%= set.nume %></h2>
+                                <p class="descriere-set"><%= set.descriere %></p>
+                            </div>
                             
-                            <p class="descriere mb-3 small text-dark"><%= set.descriere %></p>
-                            
-                            <div class="px-0 pb-2 pt-2 border-top border-dark mt-auto">
-                                <p class="mb-1 small text-muted">
+                            <div class="zona-preturi">
+                                <p>
                                     <strong>Preț produse separat:</strong> 
-                                    <span class="text-decoration-line-through"><%= set.pretIntreg %></span> RON
+                                    <span class="pret-vechi"><%= set.pretIntreg %></span> RON
                                 </p>
-                                <p class="mb-0 fw-bold">
+                                <p>
                                     <strong>Preț pachet:</strong> 
-                                    <span class="text-danger"><%= set.pretRedus %></span> RON
+                                    <span class="pret-nou"><%= set.pretRedus %></span> RON
                                 </p>
                             </div>
                         </div>
                         
-                        <div class="pt-3 pt-md-0 ps-md-4 border-md-start border-dark" style="min-width: 280px;">
-                            <h4 class="h6 fw-bold text-uppercase pb-2 border-bottom border-dark mb-3">Plante incluse:</h4>
-                            <div class="d-flex flex-wrap gap-2">
+                        <div class="produse-set">
+                            <h4>Plante incluse în set:</h4>
+                            <div class="grid-mini-produse">
                                 <% for(let prod of set.produse) { %>
-                                    <div class="p-2 border border-dark bg-white text-center" style="width: 120px;">
-                                        <a href="/produs/<%= prod.id %>" class="text-decoration-none text-dark">
-                                            <figure class="mb-1 text-center">
-                                                <img src="/resurse/imagini/produse/<%= prod.imagine %>" class="img-fluid" style="max-height: 70px; object-fit: contain;" alt="[imagine <%= prod.nume %>]" />
+                                    <div class="mini-produs">
+                                        <a href="/produs/<%= prod.id %>">
+                                            <figure>
+                                                <img src="/resurse/imagini/produse/<%= prod.imagine %>" alt="[imagine <%= prod.nume %>]" />
                                             </figure>
-                                            <div class="fw-bold small text-truncate"><%= prod.nume %></div>
-                                            <div class="text-muted small"><%= prod.pret %> RON</div>
+                                            <div>
+                                                <div class="mini-nume" title="<%= prod.nume %>"><%= prod.nume %></div>
+                                                <div class="mini-pret"><%= prod.pret %> RON</div>
+                                            </div>
                                         </a>
                                     </div>
                                 <% } %>
@@ -53,9 +52,8 @@
                         </div>
 
                     </article>
-                </div>
-            <% } %>
-        </div>
+                <% } %>
+            </div>
     </section>
 </main>
 

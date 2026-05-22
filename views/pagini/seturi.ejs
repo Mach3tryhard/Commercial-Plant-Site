@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>     
+    <title>Seturi de Produse</title>
+</head>
+<body>
+<%- include("../fragmente/header") %>
+
+<main class="container py-5">
+    <h1 class="titlu text-center mb-5">Seturi de Plante promotionale</h1>
+    
+    <div class="row row-cols-1 g-4">
+        <% for(let set of seturi) { %>
+            <div class="col">
+                <div class="card h-100 border-dark shadow-sm p-4" style="background-color: var(--culoare-fundal);">
+                    <div class="row align-items-center">
+                        <div class="col-md-5">
+                            <h2 class="h3 fw-bold text-dark"><%= set.nume %></h2>
+                            <p class="text-muted small mb-3"><%= set.descriere %></p>
+                            <div class="p-3 rounded border border-dark bg-white inline-block">
+                                <span class="text-decoration-line-through text-muted small"><%= set.pretIntreg %> RON</span>
+                                <br>
+                                <span class="fw-bold fs-4 text-danger">Pret Set: <%= set.pretRedus %> RON</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7 mt-3 mt-md-0">
+                            <h3 class="h6 fw-bold text-uppercase border-bottom pb-2 mb-3">Plante incluse in set:</h3>
+                            <div class="d-flex flex-wrap gap-3">
+                                <% for(let prod of set.produse) { %>
+                                    <div class="text-center p-2 border rounded bg-white" style="width: 120px;">
+                                        <a href="/produs/<%= prod.id %>" class="text-decoration-none text-dark">
+                                            <img src="/resurse/imagini/produse/<%= prod.imagine %>" alt="<%= prod.nume %>" class="img-fluid mb-2" style="height: 70px; object-fit: contain;">
+                                            <div class="small fw-bold text-truncate"><%= prod.nume %></div>
+                                        </a>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+
+<%- include("../fragmente/footer") %>
+</body>
+</html>

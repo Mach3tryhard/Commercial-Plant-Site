@@ -165,7 +165,7 @@ app.use(function(req, res, next) {
         next();
     });
 });
-
+// BONUS17 ETAPA 6
 app.get("/produse", function(req, res) {
     let clauzaWhere = "";
     if (req.query.categorie && req.query.categorie !== 'toate') {
@@ -239,7 +239,7 @@ app.get("/produse", function(req, res) {
 });
 
 app.get("/produs/:id", function(req, res) {
-    client.query(`SELECT * FROM plante where id=${req.params.id}`, function(err, rez){
+    client.query(`SELECT * FROM plante where id=${req.params.id}`, async function(err, rez){
         if (err) {
             console.error("Eroare la interogarea bazei de date:", err);
             afisareEroare(res,2)
@@ -259,16 +259,84 @@ app.get("/produs/:id", function(req, res) {
                         return fisier.endsWith('.jpg') || fisier.endsWith('.png') || fisier.endsWith('.jpeg') || fisier.endsWith('.webp');
                     });
                 }
+                let rezSeturi = await client.query(`
+                    SELECT s.id AS set_id, s.nume_set, s.descriere_set, 
+                        p.id AS produs_id, p.nume AS produs_nume, p.imagine, p.pret 
+                    FROM seturi s 
+                    JOIN asociere_set a ON s.id = a.id_set 
+                    JOIN plante p ON a.id_produs = p.id
+                    WHERE s.id IN (SELECT id_set FROM asociere_set WHERE id_produs = $1)
+                `, [idProdus]);
+
+                let vSeturiProdus = proceseazaSeturi(rezSeturi.rows);
 
                 res.render('pagini/produs', { 
                     prod: rez.rows[0],
                     imaginiProdus: imaginiProdus,  
-                    idProdus: idProdus
+                    idProdus: idProdus,
+                    seturi: vSeturiProdus
                 });
             }
         }
     });
 })
+
+function proceseazaSeturi(randuriBazaDate) {
+    let seturiMap = {};
+    for (let i = 0; i < randuriBazaDate.length; i++) {
+        let r = randuriBazaDate[i];
+        if (!seturiMap[r.set_id]) {
+            seturiMap[r.set_id] = {
+                id: r.set_id,
+                nume: r.nume_set,
+                descriere: r.descriere_set,
+                produse: []
+            };
+        }
+        seturiMap[r.set_id].produse.push({
+            id: r.produs_id,
+            nume: r.produs_nume,
+            imagine: r.imagine,
+            pret: parseFloat(r.pret)
+        });
+    }
+
+    let vSeturi = Object.values(seturiMap);
+    for (let i = 0; i < vSeturi.length; i++) {
+        let s = vSeturi[i];
+        let sumaPreturi = 0;
+        for (let j = 0; j < s.produse.length; j++) {
+            sumaPreturi += s.produse[j].pret;
+        }
+        let n = s.produse.length;
+        let reducereProcent = Math.min(5, n) * 5;
+        
+        s.pretIntreg = sumaPreturi.toFixed(2);
+        s.pretRedus = (sumaPreturi * (1 - reducereProcent / 100)).toFixed(2);
+    }
+
+    return vSeturi;
+}
+
+app.get("/seturi", async function(req, res) {
+    try {
+        let rez = await client.query(`
+            SELECT s.id AS set_id, s.nume_set, s.descriere_set, 
+                   p.id AS produs_id, p.nume AS produs_nume, p.imagine, p.pret 
+            FROM seturi s 
+            JOIN asociere_set a ON s.id = a.id_set 
+            JOIN plante p ON a.id_produs = p.id
+        `);
+
+        let vSeturi = proceseazaSeturi(rez.rows);
+
+        res.render("pagini/seturi", { seturi: vSeturi });
+    } catch (err) {
+        console.error("Eroare la încărcarea seturilor:", err);
+        afisareEroare(res, 500);
+    }
+});
+
 /// CONEXIUNEA CU BAZA DE DATE -------------------------------------------------------------------------------------
 
 

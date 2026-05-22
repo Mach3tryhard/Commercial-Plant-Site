@@ -77,6 +77,36 @@
                 </div>
             </article>
         </section>
+        <section class="mt-5 border-top border-dark pt-4">
+            <h3 class="fw-bold mb-4">Disponibil în următoarele seturi promoționale:</h3>
+            <% if(locals.seturi && locals.seturi.length > 0) { %>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <% for(let set of locals.seturi) { %>
+                        <div class="col">
+                            <div class="p-3 border border-dark rounded shadow-sm h-100" style="background-color: var(--culoare-4);">
+                                <h4 class="fw-bold text-dark mb-1"><%= set.nume %></h4>
+                                <p class="small text-dark mb-2"><%= set.descriere %></p>
+                                <p class="fw-bold text-danger mb-3">Preț pachet: <%= set.pretRedus %> RON</p>
+                                
+                                <h5 class="h6 text-muted small text-uppercase fw-bold mb-2">Componența setului:</h5>
+                                <div class="d-flex gap-2">
+                                    <% for(let prodSet of set.produse) { %>
+                                        <div class="bg-white p-2 border rounded text-center" style="width: 90px;">
+                                            <a href="/produs/<%= prodSet.id %>" class="text-decoration-none text-dark small">
+                                                <img src="/resurse/imagini/produse/<%= prodSet.imagine %>" alt="<%= prodSet.nume %>" class="img-fluid mb-1" style="height: 45px; object-fit: contain;">
+                                                <div class="text-truncate fw-bold" style="font-size: 0.75rem;"><%= prodSet.nume %></div>
+                                            </a>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <p class="text-muted small">Acest produs nu este inclus în niciun set promoțional momentan.</p>
+            <% } %>
+        </section>
     </main>
 
     <%- include("../fragmente/footer") %>

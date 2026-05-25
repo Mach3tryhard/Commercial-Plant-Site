@@ -249,6 +249,7 @@ app.get("/produs/:id", function(req, res) {
                 afisareEroare(res,404,"Produs inexistent");
             }
             else{
+                /// BONUS9 ETAPA 6 
                 let idProdus = req.params.id;
 
                 let caleFolder = path.join(__dirname, 'resurse', 'imagini', 'produse','multe', String(idProdus));

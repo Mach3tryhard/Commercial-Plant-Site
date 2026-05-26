@@ -165,7 +165,7 @@ app.use(function(req, res, next) {
         next();
     });
 });
-// BONUS17 ETAPA 6
+
 app.get("/produse", function(req, res) {
     let clauzaWhere = "";
     if (req.query.categorie && req.query.categorie !== 'toate') {
@@ -260,6 +260,7 @@ app.get("/produs/:id", function(req, res) {
                         return fisier.endsWith('.jpg') || fisier.endsWith('.png') || fisier.endsWith('.jpeg') || fisier.endsWith('.webp');
                     });
                 }
+                // BONUS17 ETAPA 6
                 let rezSeturi = await client.query(`
                     SELECT s.id AS set_id, s.nume_set, s.descriere_set, 
                         p.id AS produs_id, p.nume AS produs_nume, p.imagine, p.pret 
